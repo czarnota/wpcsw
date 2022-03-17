@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+read -rd '' doc <<EOF
+w - watch files for changes and trigger actions
+
+USAGE
+
+    w   watch files and trigger actions
+
+EXAMPLES
+
+Do something
+
+    $ w
+EOF
+
+main () {
+    echo w: watching files for changes...
+    while true; do
+        make --silent
+        sleep 1
+    done
+}
+
+help () {
+    echo "$doc"
+    echo
+}
+
+declare -A COMMANDS=(
+    [main]=main
+    [--help]=help
+    [-h]=help
+)
+
+argparse () {
+    "${COMMANDS["${1:-main}"]:-${COMMANDS[main]}}" "$@"
+}
+argparse "$@"
+
