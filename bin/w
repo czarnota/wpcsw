@@ -17,7 +17,7 @@ EOF
 main () {
     echo w: watching files for changes...
     while true; do
-        make --silent
+        make --silent "$@"
         sleep 1
     done
 }

@@ -262,16 +262,16 @@ p > code, li > code {
 <section id="zadanie-1" class="level2">
 <h2>Zadanie 1</h2>
 <p>Napisz program który po uruchomieniu wyświeli twoje imię i nazwisko. Skompiluj go za pomocą <code>gcc</code> i uruchom z terminala.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$ ./a.out</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Przemysław Czarnota</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1">$ ./a.out</a>
+<a class="sourceLine" id="cb1-2" title="2">Przemysław Czarnota</a></code></pre></div>
 </section>
 <section id="zadanie-2" class="level2">
 <h2>Zadanie 2</h2>
 <p>Napisz program który przyjmuje 2 argumenty: imie i nazwisko, a następnie je wyświetla.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>$ ./a.out Przemyslaw Czarnota</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Przemyslaw Czarnota</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>$ echo $?</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb2-1" title="1">$ ./a.out Przemyslaw Czarnota</a>
+<a class="sourceLine" id="cb2-2" title="2">Przemyslaw Czarnota</a>
+<a class="sourceLine" id="cb2-3" title="3">$ echo $?</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="dv">0</span></a></code></pre></div>
 <p>Podanie niepoprawnej liczby argumentów, powinno skutkować wyświetleniem błędu na standardowy strumień błędów oraz zwróceniem kodu błędu różnego od 0.</p>
 <pre><code>$ ./a.out Za duzo argumentow &gt;/dev/null
 error: too many arguments
@@ -281,19 +281,23 @@ $ echo $?
 <section id="zadanie-3" class="level2">
 <h2>Zadanie 3</h2>
 <p>Napisz program, który będzie odczytywał ze standardowego wejścia liczby do momentu wystąpienia wejścia, które nie jest liczbą lub końca strumienia i na końcu wyświetli ich średnią arytmetyczną.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>$ ./a.out</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>            &lt;--- tu wcisnąłem Ctrl-d</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fl">2.000000</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" title="1">$ ./a.out</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="dv">1</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="dv">2</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="dv">3</span>            &lt;--- tu wcisnąłem Ctrl-d</a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="fl">2.000000</span></a></code></pre></div>
+<p>Przydatne funkcje:</p>
+<ul class="incremental">
+<li><code>scanf()</code> - odczytuje zmienne ze standardowego wejścia</li>
+</ul>
 </section>
 <section id="zadanie-4" class="level2">
 <h2>Zadanie 4</h2>
 <p>Napisz program, który będzie odczytywał liczby ze standardowego wejścia i wypisze je w odwrotnej kolejności.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>$ seq <span class="dv">1</span> <span class="dv">3</span> | ./a.out</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb5-1" title="1">$ seq <span class="dv">1</span> <span class="dv">3</span> | ./a.out</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="dv">3</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="dv">2</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="dv">1</span></a></code></pre></div>
 <p>Program powinien działać maksymalnie dla 4096 liczb całkowitych. Dalsze liczby są odrzucane.</p>
 </section>
 <section id="zadanie-5" class="level2">
@@ -306,6 +310,61 @@ $ echo $?
 <li><code>free()</code> - zwalnia pamięć</li>
 <li><code>memcpy()</code> - kopiuje dane</li>
 </ul>
+<p>Sprawdź czy nie ma wycieków pamięci:</p>
+<pre class="console"><code>$ valgrind --leak-check=full --show-leak-kinds=all ./program</code></pre>
+<pre><code>$ gcc main.c -fsanitize=address -o program
+$ ./program</code></pre>
+</section>
+<section id="zadanie-6" class="level2">
+<h2>Zadanie 6</h2>
+<p>Napisz funkcję która będzie sortować tablicę liczb typu <code>int</code> algorytmem sortowania bąbelkowego. Pseudokod:</p>
+<pre><code>sort(items, len) {
+    for (i = 0; i &lt; len - 1; j++) {
+        for (j = 0; j &lt; len - 1 - i; j++) {
+            if (items[j] &gt; items[j + 1])
+                swap(items[j], items[j + 1]);
+        }
+    }
+}</code></pre>
+<p>Wykorzystanie:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb9-1" title="1"><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</a>
+<a class="sourceLine" id="cb9-2" title="2">sort(n, <span class="dv">7</span>);</a></code></pre></div>
+</section>
+<section id="zadanie-7" class="level2">
+<h2>Zadanie 7</h2>
+<p>Napisz funkcję która będzie sortować tablicę liczby typu <code>float</code> algorytmem sortowania bąbelkowego. Dodaj do niej parametr określający porządek sortowania.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb10-1" title="1"><span class="dt">void</span> sort_float(<span class="dt">float</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len, <span class="dt">bool</span> reversed);</a></code></pre></div>
+<p>Wykorzystanie:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb11-1" title="1"><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</a>
+<a class="sourceLine" id="cb11-2" title="2">sort_float(n, <span class="dv">7</span>, false);</a></code></pre></div>
+</section>
+<section id="zadanie-8" class="level2">
+<h2>Zadanie 8</h2>
+<p>Zdefiniuj makro <code>ARRAY_SIZE()</code>, które pozwoli obliczać liczbę elementów w tablicy w trakcie kompilacji (jeżeli rozmiar jest znany w trakcie kompilacji)</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb12-1" title="1"><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</a>
+<a class="sourceLine" id="cb12-2" title="2">sort(n, ARRAY_SIZE(n));</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb13-1" title="1"><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</a>
+<a class="sourceLine" id="cb13-2" title="2">sort_float(n, ARRAY_SIZE(n));</a></code></pre></div>
+<p>Przydatny operator:</p>
+<ul class="incremental">
+<li><code>sizeof(x)</code> - podaje rozmiar wyrażenia</li>
+</ul>
+</section>
+<section id="zadanie-9" class="level2">
+<h2>Zadanie 9</h2>
+<p>Napisz generyczną funkcję <code>sort()</code>, która może posortować tablicę dowolnego typu:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb14-1" title="1"><span class="dt">void</span> sort(<span class="dt">void</span> *ptr, <span class="dt">unsigned</span> <span class="dt">int</span> count, <span class="dt">unsigned</span> <span class="dt">int</span> element_size,</a>
+<a class="sourceLine" id="cb14-2" title="2">          <span class="dt">int</span> (*comparator)(<span class="dt">const</span> <span class="dt">void</span> *a, <span class="dt">const</span> <span class="dt">void</span> *b));</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb15-1" title="1"><span class="dt">int</span> compare_double(<span class="dt">const</span> <span class="dt">void</span> *__a, <span class="dt">const</span> <span class="dt">void</span> *__b)</a>
+<a class="sourceLine" id="cb15-2" title="2">{</a>
+<a class="sourceLine" id="cb15-3" title="3">    <span class="dt">const</span> <span class="dt">double</span> *a = __a, *b == __b;</a>
+<a class="sourceLine" id="cb15-4" title="4">    <span class="cf">if</span> (a == b)</a>
+<a class="sourceLine" id="cb15-5" title="5">        <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb15-6" title="6">    <span class="cf">return</span> a &lt; b ? -<span class="dv">1</span> : <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb15-7" title="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb16-1" title="1"><span class="dt">double</span> items[] = { <span class="fl">2.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span> };</a>
+<a class="sourceLine" id="cb16-2" title="2">sort(items, ARRAY_SIZE(items), <span class="kw">sizeof</span>(items[<span class="dv">0</span>]), compare_double);</a></code></pre></div>
+<p>Funkcja powinna dawać taki sam efekt jak <code>qsort()</code>.</p>
 </section>
 </section>
 <script>

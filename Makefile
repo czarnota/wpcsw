@@ -6,6 +6,10 @@ DIAGRAMS=bin/diagrams.sh
 
 all: $(MARKDOWN_FILES) $(DIAGRAM_FILES)
 
+.lock: $(MARKDOWN_FILES) $(DIAGRAM_FILES)
+	touch $@
+	browserrefresh firefox
+
 $(MARKDOWN_FILES): %index.html : %README.md $(SLIDES)
 	$(SLIDES) $< > $@
 
