@@ -7,7 +7,29 @@ Skompiluj go za pomocą `gcc` i uruchom z terminala.
 
 ```c
 $ ./a.out
-Przemysław Czarnota
+Jan Kowalski
+```
+
+## Rozwiązanie 1
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	printf("Jan Kowalski\n"); 
+	return 0;
+}
+```
+
+Znak `\n` to znak nowej linii (czyli "enter").
+
+Następnie:
+
+```console
+$ gcc main.c -o imieinazwisko
+$ ./imieinazwisko
+Jak Kowalski
 ```
 
 ## Zadanie 2
@@ -28,9 +50,33 @@ kodu błędu różnego od 0.
 
 ```
 $ ./a.out Za duzo argumentow >/dev/null
-error: too many arguments
+error: wrong number of arguments
 $ echo $?
 1
+```
+
+## Rozwiązanie 2
+
+```c
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+	if (argc != 3) {
+		printf("error: wrong number of arguments\n");
+		return 1;
+	}
+
+	printf("%s %s\n", argv[1], argv[2]);
+	return 0;
+}
+```
+
+Gdy uruchamiamy `./program Jan Kowalski`, system operacyjny jako drugi argument
+funkcji `main()` przekazuje następującą tablicę ciągów znaków:
+
+```c
+char *argv[] = { "./program", "Jan", "Kowalski" };
 ```
 
 ## Zadanie 3
@@ -51,6 +97,50 @@ Przydatne funkcje:
 
 - `scanf()` - odczytuje zmienne ze standardowego wejścia
 
+## Rozwiązanie 3
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int sum = 0;
+	int count = 0;
+
+	while (1) {
+		int number;
+
+		int num = scanf("%d", &number);
+		if (num != 1)
+			break;
+		sum += number;
+		count++;
+	}
+
+	printf("%f\n", (float)sum / count);
+	return 0;
+}
+```
+
+## Rozwiązanie 3 - alternatywne
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int sum = 0, count = 0, number;
+
+	while (scanf("%d", &number) == 1) {
+		sum += number;
+		count++;
+	}
+
+	printf("%f\n", (float)sum / count);
+	return 0;
+}
+```
+
 ## Zadanie 4
 
 Napisz program, który będzie odczytywał liczby ze standardowego wejścia
@@ -65,6 +155,11 @@ $ seq 1 3 | ./a.out
 
 Program powinien działać maksymalnie dla 4096 liczb całkowitych.
 Dalsze liczby są odrzucane.
+
+Do rozwiązania będzie potrzebne wykorzystanie tablicy. Na przykład
+```c
+int tablica[4096];
+```
 
 ## Zadanie 5
 
