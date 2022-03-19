@@ -1,4 +1,4 @@
-MARKDOWN_FILES=$(patsubst %/README.md, %/index.html, $(shell find . -name "README.md"))
+MARKDOWN_FILES=$(patsubst %/README.md, %/slides.html, $(shell find . -name "README.md" -not -path "./README.md"))
 DIAGRAM_FILES=$(addsuffix .lock, $(shell find . -name diagrams))
 
 SLIDES=bin/slides.sh
@@ -10,7 +10,7 @@ all: $(MARKDOWN_FILES) $(DIAGRAM_FILES)
 	touch $@
 	browserrefresh firefox
 
-$(MARKDOWN_FILES): %index.html : %README.md $(SLIDES)
+$(MARKDOWN_FILES): %slides.html : %README.md $(SLIDES)
 	$(SLIDES) $< > $@
 
 $(DIAGRAM_FILES): %.lock : % $(DIAGRAMS)
