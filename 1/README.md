@@ -79,6 +79,8 @@ funkcji `main()` przekazuje następującą tablicę ciągów znaków:
 char *argv[] = { "./program", "Jan", "Kowalski" };
 ```
 
+Warto zauważyć że wywołanie systemowe `execvp` przyjmuje podobny argument :)
+
 ## Zadanie 3
 
 Napisz program, który będzie odczytywał ze standardowego wejścia

@@ -309,6 +309,7 @@ $ echo $?
 <a class="sourceLine" id="cb6-12" title="12">}</a></code></pre></div>
 <p>Gdy uruchamiamy <code>./program Jan Kowalski</code>, system operacyjny jako drugi argument funkcji <code>main()</code> przekazuje następującą tablicę ciągów znaków:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb7-1" title="1"><span class="dt">char</span> *argv[] = { <span class="st">&quot;./program&quot;</span>, <span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Kowalski&quot;</span> };</a></code></pre></div>
+<p>Warto zauważyć że wywołanie systemowe <code>execvp</code> przyjmuje podobny argument :)</p>
 </section>
 <section id="zadanie-3" class="level2">
 <h2>Zadanie 3</h2>
