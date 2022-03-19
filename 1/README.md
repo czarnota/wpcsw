@@ -97,6 +97,8 @@ Przydatne funkcje:
 
 - `scanf()` - odczytuje zmienne ze standardowego wejścia
 
+Skrót klawiaturowy `Ctrl-d`, powoduje wysłanie znaku końca pliku.
+
 ## Rozwiązanie 3
 
 ```c
