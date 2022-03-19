@@ -63,7 +63,7 @@ $ echo $?
 int main(int argc, char **argv)
 {
 	if (argc != 3) {
-		printf("error: wrong number of arguments\n");
+		fprintf(stderr, "error: wrong number of arguments\n");
 		return 1;
 	}
 

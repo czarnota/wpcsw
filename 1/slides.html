@@ -300,7 +300,7 @@ $ echo $?
 <a class="sourceLine" id="cb6-3" title="3"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</a>
 <a class="sourceLine" id="cb6-4" title="4">{</a>
 <a class="sourceLine" id="cb6-5" title="5">    <span class="cf">if</span> (argc != <span class="dv">3</span>) {</a>
-<a class="sourceLine" id="cb6-6" title="6">        printf(<span class="st">&quot;error: wrong number of arguments</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb6-6" title="6">        fprintf(stderr, <span class="st">&quot;error: wrong number of arguments</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
 <a class="sourceLine" id="cb6-7" title="7">        <span class="cf">return</span> <span class="dv">1</span>;</a>
 <a class="sourceLine" id="cb6-8" title="8">    }</a>
 <a class="sourceLine" id="cb6-9" title="9"></a>
