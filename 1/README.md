@@ -225,8 +225,29 @@ Przydatne funkcje:
 
 ## Zadanie 7
 
-Rozwiń program z poprzedniego zadania, tak aby działał
-dla dowolnej ilości liczb.
+Rozwiń program z Zadania 4, tak aby działał
+dla dowolnej ilości liczb, która jest podana jako pierwszy argument.
+
+```c
+./a.out 5
+1
+2
+3
+4
+5
+5
+4
+3
+2
+1
+```
+
+## Zadanie 8
+
+Rozwiń program z Zadania 4, tak aby działał
+dla dowolnej ilości liczb, ale bez podawania maksymalnej
+ilości liczb jako pierwszy argument. Wewnętrzna tablica powinna się
+dynamicznie rozszerzać.
 
 Przydatne funkcje:
 
@@ -246,7 +267,7 @@ $ gcc main.c -fsanitize=address -o program
 $ ./program
 ```
 
-## Zadanie 8
+## Zadanie 9
 
 Napisz funkcję która będzie sortować tablicę liczb typu `int` algorytmem
 sortowania bąbelkowego. Pseudokod:
@@ -268,7 +289,7 @@ int n[] = {8, 3, 4, 5, 6, 7, 8};
 sort(n, 7);
 ```
 
-## Zadanie 9
+## Zadanie 10
 
 Napisz funkcję która będzie sortować tablicę liczby typu `float` algorytmem
 sortowania bąbelkowego. Dodaj do niej parametr określający porządek sortowania.
@@ -284,7 +305,7 @@ float n[] = {8.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f};
 sort_float(n, 7, false);
 ```
 
-## Zadanie 10
+## Zadanie 11
 
 Zdefiniuj makro `ARRAY_SIZE()`, które pozwoli obliczać liczbę elementów
 w tablicy w trakcie kompilacji (jeżeli rozmiar jest znany w trakcie kompilacji)
@@ -303,7 +324,7 @@ Przydatny operator:
 
 - `sizeof(x)` - podaje rozmiar wyrażenia
 
-## Zadanie 11
+## Zadanie 12
 
 Napisz generyczną funkcję `sort()`, która może posortować tablicę
 dowolnego typu:
