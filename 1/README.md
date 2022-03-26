@@ -165,6 +165,31 @@ Do rozwiązania będzie potrzebne wykorzystanie tablicy. Na przykład
 int tablica[4096];
 ```
 
+## Rozwiązanie 4
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int numbers[4096];
+	int count = 0;
+	int number;
+	/* Dopóki liczby są na standardowym wejściu */
+	while (1 == scanf("%d", &number)) {
+		if (count >= 4096)
+			break;
+		numbers[count] = number;
+		count++;
+	}
+
+	for (int i = count - 1; i >= 0; --i)
+		printf("%d\n", numbers[i]);
+
+	return 0; 
+}
+```
+
 ## Zadanie 5
 
 Rozwiń program z poprzedniego zadania, tak aby działał
