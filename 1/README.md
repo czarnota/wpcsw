@@ -197,7 +197,6 @@ Napisz program który wyświetli wszystkie argumenty przekazane do programu
 $ ./a.out a b d e foo bar
 a
 b
-c
 d
 e
 foo
