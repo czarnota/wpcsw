@@ -401,20 +401,32 @@ $ echo $?
 </section>
 <section id="zadanie-5" class="level2">
 <h2>Zadanie 5</h2>
+<p>Napisz program który wyświetli wszystkie argumenty przekazane do programu</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>$ ./a.out a b d e foo bar</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>a</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>b</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>c</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>d</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>e</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>foo</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>bar</span></code></pre></div>
+</section>
+<section id="zadanie-6" class="level2">
+<h2>Zadanie 6</h2>
 <p>Napisz program, który będzie odczytywał ze standardowego wejścia liczby do momentu wystąpienia wejścia, które nie jest liczbą lub końca strumienia i na końcu wyświetli najmniejszą liczbę. Program powinien też działać dla liczb ujemnych.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>$ ./a.out</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>-<span class="dv">2</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>-<span class="dv">1</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>-<span class="dv">2</span>            &lt;--- tu wcisnąłem Ctrl-d co powoduje wyświetlenie wyniku</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>$ ./a.out</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>-<span class="dv">2</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>-<span class="dv">1</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>-<span class="dv">2</span>            &lt;--- tu wcisnąłem Ctrl-d co powoduje wyświetlenie wyniku</span></code></pre></div>
 <p>Przydatne funkcje:</p>
 <ul class="incremental">
 <li><code>scanf()</code> - odczytuje zmienne ze standardowego wejścia</li>
 </ul>
 </section>
-<section id="zadanie-6" class="level2">
-<h2>Zadanie 6</h2>
+<section id="zadanie-7" class="level2">
+<h2>Zadanie 7</h2>
 <p>Rozwiń program z poprzedniego zadania, tak aby działał dla dowolnej ilości liczb.</p>
 <p>Przydatne funkcje:</p>
 <ul class="incremental">
@@ -428,8 +440,8 @@ $ echo $?
 <pre><code>$ gcc main.c -fsanitize=address -o program
 $ ./program</code></pre>
 </section>
-<section id="zadanie-7" class="level2">
-<h2>Zadanie 7</h2>
+<section id="zadanie-8" class="level2">
+<h2>Zadanie 8</h2>
 <p>Napisz funkcję która będzie sortować tablicę liczb typu <code>int</code> algorytmem sortowania bąbelkowego. Pseudokod:</p>
 <pre><code>sort(items, len) {
     for (i = 0; i &lt; len - 1; j++) {
@@ -440,43 +452,43 @@ $ ./program</code></pre>
     }
 }</code></pre>
 <p>Wykorzystanie:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>sort(n, <span class="dv">7</span>);</span></code></pre></div>
-</section>
-<section id="zadanie-8" class="level2">
-<h2>Zadanie 8</h2>
-<p>Napisz funkcję która będzie sortować tablicę liczby typu <code>float</code> algorytmem sortowania bąbelkowego. Dodaj do niej parametr określający porządek sortowania.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort_float(<span class="dt">float</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len, <span class="dt">bool</span> reversed);</span></code></pre></div>
-<p>Wykorzystanie:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sort_float(n, <span class="dv">7</span>, false);</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sort(n, <span class="dv">7</span>);</span></code></pre></div>
 </section>
 <section id="zadanie-9" class="level2">
 <h2>Zadanie 9</h2>
+<p>Napisz funkcję która będzie sortować tablicę liczby typu <code>float</code> algorytmem sortowania bąbelkowego. Dodaj do niej parametr określający porządek sortowania.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort_float(<span class="dt">float</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len, <span class="dt">bool</span> reversed);</span></code></pre></div>
+<p>Wykorzystanie:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sort_float(n, <span class="dv">7</span>, false);</span></code></pre></div>
+</section>
+<section id="zadanie-10" class="level2">
+<h2>Zadanie 10</h2>
 <p>Zdefiniuj makro <code>ARRAY_SIZE()</code>, które pozwoli obliczać liczbę elementów w tablicy w trakcie kompilacji (jeżeli rozmiar jest znany w trakcie kompilacji)</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sort(n, ARRAY_SIZE(n));</span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>sort_float(n, ARRAY_SIZE(n));</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>sort(n, ARRAY_SIZE(n));</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>sort_float(n, ARRAY_SIZE(n));</span></code></pre></div>
 <p>Przydatny operator:</p>
 <ul class="incremental">
 <li><code>sizeof(x)</code> - podaje rozmiar wyrażenia</li>
 </ul>
 </section>
-<section id="zadanie-10" class="level2">
-<h2>Zadanie 10</h2>
+<section id="zadanie-11" class="level2">
+<h2>Zadanie 11</h2>
 <p>Napisz generyczną funkcję <code>sort()</code>, która może posortować tablicę dowolnego typu:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort(<span class="dt">void</span> *ptr, <span class="dt">unsigned</span> <span class="dt">int</span> count, <span class="dt">unsigned</span> <span class="dt">int</span> element_size,</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>          <span class="dt">int</span> (*comparator)(<span class="dt">const</span> <span class="dt">void</span> *a, <span class="dt">const</span> <span class="dt">void</span> *b));</span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> compare_double(<span class="dt">const</span> <span class="dt">void</span> *__a, <span class="dt">const</span> <span class="dt">void</span> *__b)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">double</span> *a = __a, *b == __b;</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (a == b)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a &lt; b ? -<span class="dv">1</span> : <span class="dv">1</span>;</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> items[] = { <span class="fl">2.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span> };</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>sort(items, ARRAY_SIZE(items), <span class="kw">sizeof</span>(items[<span class="dv">0</span>]), compare_double);</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort(<span class="dt">void</span> *ptr, <span class="dt">unsigned</span> <span class="dt">int</span> count, <span class="dt">unsigned</span> <span class="dt">int</span> element_size,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>          <span class="dt">int</span> (*comparator)(<span class="dt">const</span> <span class="dt">void</span> *a, <span class="dt">const</span> <span class="dt">void</span> *b));</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> compare_double(<span class="dt">const</span> <span class="dt">void</span> *__a, <span class="dt">const</span> <span class="dt">void</span> *__b)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">double</span> *a = __a, *b == __b;</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (a == b)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a &lt; b ? -<span class="dv">1</span> : <span class="dv">1</span>;</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> items[] = { <span class="fl">2.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span> };</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sort(items, ARRAY_SIZE(items), <span class="kw">sizeof</span>(items[<span class="dv">0</span>]), compare_double);</span></code></pre></div>
 <p>Funkcja powinna dawać taki sam efekt jak <code>qsort()</code>.</p>
 </section>
 </section>

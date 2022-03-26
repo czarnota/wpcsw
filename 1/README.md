@@ -192,6 +192,20 @@ int main(void)
 
 ## Zadanie 5
 
+Napisz program który wyświetli wszystkie argumenty przekazane do programu
+```c
+$ ./a.out a b d e foo bar
+a
+b
+c
+d
+e
+foo
+bar
+```
+
+## Zadanie 6
+
 Napisz program, który będzie odczytywał ze standardowego wejścia
 liczby do momentu wystąpienia wejścia, które nie jest liczbą lub
 końca strumienia i na końcu wyświetli najmniejszą liczbę. Program powinien
@@ -210,7 +224,7 @@ Przydatne funkcje:
 
 - `scanf()` - odczytuje zmienne ze standardowego wejścia
 
-## Zadanie 6
+## Zadanie 7
 
 Rozwiń program z poprzedniego zadania, tak aby działał
 dla dowolnej ilości liczb.
@@ -233,7 +247,7 @@ $ gcc main.c -fsanitize=address -o program
 $ ./program
 ```
 
-## Zadanie 7
+## Zadanie 8
 
 Napisz funkcję która będzie sortować tablicę liczb typu `int` algorytmem
 sortowania bąbelkowego. Pseudokod:
@@ -255,7 +269,7 @@ int n[] = {8, 3, 4, 5, 6, 7, 8};
 sort(n, 7);
 ```
 
-## Zadanie 8
+## Zadanie 9
 
 Napisz funkcję która będzie sortować tablicę liczby typu `float` algorytmem
 sortowania bąbelkowego. Dodaj do niej parametr określający porządek sortowania.
@@ -271,7 +285,7 @@ float n[] = {8.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f};
 sort_float(n, 7, false);
 ```
 
-## Zadanie 9
+## Zadanie 10
 
 Zdefiniuj makro `ARRAY_SIZE()`, które pozwoli obliczać liczbę elementów
 w tablicy w trakcie kompilacji (jeżeli rozmiar jest znany w trakcie kompilacji)
@@ -290,7 +304,7 @@ Przydatny operator:
 
 - `sizeof(x)` - podaje rozmiar wyrażenia
 
-## Zadanie 10
+## Zadanie 11
 
 Napisz generyczną funkcję `sort()`, która może posortować tablicę
 dowolnego typu:
