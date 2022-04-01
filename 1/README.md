@@ -203,6 +203,20 @@ foo
 bar
 ```
 
+## Rozwiązanie 5
+
+```c
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+    for (int i = 1; i < argc; ++i)
+        printf("%s\n", argv[i]);
+
+    return 0;
+}
+```
+
 ## Zadanie 6
 
 Napisz program, który będzie odczytywał ze standardowego wejścia
@@ -222,6 +236,28 @@ $ ./a.out
 Przydatne funkcje:
 
 - `scanf()` - odczytuje zmienne ze standardowego wejścia
+
+## Rozwiązanie 6
+
+```c
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+    int min, number;
+    if (1 != scanf("%d", &min))
+        return 0;
+
+    while (1 == scanf("%d", &number)) {
+        if (number < min)
+            min = number;
+    }
+
+    printf("%d\n", min);
+
+    return 0;
+}
+```
 
 ## Zadanie 7
 
