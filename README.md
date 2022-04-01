@@ -16,3 +16,39 @@ Repozytorium zawiera materiały do przedmiotu "Wstęp to programowania w C z ele
 - [EN] Książka twórców języka C: Brian W. Kernighan, Dennis M. Ritchie. C Programming Language, 2nd Edition [link](https://github.com/germanoa/compiladores/blob/master/doc/ebook/The%20C%20Programming%20Language%20-%202nd%20Edition%20-%20Ritchie%20Kernighan.pdf)
 - [EN] Strona głównie o C++, ale ma też rozdział poświęcony C: cppreference [link](https://en.cppreference.com/w/c)
 - [EN] Zbiór przykładowych programów w C: [link](https://github.com/randerson112358/C-Programs)
+
+## Zasady zaliczenia
+
+Są 3 zadania:
+
+| Zadanie                                        | Termin          | Uwagi                                              |
+| ---------------------------------------------- | --------------- | ---------------------------------------------------|
+| Odwracanie liczb (zad 4)                       | 27.03.2022      | Zgodnie z umową: sleep sort zwalnia z tego zadania |
+| `malloc()`, `free()` (zad 7 **lub** zad 8)     | 02.04.2022      |                                                    |
+| --COMING-SOON--                                | 09.04.2022      |                                                    |
+
+Zadania należy przysłać, przed momentem prezentacji rozwiązania.
+
+Zadanie jest uznane jako przyjęte, jeżeli otrzymają Państwo odpowiedź zwrotną.
+
+Liczba wysłanych zadań z otrzymaną odpowiedzią zwrotną w terminie oraz oceny jakie temu odpowiadają:
+
+| Liczba zadań | Ocena   |
+| ------------ | ------- |
+| 1            | 3       |
+| 2            | 4       |
+| 3            | 5       |
+
+Otrzymaną ocenę należy obronić rozwiązując zadanie na ostatnich zajęciach
+09.04.2022.
+
+Jeżeli ktoś nie rozwiąże zadania, to otrzyma
+zadanie ratunkowe w postaci programu do napisania, którego oddanie do końca semestru
+ma identyczny skutek jak rozwiązanie zadania na zajęciach.
+
+Jeżeli ktoś nie oddał żadnego zadania, a rozwiąże zadanie na zajęciach
+dnia 09.04.2022, to otrzymuje ocene 3.
+
+Jeżeli ktoś nie oddał żadnego zadania i nie rozwiąże zadania na zajęciach
+dnia 09.04.2022, to otrzymuje zadanie ratunkowe, którego oddanie do końca
+semestru skutkuje oceną 3.
