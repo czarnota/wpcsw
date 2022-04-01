@@ -39,16 +39,16 @@ Liczba wysłanych zadań z otrzymaną odpowiedzią zwrotną oraz oceny jakie tem
 | 2            | 4       |
 | 3            | 5       |
 
-Otrzymaną ocenę należy obronić rozwiązując zadanie na ostatnich zajęciach
+Otrzymaną ocenę należy obronić rozwiązując zadanie sprawdzające na ostatnich zajęciach
 09.04.2022.
 
-Jeżeli ktoś nie rozwiąże zadania, to otrzyma
+Jeżeli ktoś nie rozwiąże zadania sprawdzającego, to otrzyma
 zadanie ratunkowe w postaci programu do napisania, którego oddanie do końca semestru
-ma identyczny skutek jak rozwiązanie zadania na zajęciach.
+ma identyczny skutek jak rozwiązanie zadania sprawdzającego na zajęciach.
 
-Jeżeli ktoś nie oddał żadnego zadania, a rozwiąże zadanie na zajęciach
+Jeżeli ktoś nie oddał żadnego zadania, a rozwiąże zadanie sprawdzające na zajęciach
 dnia 09.04.2022, to otrzymuje ocene 3.
 
-Jeżeli ktoś nie oddał żadnego zadania i nie rozwiąże zadania na zajęciach
+Jeżeli ktoś nie oddał żadnego zadania i nie rozwiąże zadania sprawdzającego na zajęciach
 dnia 09.04.2022, to otrzymuje zadanie ratunkowe, którego oddanie do końca
 semestru skutkuje oceną 3.
