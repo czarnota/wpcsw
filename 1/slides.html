@@ -530,9 +530,9 @@ $ ./program</code></pre>
 <div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb27-1" title="1"><span class="dt">int</span> compare_double(<span class="dt">const</span> <span class="dt">void</span> *__a, <span class="dt">const</span> <span class="dt">void</span> *__b)</a>
 <a class="sourceLine" id="cb27-2" title="2">{</a>
 <a class="sourceLine" id="cb27-3" title="3">    <span class="dt">const</span> <span class="dt">double</span> *a = __a, *b == __b;</a>
-<a class="sourceLine" id="cb27-4" title="4">    <span class="cf">if</span> (a == b)</a>
+<a class="sourceLine" id="cb27-4" title="4">    <span class="cf">if</span> (*a == *b)</a>
 <a class="sourceLine" id="cb27-5" title="5">        <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb27-6" title="6">    <span class="cf">return</span> a &lt; b ? -<span class="dv">1</span> : <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb27-6" title="6">    <span class="cf">return</span> *a &lt; *b ? -<span class="dv">1</span> : <span class="dv">1</span>;</a>
 <a class="sourceLine" id="cb27-7" title="7">}</a></code></pre></div>
 <div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb28-1" title="1"><span class="dt">double</span> items[] = { <span class="fl">2.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span> };</a>
 <a class="sourceLine" id="cb28-2" title="2">sort(items, ARRAY_SIZE(items), <span class="kw">sizeof</span>(items[<span class="dv">0</span>]), compare_double);</a></code></pre></div>

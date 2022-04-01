@@ -372,9 +372,9 @@ void sort(void *ptr, unsigned int count, unsigned int element_size,
 int compare_double(const void *__a, const void *__b)
 {
     const double *a = __a, *b == __b;
-    if (a == b)
+    if (*a == *b)
         return 0;
-    return a < b ? -1 : 1;
+    return *a < *b ? -1 : 1;
 }
 ```
 
