@@ -487,6 +487,19 @@ $ echo $?
 $ gcc main.c -fsanitize=address -o program
 $ ./program</code></pre>
 </section>
+<section id="zadanie-rozgrzewkowe" class="level2">
+<h2>Zadanie rozgrzewkowe</h2>
+<p>Napisz program który będzie działał jak program <code>yes</code>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb20-1" title="1">$ ./program | head -n <span class="dv">3</span></a>
+<a class="sourceLine" id="cb20-2" title="2">y</a>
+<a class="sourceLine" id="cb20-3" title="3">y</a>
+<a class="sourceLine" id="cb20-4" title="4">y</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb21-1" title="1">$ ./program no | head -n <span class="dv">3</span></a>
+<a class="sourceLine" id="cb21-2" title="2">no</a>
+<a class="sourceLine" id="cb21-3" title="3">no</a>
+<a class="sourceLine" id="cb21-4" title="4">no</a></code></pre></div>
+<p>Z tą drobną różnicą, że będzie obsługiwał tylko jeden argument.</p>
+</section>
 <section id="zadanie-9" class="level2">
 <h2>Zadanie 9</h2>
 <p>Napisz funkcję która będzie sortować tablicę liczb typu <code>int</code> algorytmem sortowania bąbelkowego. Pseudokod:</p>
@@ -499,24 +512,24 @@ $ ./program</code></pre>
     }
 }</code></pre>
 <p>Wykorzystanie:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb21-1" title="1"><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</a>
-<a class="sourceLine" id="cb21-2" title="2">sort(n, <span class="dv">7</span>);</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb23-1" title="1"><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</a>
+<a class="sourceLine" id="cb23-2" title="2">sort(n, <span class="dv">7</span>);</a></code></pre></div>
 </section>
 <section id="zadanie-10" class="level2">
 <h2>Zadanie 10</h2>
 <p>Napisz funkcję która będzie sortować tablicę liczby typu <code>float</code> algorytmem sortowania bąbelkowego. Dodaj do niej parametr określający porządek sortowania.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb22-1" title="1"><span class="dt">void</span> sort_float(<span class="dt">float</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len, <span class="dt">bool</span> reversed);</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb24-1" title="1"><span class="dt">void</span> sort_float(<span class="dt">float</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len, <span class="dt">bool</span> reversed);</a></code></pre></div>
 <p>Wykorzystanie:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb23-1" title="1"><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</a>
-<a class="sourceLine" id="cb23-2" title="2">sort_float(n, <span class="dv">7</span>, false);</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb25-1" title="1"><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</a>
+<a class="sourceLine" id="cb25-2" title="2">sort_float(n, <span class="dv">7</span>, false);</a></code></pre></div>
 </section>
 <section id="zadanie-11" class="level2">
 <h2>Zadanie 11</h2>
 <p>Zdefiniuj makro <code>ARRAY_SIZE()</code>, które pozwoli obliczać liczbę elementów w tablicy w trakcie kompilacji (jeżeli rozmiar jest znany w trakcie kompilacji)</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb24-1" title="1"><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</a>
-<a class="sourceLine" id="cb24-2" title="2">sort(n, ARRAY_SIZE(n));</a></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb25-1" title="1"><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</a>
-<a class="sourceLine" id="cb25-2" title="2">sort_float(n, ARRAY_SIZE(n));</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb26-1" title="1"><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</a>
+<a class="sourceLine" id="cb26-2" title="2">sort(n, ARRAY_SIZE(n));</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb27-1" title="1"><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</a>
+<a class="sourceLine" id="cb27-2" title="2">sort_float(n, ARRAY_SIZE(n));</a></code></pre></div>
 <p>Przydatny operator:</p>
 <ul class="incremental">
 <li><code>sizeof(x)</code> - podaje rozmiar wyrażenia</li>
@@ -525,26 +538,26 @@ $ ./program</code></pre>
 <section id="zadanie-12" class="level2">
 <h2>Zadanie 12</h2>
 <p>Napisz generyczną funkcję <code>sort()</code>, która może posortować tablicę dowolnego typu:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb26-1" title="1"><span class="dt">void</span> sort(<span class="dt">void</span> *ptr, <span class="dt">unsigned</span> <span class="dt">int</span> count, <span class="dt">unsigned</span> <span class="dt">int</span> element_size,</a>
-<a class="sourceLine" id="cb26-2" title="2">          <span class="dt">int</span> (*comparator)(<span class="dt">const</span> <span class="dt">void</span> *a, <span class="dt">const</span> <span class="dt">void</span> *b));</a></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb27-1" title="1"><span class="dt">int</span> compare_double(<span class="dt">const</span> <span class="dt">void</span> *__a, <span class="dt">const</span> <span class="dt">void</span> *__b)</a>
-<a class="sourceLine" id="cb27-2" title="2">{</a>
-<a class="sourceLine" id="cb27-3" title="3">    <span class="dt">const</span> <span class="dt">double</span> *a = __a, *b == __b;</a>
-<a class="sourceLine" id="cb27-4" title="4">    <span class="cf">if</span> (*a == *b)</a>
-<a class="sourceLine" id="cb27-5" title="5">        <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb27-6" title="6">    <span class="cf">return</span> *a &lt; *b ? -<span class="dv">1</span> : <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb27-7" title="7">}</a></code></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb28-1" title="1"><span class="dt">double</span> items[] = { <span class="fl">2.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span> };</a>
-<a class="sourceLine" id="cb28-2" title="2">sort(items, ARRAY_SIZE(items), <span class="kw">sizeof</span>(items[<span class="dv">0</span>]), compare_double);</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb28-1" title="1"><span class="dt">void</span> sort(<span class="dt">void</span> *ptr, <span class="dt">unsigned</span> <span class="dt">int</span> count, <span class="dt">unsigned</span> <span class="dt">int</span> element_size,</a>
+<a class="sourceLine" id="cb28-2" title="2">          <span class="dt">int</span> (*comparator)(<span class="dt">const</span> <span class="dt">void</span> *a, <span class="dt">const</span> <span class="dt">void</span> *b));</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb29-1" title="1"><span class="dt">int</span> compare_double(<span class="dt">const</span> <span class="dt">void</span> *__a, <span class="dt">const</span> <span class="dt">void</span> *__b)</a>
+<a class="sourceLine" id="cb29-2" title="2">{</a>
+<a class="sourceLine" id="cb29-3" title="3">    <span class="dt">const</span> <span class="dt">double</span> *a = __a, *b == __b;</a>
+<a class="sourceLine" id="cb29-4" title="4">    <span class="cf">if</span> (*a == *b)</a>
+<a class="sourceLine" id="cb29-5" title="5">        <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb29-6" title="6">    <span class="cf">return</span> *a &lt; *b ? -<span class="dv">1</span> : <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb29-7" title="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb30-1" title="1"><span class="dt">double</span> items[] = { <span class="fl">2.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span> };</a>
+<a class="sourceLine" id="cb30-2" title="2">sort(items, ARRAY_SIZE(items), <span class="kw">sizeof</span>(items[<span class="dv">0</span>]), compare_double);</a></code></pre></div>
 <p>Funkcja powinna dawać taki sam efekt jak <code>qsort()</code>.</p>
 </section>
 <section id="zadanie-13" class="level2">
 <h2>Zadanie 13</h2>
 <p>Napisz program który jako pierwszy argument przyjmie ciąg znaków. Następnie wypisze ciąg znaków, zamieniając wszystkie duże litery na małe.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb29-1" title="1">$ ./program <span class="st">&quot;This Should Be Small 1234&quot;</span></a>
-<a class="sourceLine" id="cb29-2" title="2">this should be small <span class="dv">1234</span></a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb31-1" title="1">$ ./program <span class="st">&quot;This Should Be Small 1234&quot;</span></a>
+<a class="sourceLine" id="cb31-2" title="2">this should be small <span class="dv">1234</span></a></code></pre></div>
 <p>Zamiana znaków powinna się dokonać z wykorzystaniem autorskiej funkcji</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb30-1" title="1"><span class="dt">void</span> autorskafunkcjadozamianyznakow(<span class="dt">char</span> *str);</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb32-1" title="1"><span class="dt">void</span> autorskafunkcjadozamianyznakow(<span class="dt">char</span> *str);</a></code></pre></div>
 <p>Przydatne informacje:</p>
 <ul class="incremental">
 <li>Kopiowanie ciągów znaków można osiągnąc za pomocą <code>memcpy()</code>, <code>strncpy()</code>, <code>strcpy()</code>, <code>snprintf()</code>.</li>
@@ -555,13 +568,13 @@ $ ./program</code></pre>
 <section id="zadanie-14" class="level2">
 <h2>Zadanie 14</h2>
 <p>Terminalem, na który wypisujemy można sterować specjalnymi kodami ANSI (<a href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>). Możemy w ten sposób na przykład:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb31-1" title="1">fprintf(stderr, <span class="st">&quot;%c[2J&quot;</span>, <span class="bn">0x1b</span>); <span class="co">/* Wyczyścić ekran */</span></a>
-<a class="sourceLine" id="cb31-2" title="2">fprintf(stderr, <span class="st">&quot;%c[%d;%dH&quot;</span>, <span class="bn">0x1b</span>, y, x); <span class="co">/* Umieścić kursor w wierszu y i kolumnie x */</span></a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb33-1" title="1">fprintf(stderr, <span class="st">&quot;%c[2J&quot;</span>, <span class="bn">0x1b</span>); <span class="co">/* Wyczyścić ekran */</span></a>
+<a class="sourceLine" id="cb33-2" title="2">fprintf(stderr, <span class="st">&quot;%c[%d;%dH&quot;</span>, <span class="bn">0x1b</span>, y, x); <span class="co">/* Umieścić kursor w wierszu y i kolumnie x */</span></a></code></pre></div>
 <p>Napisz 2 funkcje:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb32-1" title="1"><span class="co">/* Czyści ekran */</span></a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="dt">void</span> clrscr(<span class="dt">void</span>);</a>
-<a class="sourceLine" id="cb32-3" title="3"><span class="co">/* Umieszcza kursor w wierszu y i kolumnie x */</span></a>
-<a class="sourceLine" id="cb32-4" title="4"><span class="dt">void</span> gotoxy(<span class="dt">int</span> x, <span class="dt">int</span> y);</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb34-1" title="1"><span class="co">/* Czyści ekran */</span></a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="dt">void</span> clrscr(<span class="dt">void</span>);</a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="co">/* Umieszcza kursor w wierszu y i kolumnie x */</span></a>
+<a class="sourceLine" id="cb34-4" title="4"><span class="dt">void</span> gotoxy(<span class="dt">int</span> x, <span class="dt">int</span> y);</a></code></pre></div>
 <p>Narysuj za ich pomocą animację przypominającą “kod z matrixa”. Do generowania liczb losowych możesz użyć <code>rand()</code>. Do kontroli szybkości animacji <code>usleep()</code>.</p>
 </section>
 <section id="zadanie-14---efekt" class="level2">

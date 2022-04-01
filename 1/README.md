@@ -301,6 +301,25 @@ $ gcc main.c -fsanitize=address -o program
 $ ./program
 ```
 
+## Zadanie rozgrzewkowe
+
+Napisz program który będzie działał jak program `yes`.
+```c
+$ ./program | head -n 3
+y
+y
+y
+```
+
+```c
+$ ./program no | head -n 3
+no
+no
+no
+```
+
+Z tą drobną różnicą, że będzie obsługiwał tylko jeden argument.
+
 ## Zadanie 9
 
 Napisz funkcję która będzie sortować tablicę liczb typu `int` algorytmem
