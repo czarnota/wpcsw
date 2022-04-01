@@ -296,9 +296,7 @@ Sprawdź czy nie ma wycieków pamięci:
 
 ```console
 $ valgrind --leak-check=full --show-leak-kinds=all ./program
-```
 
-```
 $ gcc main.c -fsanitize=address -o program
 $ ./program
 ```
@@ -386,3 +384,47 @@ sort(items, ARRAY_SIZE(items), sizeof(items[0]), compare_double);
 ```
 Funkcja powinna dawać taki sam efekt jak `qsort()`.
 
+## Zadanie 13
+
+Napisz program który jako pierwszy argument przyjmie ciąg znaków. Następnie
+wypisze ciąg znaków, zamieniając wszystkie duże litery na małe.
+
+```c
+$ ./program "This Should Be Small 1234"
+this should be small 1234
+```
+
+Zamiana znaków powinna się dokonać z wykorzystaniem autorskiej funkcji
+```c
+void autorskafunkcjadozamianyznakow(char *str);
+```
+
+Przydatne informacje:
+
+- Kopiowanie ciągów znaków można osiągnąc za pomocą `memcpy()`, `strncpy()`, `strcpy()`, `snprintf()`.
+- Aby zamienic dużą literę na małą wystarczy dodać do niej `'a' - 'A'`.
+- Należy sprawdzić czy `'A' <= litera && litera <= 'Z'`.
+
+## Zadanie 14
+
+Terminalem, na który wypisujemy można sterować specjalnymi kodami ANSI
+([https://en.wikipedia.org/wiki/ANSI_escape_code](https://en.wikipedia.org/wiki/ANSI_escape_code)).
+Możemy w ten sposób na przykład:
+```c
+fprintf(stderr, "%c[2J", 0x1b); /* Wyczyścić ekran */
+fprintf(stderr, "%c[%d;%dH", 0x1b, y, x); /* Umieścić kursor w wierszu y i kolumnie x */
+```
+Napisz 2 funkcje:
+
+```c
+/* Czyści ekran */
+void clrscr(void);
+/* Umieszcza kursor w wierszu y i kolumnie x */
+void gotoxy(int x, int y);
+```
+Narysuj za ich pomocą animację przypominającą "kod z matrixa". Do generowania
+liczb losowych możesz użyć `rand()`. Do kontroli szybkości animacji `usleep()`.
+
+## Zadanie 14 - Efekt
+
+![](assets/matrix.gif)

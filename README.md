@@ -47,7 +47,7 @@ zadanie ratunkowe w postaci programu do napisania, którego oddanie do końca se
 ma identyczny skutek jak rozwiązanie zadania sprawdzającego na zajęciach.
 
 Jeżeli ktoś nie oddał żadnego zadania, a rozwiąże zadanie sprawdzające na zajęciach
-dnia 09.04.2022, to otrzymuje ocene 3.
+dnia 09.04.2022, to otrzymuje ocenę 3.
 
 Jeżeli ktoś nie oddał żadnego zadania i nie rozwiąże zadania sprawdzającego na zajęciach
 dnia 09.04.2022, to otrzymuje zadanie ratunkowe, którego oddanie do końca
