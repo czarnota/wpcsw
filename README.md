@@ -31,7 +31,7 @@ Zadania należy przysłać, przed momentem prezentacji rozwiązania.
 
 Zadanie jest uznane jako przyjęte, jeżeli otrzymają Państwo odpowiedź zwrotną.
 
-Liczba wysłanych zadań z otrzymaną odpowiedzią zwrotną w terminie oraz oceny jakie temu odpowiadają:
+Liczba wysłanych zadań z otrzymaną odpowiedzią zwrotną oraz oceny jakie temu odpowiadają:
 
 | Liczba zadań | Ocena   |
 | ------------ | ------- |
