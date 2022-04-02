@@ -278,6 +278,34 @@ dla dowolnej ilości liczb, która jest podana jako pierwszy argument.
 1
 ```
 
+## Rozwiązanie 7
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char **argv)
+{
+    int max_count, count = 0, number;
+    if (argc != 2)
+        return 1;
+    if (1 != sscanf(argv[1], "%d", &max_count))
+        return 1;
+
+    int *numbers = malloc(max_count * sizeof(numbers[0]));
+    /* Dopóki liczby są na standardowym wejściu */
+    while (count < max_count && 1 == scanf("%d", &number)) {
+        numbers[count] = number;
+        count++;
+    }
+    for (int i = count - 1; i >= 0; --i)
+        printf("%d\n", numbers[i]);
+
+    free(numbers);
+    return 0; 
+}
+```
+
 ## Zadanie 8
 
 Rozwiń program z Zadania 4, tak aby działał
@@ -299,6 +327,32 @@ $ valgrind --leak-check=full --show-leak-kinds=all ./program
 
 $ gcc main.c -fsanitize=address -o program
 $ ./program
+```
+
+## Rozwiązanie 8
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char **argv)
+{
+    int *numbers = NULL; /* realloc(NULL, ...) i free(NULL) jest ok */
+    int count = 0;
+    int number;
+    while (1 == scanf("%d", &number)) {
+	numbers = realloc(numbers, (count + 1) * sizeof(numbers[0]));
+	if (!numbers)
+		goto out; /* goto nie jest "złe", jeżeli używamy do obsługi błędów */
+        numbers[count] = number;
+        count++;
+    }
+    for (int i = count - 1; i >= 0; --i)
+        printf("%d\n", numbers[i]);
+out:
+    free(numbers);
+    return 0; 
+}
 ```
 
 ## Zadanie rozgrzewkowe
