@@ -25,7 +25,7 @@ Są 3 zadania:
 | ---------------------------------------------- | --------------- | ---------------------------------------------------|
 | Odwracanie liczb (zad 4)                       | 27.03.2022      | Zgodnie z umową: sleep sort zwalnia z tego zadania |
 | `malloc()`, `free()` (zad 7 **lub** zad 8)     | 02.04.2022      |                                                    |
-| --COMING-SOON--                                | 09.04.2022      |                                                    |
+| zad 13 **lub** zad 14                          | 09.04.2022      |                                                    |
 
 Zadania należy przysłać, przed momentem prezentacji rozwiązania.
 
