@@ -43,7 +43,7 @@ Otrzymaną ocenę należy obronić rozwiązując zadanie sprawdzające na ostatn
 09.04.2022.
 
 Jeżeli ktoś nie rozwiąże zadania sprawdzającego, to otrzyma
-zadanie ratunkowe w postaci programu do napisania, którego oddanie do końca semestru
+zadanie ratunkowe w postaci programu lub programów do napisania, którego oddanie do końca semestru
 ma identyczny skutek jak rozwiązanie zadania sprawdzającego na zajęciach.
 
 Jeżeli ktoś nie oddał żadnego zadania, a rozwiąże zadanie sprawdzające na zajęciach
