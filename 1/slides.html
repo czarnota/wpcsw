@@ -6,252 +6,232 @@
     <style>
     * { box-sizing: border-box; }
     .level2, h1 { max-height: 92vh; margin: 1em auto; background: #fff;
-              padding: 0; font-size: 12px; aspect-ratio: 16 / 9; padding: 1.5em 1.5em 1.5em 1.5em;
-              display: flex; flex-direction: column; overflow: hidden; flex: 1 1 auto;
-              box-shadow: 0 0 0.5em #ddd; color: #333; }
-    h1 { align-items: center; flex-direction: row; padding: 0.75em; }
-    body { margin: 0; padding: 0; font-family: sans-serif; background: rgb(237, 237, 240); }
-    h2 { font-size: 2em; color: #005; }
-    img { display: block; margin: auto; width: 100%; height: 100%; overflow: hidden; object-fit: contain;}
-    section > p, section > ul { margin: 0 0 0.8em 0; line-height: 1.5em;}
+                  font-size: 12px; aspect-ratio: 16 / 9; padding: 1.5em;
+                  display: flex; flex-direction: column; overflow: hidden;
+                  flex: 1 1 auto; box-shadow: 0 0 0.5em #ddd; color: #333; }
+    h1 { align-items: center; flex-direction: row; padding: 0.75em; margin: 0.5em auto;}
+    body { margin: 0; padding: 0; font-family: sans-serif;
+           background: rgb(237, 237, 240); font-size: 200px; }
+    h2 { font-size: 2em; color: #005; padding: 0; }
+    img { display: block; margin: auto; width: 100%; height: 100%;
+          overflow: hidden; object-fit: contain;}
+    section > p, section > ul { line-height: 1.5em; }
     ul { padding-left: 1em; }
     h2 { margin: 0 0 0.4em 0; }
 
-.language-console .gp { color: #6ec071; }
+    @page { size: 16in 9in; margin: 0; }
+    @media print {
+        body { -webkit-print-color-adjust: exact; }
+        .level2, h1 { max-height: 100vh; margin: 0; }
+    }
 
-/*
+    .language-console .gp { color: #6ec071; }
 
-    Name:       Base16 Tomorrow Dark
-    Author:     Chris Kempson (http://chriskempson.com)
+    /*
 
-    Pygments template by Jan T. Sott (https://github.com/idleberg)
-    Created with Base16 Builder by Chris Kempson (https://github.com/chriskempson/base16-builder)
+        Name:       Base16 Tomorrow Dark
+        Author:     Chris Kempson (http://chriskempson.com)
 
-*/
-.sourceCode .hll { background-color: #373b41; }
+        Pygments template by Jan T. Sott (https://github.com/idleberg)
+        Created with Base16 Builder by Chris Kempson (https://github.com/chriskempson/base16-builder)
 
-.sourceCode { background: #1d1f21; color: #ffffff; }
+    */
+    .sourceCode .hll { background-color: #373b41; }
+    .sourceCode { background: #1d1f21; color: #ffffff; }
+    .sourceCode .co { color: #969896; } /* Comment */
+    .sourceCode .err { color: #cc6666; }
 
-.sourceCode .co { color: #969896; } /* Comment */
-.sourceCode .err { color: #cc6666; }
+    /* Error */
+    .sourceCode .kw { color: #b294bb; } /* Keyword */
+    .sourceCode .cf { color: #b294bb; } /* Keyword */
+    .sourceCode .l { color: #de935f; }
 
-/* Error */
-.sourceCode .kw { color: #b294bb; } /* Keyword */
-.sourceCode .cf { color: #b294bb; } /* Keyword */
-.sourceCode .l { color: #de935f; }
+    /* Literal */
+    .sourceCode .n { color: #ffffff; }
 
-/* Literal */
-.sourceCode .n { color: #ffffff; }
+    /* Name */
+    .sourceCode .ot { color: #8abeb7; } /* Operator */
+    .sourceCode .op { color: #8abeb7; } /* Operator */
+    .sourceCode .p { color: #ffffff; }
 
-/* Name */
-.sourceCode .ot { color: #8abeb7; } /* Operator */
-.sourceCode .op { color: #8abeb7; } /* Operator */
-.sourceCode .p { color: #ffffff; }
+    /* Punctuation */
+    .sourceCode .cm { color: #969896; }
 
-/* Punctuation */
-.sourceCode .cm { color: #969896; }
+    /* Comment.Multiline */
+    .sourceCode .pp { color: #69AE69; } /* Comment.Preproc */
+    .sourceCode .im { color: #69AE69; } /* Comment.Preproc */
+    .sourceCode .c1 { color: #969896; }
 
-/* Comment.Multiline */
-.sourceCode .pp { color: #69AE69; } /* Comment.Preproc */
-.sourceCode .im { color: #69AE69; } /* Comment.Preproc */
-.sourceCode .c1 { color: #969896; }
+    /* Comment.Single */
+    .sourceCode .cs { color: #969896; }
 
-/* Comment.Single */
-.sourceCode .cs { color: #969896; }
+    /* Comment.Special */
+    .sourceCode .gd { color: #cc6666; }
 
-/* Comment.Special */
-.sourceCode .gd { color: #cc6666; }
+    /* Generic.Deleted */
+    .sourceCode .ge { font-style: italic; }
 
-/* Generic.Deleted */
-.sourceCode .ge { font-style: italic; }
+    /* Generic.Emph */
+    .sourceCode .gh { color: #ffffff; font-weight: bold; }
 
-/* Generic.Emph */
-.sourceCode .gh { color: #ffffff; font-weight: bold; }
+    /* Generic.Heading */
+    .sourceCode .gi { color: #b5bd68; }
 
-/* Generic.Heading */
-.sourceCode .gi { color: #b5bd68; }
+    /* Generic.Inserted */
+    .sourceCode .gp { color: #969896; font-weight: bold; }
 
-/* Generic.Inserted */
-.sourceCode .gp { color: #969896; font-weight: bold; }
+    /* Generic.Prompt */
+    .sourceCode .gs { font-weight: bold; } 
+    /* Generic.Strong */
+    .sourceCode .gu { color: #8abeb7; font-weight: bold; }
 
-/* Generic.Prompt */
-.sourceCode .gs { font-weight: bold; } 
-/* Generic.Strong */
-.sourceCode .gu { color: #8abeb7; font-weight: bold; }
+    /* Generic.Subheading */
+    .sourceCode .kc { color: #b294bb; }
 
-/* Generic.Subheading */
-.sourceCode .kc { color: #b294bb; }
+    /* Keyword.Constant */
+    .sourceCode .kd { color: #b294bb; }
 
-/* Keyword.Constant */
-.sourceCode .kd { color: #b294bb; }
+    /* Keyword.Declaration */
+    .sourceCode .kn { color: #8abeb7; }
 
-/* Keyword.Declaration */
-.sourceCode .kn { color: #8abeb7; }
+    /* Keyword.Namespace */
+    .sourceCode .kp { color: #b294bb; }
 
-/* Keyword.Namespace */
-.sourceCode .kp { color: #b294bb; }
+    /* Keyword.Pseudo */
+    .sourceCode .kr { color: #b294bb; }
 
-/* Keyword.Pseudo */
-.sourceCode .kr { color: #b294bb; }
+    /* Keyword.Reserved */
+    .sourceCode .dt { color: #f0c674; } /* Keyword.Type */
+    .sourceCode .ld { color: #b5bd68; }
 
-/* Keyword.Reserved */
-.sourceCode .dt { color: #f0c674; } /* Keyword.Type */
-.sourceCode .ld { color: #b5bd68; }
+    /* Literal.Date */
+    .sourceCode .m { color: #de935f; }
 
-/* Literal.Date */
-.sourceCode .m { color: #de935f; }
+    /* Literal.Number */
+    .sourceCode .s { color: #b5bd68; }
 
-/* Literal.Number */
-.sourceCode .s { color: #b5bd68; }
+    /* Literal.String */
+    .sourceCode .na { color: #81a2be; }
 
-/* Literal.String */
-.sourceCode .na { color: #81a2be; }
+    /* Name.Attribute */
+    .sourceCode .bu { color: #ffffff; } /* Name.Builtin */
+    .sourceCode .nc { color: #f0c674; }
 
-/* Name.Attribute */
-.sourceCode .bu { color: #ffffff; } /* Name.Builtin */
-.sourceCode .nc { color: #f0c674; }
+    /* Name.Class */
+    .sourceCode .no { color: #cc6666; }
 
-/* Name.Class */
-.sourceCode .no { color: #cc6666; }
+    /* Name.Constant */
+    .sourceCode .nd { color: #8abeb7; }
 
-/* Name.Constant */
-.sourceCode .nd { color: #8abeb7; }
+    /* Name.Decorator */
+    .sourceCode .ni { color: #ffffff; }
 
-/* Name.Decorator */
-.sourceCode .ni { color: #ffffff; }
+    /* Name.Entity */
+    .sourceCode .ne { color: #cc6666; }
 
-/* Name.Entity */
-.sourceCode .ne { color: #cc6666; }
+    /* Name.Exception */
+    .sourceCode .fu { color: #81a2be; } /* Name.Function */
 
-/* Name.Exception */
-.sourceCode .fu { color: #81a2be; } /* Name.Function */
+    /* Name.Label */
+    .sourceCode .nn { color: #f0c674; }
 
-/* Name.Label */
-.sourceCode .nn { color: #f0c674; }
+    /* Name.Namespace */
+    .sourceCode .nx { color: #81a2be; }
 
-/* Name.Namespace */
-.sourceCode .nx { color: #81a2be; }
+    /* Name.Other */
+    .sourceCode .py { color: #ffffff; }
 
-/* Name.Other */
-.sourceCode .py { color: #ffffff; }
+    /* Name.Property */
+    .sourceCode .nt { color: #8abeb7; }
 
-/* Name.Property */
-.sourceCode .nt { color: #8abeb7; }
+    /* Name.Tag */
+    .sourceCode .va { color: #cc6666; } /* Name.Variable */
+    .sourceCode .ow { color: #8abeb7; }
 
-/* Name.Tag */
-.sourceCode .va { color: #cc6666; } /* Name.Variable */
-.sourceCode .ow { color: #8abeb7; }
+    /* Operator.Word */
+    .sourceCode .w { color: #ffffff; }
 
-/* Operator.Word */
-.sourceCode .w { color: #ffffff; }
+    /* Text.Whitespace */
+    .sourceCode .mf { color: #de935f; }
 
-/* Text.Whitespace */
-.sourceCode .mf { color: #de935f; }
+    /* Literal.Number.Float */
+    .sourceCode .mh { color: #de935f; }
 
-/* Literal.Number.Float */
-.sourceCode .mh { color: #de935f; }
+    /* Literal.Number.Hex */
+    .sourceCode .dv { color: #de935f; }
 
-/* Literal.Number.Hex */
-.sourceCode .dv { color: #de935f; }
+    /* Literal.Number.Integer */
+    .sourceCode .mo { color: #de935f; }
 
-/* Literal.Number.Integer */
-.sourceCode .mo { color: #de935f; }
+    /* Literal.Number.Oct */
+    .sourceCode .sb { color: #b5bd68; }
 
-/* Literal.Number.Oct */
-.sourceCode .sb { color: #b5bd68; }
+    /* Literal.String.Backtick */
+    .sourceCode .sc { color: #ffffff; }
 
-/* Literal.String.Backtick */
-.sourceCode .sc { color: #ffffff; }
+    /* Literal.String.Char */
+    .sourceCode .sd { color: #969896; }
 
-/* Literal.String.Char */
-.sourceCode .sd { color: #969896; }
+    /* x Literal.String.Doc */
+    .sourceCode .st { color: #b5bd68; }
 
-/* x Literal.String.Doc */
-.sourceCode .st { color: #b5bd68; }
+    /* Literal.String.Double */
+    .sourceCode .sc { color: #de935f; } 
+    /* Literal.String.Escape */
+    .sourceCode .sh { color: #b5bd68; }
 
-/* Literal.String.Double */
-.sourceCode .sc { color: #de935f; } 
-/* Literal.String.Escape */
-.sourceCode .sh { color: #b5bd68; }
+    /* Literal.String.Heredoc */
+    .sourceCode .si { color: #de935f; }
 
-/* Literal.String.Heredoc */
-.sourceCode .si { color: #de935f; }
+    /* Literal.String.Interpol */
+    .sourceCode .sx { color: #b5bd68; }
 
-/* Literal.String.Interpol */
-.sourceCode .sx { color: #b5bd68; }
+    /* Literal.String.Other */
+    .sourceCode .sr { color: #b5bd68; }
 
-/* Literal.String.Other */
-.sourceCode .sr { color: #b5bd68; }
+    /* Literal.String.Regex */
+    .sourceCode .s1 { color: #b5bd68; }
 
-/* Literal.String.Regex */
-.sourceCode .s1 { color: #b5bd68; }
+    /* Literal.String.Single */
+    .sourceCode .ss { color: #b5bd68; }
 
-/* Literal.String.Single */
-.sourceCode .ss { color: #b5bd68; }
+    /* Literal.String.Symbol */
+    .sourceCode .bp { color: #ffffff; }
 
-/* Literal.String.Symbol */
-.sourceCode .bp { color: #ffffff; }
+    /* Name.Builtin.Pseudo */
+    .sourceCode .vc { color: #cc6666; }
 
-/* Name.Builtin.Pseudo */
-.sourceCode .vc { color: #cc6666; }
+    /* Name.Variable.Class */
+    .sourceCode .vg { color: #cc6666; }
 
-/* Name.Variable.Class */
-.sourceCode .vg { color: #cc6666; }
+    /* Name.Variable.Global */
+    .sourceCode .vi { color: #cc6666; }
 
-/* Name.Variable.Global */
-.sourceCode .vi { color: #cc6666; }
+    /* Name.Variable.Instance */
+    .sourceCode .il { color: #de935f; }
 
-/* Name.Variable.Instance */
-.sourceCode .il { color: #de935f; }
+    /* Literal.Number.Integer.Long */
 
-/* Literal.Number.Integer.Long */
+    div.sourceCode { vertical-align: top; }
 
-div.sourceCode { vertical-align: top; margin: 0 0 0.8em 0; }
+    pre { font-family: monospace; font-size: 0.8em; }
 
-pre {
-  font-family: monospace;
-  font-size: 0.8em;
-  margin: 0 0 0.8em 0;
-}
+    .sourceCode a { color: #fff }
 
-.sourceCode a { color: #fff }
+    .sourceCode pre { padding: 0; margin: 0; }
 
-.sourceCode pre {
-    padding: 0;
-    margin: 0;
-}
+    pre code { display: block; padding: 1em 1.25em; overflow-x: auto; background: #1d1f21; color: #ffffff; }
 
-pre code {
-  display: block;
-  padding: 1em 1.25em;
-  overflow-x: auto;
-  background: #1d1f21;
-  color: #ffffff;
-}
-      .sourceCode pre code::-webkit-scrollbar {
-        -webkit-appearance: none; }
-      .sourceCode pre code::-webkit-scrollbar:vertical {
-        width: 10px; }
-      .sourceCode pre code::-webkit-scrollbar:horizontal {
-        height: 10px; }
-      .sourceCode pre code::-webkit-scrollbar-thumb {
-        background-color: #555; }
-      .sourceCode pre code::-webkit-scrollbar-track {
-        background-color: #333; }
-  .sourceCode::selection {
-    background: #fff;
-    /* WebKit/Blink Browsers */
-    color: #000; }
-  .sourceCode::-moz-selection {
-    background: #fff;
-    /* Gecko Browsers */
-    color: #000; }
+    .sourceCode pre code::-webkit-scrollbar { -webkit-appearance: none; }
+    .sourceCode pre code::-webkit-scrollbar:vertical { width: 10px; }
+    .sourceCode pre code::-webkit-scrollbar:horizontal { height: 10px; }
+    .sourceCode pre code::-webkit-scrollbar-thumb { background-color: #555; }
+    .sourceCode pre code::-webkit-scrollbar-track { background-color: #333; }
+    .sourceCode::selection { background: #fff; /* WebKit/Blink Browsers */ color: #000; }
+    .sourceCode::-moz-selection { background: #fff; /* Gecko Browsers */ color: #000; }
+    p > code, li > code { background: #fff; padding: 0.1em 0.2em; box-shadow: 0 2px 4px 0 #ddd; border: 1px solid #ddd; }
 
-p > code, li > code {
-  background: #fff;
-  padding: 0.1em 0.2em;
-  box-shadow: 0 2px 4px 0 #ddd;
-  border: 1px solid #ddd; }
+    div.sourceCode, pre, section > p, section > ul { margin: 0 0 0.7em 0; }
 
     </style>
     <link rel="stylesheet" href="assets/styles.css" />
@@ -524,9 +504,9 @@ $ ./program</code></pre>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> count = <span class="dv">0</span>;</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> number;</span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (<span class="dv">1</span> == scanf(<span class="st">&quot;%d&quot;</span>, &amp;number)) {</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    numbers = realloc(numbers, (count + <span class="dv">1</span>) * <span class="kw">sizeof</span>(numbers[<span class="dv">0</span>]));</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (!numbers)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">goto</span> out; <span class="co">/* goto nie jest &quot;złe&quot;, jeżeli używamy do obsługi błędów */</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        numbers = realloc(numbers, (count + <span class="dv">1</span>) * <span class="kw">sizeof</span>(numbers[<span class="dv">0</span>]));</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (!numbers)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">goto</span> out; <span class="co">/* goto nie jest &quot;złe&quot;, jeżeli używamy do obsługi błędów */</span></span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        numbers[count] = number;</span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        count++;</span>
 <span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    }</span>
@@ -550,11 +530,22 @@ $ ./program</code></pre>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>no</span></code></pre></div>
 <p>Z tą drobną różnicą, że będzie obsługiwał tylko jeden argument.</p>
 </section>
+<section id="rozwiązanie-zadanie-rozgrzewkowego" class="level2">
+<h2>Rozwiązanie zadanie rozgrzewkowego</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (<span class="dv">1</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        printf(<span class="st">&quot;%s</span><span class="sc">\n</span><span class="st">&quot;</span>, argc &gt;= <span class="dv">2</span> ? argv[<span class="dv">1</span>] : <span class="st">&quot;y&quot;</span>);</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
 <section id="zadanie-9" class="level2">
 <h2>Zadanie 9</h2>
 <p>Napisz funkcję która będzie sortować tablicę liczb typu <code>int</code> algorytmem sortowania bąbelkowego. Pseudokod:</p>
 <pre><code>sort(items, len) {
-    for (i = 0; i &lt; len - 1; j++) {
+    for (i = 0; i &lt; len - 1; i++) {
         for (j = 0; j &lt; len - 1 - i; j++) {
             if (items[j] &gt; items[j + 1])
                 swap(items[j], items[j + 1]);
@@ -562,52 +553,115 @@ $ ./program</code></pre>
     }
 }</code></pre>
 <p>Wykorzystanie:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>sort(n, <span class="dv">7</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sort(n, <span class="dv">7</span>);</span></code></pre></div>
+</section>
+<section id="rozwiązanie-9" class="level2">
+<h2>Rozwiązanie 9</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort(<span class="dt">int</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">unsigned</span> <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; len - <span class="dv">1</span>; ++i) {</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (<span class="dt">unsigned</span> <span class="dt">int</span> j = <span class="dv">0</span>; j &lt; len - <span class="dv">1</span> - i; j++) {</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (items[j] &gt; items[j + <span class="dv">1</span>]) {</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                <span class="dt">int</span> tmp = items[j];</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                items[j] = items[j + <span class="dv">1</span>];</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                items[j + <span class="dv">1</span>] = tmp;</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </section>
 <section id="zadanie-10" class="level2">
 <h2>Zadanie 10</h2>
 <p>Napisz funkcję która będzie sortować tablicę liczby typu <code>float</code> algorytmem sortowania bąbelkowego. Dodaj do niej parametr określający porządek sortowania.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort_float(<span class="dt">float</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len, <span class="dt">bool</span> reversed);</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort_float(<span class="dt">float</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len, <span class="dt">bool</span> reversed);</span></code></pre></div>
 <p>Wykorzystanie:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>sort_float(n, <span class="dv">7</span>, false);</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sort_float(n, <span class="dv">7</span>, false);</span></code></pre></div>
+</section>
+<section id="rozwiązanie-10" class="level2">
+<h2>Rozwiązanie 10</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort_float(<span class="dt">float</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len, <span class="dt">bool</span> reversed)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">unsigned</span> <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; len - <span class="dv">1</span>; ++i) {</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (<span class="dt">unsigned</span> <span class="dt">int</span> j = <span class="dv">0</span>; j &lt; len - <span class="dv">1</span> - i; j++) {</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>            <span class="dt">bool</span> swap;</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (reversed)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>                swap = items[j] &lt; items[j + <span class="dv">1</span>];</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>                swap = items[j] &gt; items[j + <span class="dv">1</span>];</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (swap) {</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>                <span class="dt">float</span> tmp = items[j];</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>                items[j] = items[j + <span class="dv">1</span>];</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>                items[j + <span class="dv">1</span>] = tmp;</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </section>
 <section id="zadanie-11" class="level2">
 <h2>Zadanie 11</h2>
 <p>Zdefiniuj makro <code>ARRAY_SIZE()</code>, które pozwoli obliczać liczbę elementów w tablicy w trakcie kompilacji (jeżeli rozmiar jest znany w trakcie kompilacji)</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>sort(n, ARRAY_SIZE(n));</span></code></pre></div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sort_float(n, ARRAY_SIZE(n));</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>sort(n, ARRAY_SIZE(n));</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sort_float(n, ARRAY_SIZE(n));</span></code></pre></div>
 <p>Przydatny operator:</p>
 <ul class="incremental">
 <li><code>sizeof(x)</code> - podaje rozmiar wyrażenia</li>
 </ul>
 </section>
+<section id="rozwiązanie-11" class="level2">
+<h2>Rozwiązanie 11</h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))</span></span></code></pre></div>
+</section>
 <section id="zadanie-12" class="level2">
 <h2>Zadanie 12</h2>
 <p>Napisz generyczną funkcję <code>sort()</code>, która może posortować tablicę dowolnego typu:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort(<span class="dt">void</span> *ptr, <span class="dt">unsigned</span> <span class="dt">int</span> count, <span class="dt">unsigned</span> <span class="dt">int</span> element_size,</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>          <span class="dt">int</span> (*comparator)(<span class="dt">const</span> <span class="dt">void</span> *a, <span class="dt">const</span> <span class="dt">void</span> *b));</span></code></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> compare_double(<span class="dt">const</span> <span class="dt">void</span> *__a, <span class="dt">const</span> <span class="dt">void</span> *__b)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">double</span> *a = __a, *b == __b;</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (*a == *b)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> *a &lt; *b ? -<span class="dv">1</span> : <span class="dv">1</span>;</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> items[] = { <span class="fl">2.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span> };</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sort(items, ARRAY_SIZE(items), <span class="kw">sizeof</span>(items[<span class="dv">0</span>]), compare_double);</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort(<span class="dt">void</span> *ptr, <span class="dt">unsigned</span> <span class="dt">int</span> count, <span class="dt">unsigned</span> <span class="dt">int</span> element_size,</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>          <span class="dt">int</span> (*comparator)(<span class="dt">const</span> <span class="dt">void</span> *a, <span class="dt">const</span> <span class="dt">void</span> *b));</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> compare_double(<span class="dt">const</span> <span class="dt">void</span> *__a, <span class="dt">const</span> <span class="dt">void</span> *__b)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">double</span> *a = __a, *b == __b;</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (*a == *b)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> *a &lt; *b ? -<span class="dv">1</span> : <span class="dv">1</span>;</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> items[] = { <span class="fl">2.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span> };</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>sort(items, ARRAY_SIZE(items), <span class="kw">sizeof</span>(items[<span class="dv">0</span>]), compare_double);</span></code></pre></div>
 <p>Funkcja powinna dawać taki sam efekt jak <code>qsort()</code>.</p>
+</section>
+<section id="rozwiązanie-12" class="level2">
+<h2>Rozwiązanie 12</h2>
+<div class="sourceCode" id="cb37"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string.h&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort(<span class="dt">void</span> *array, <span class="dt">int</span> count, <span class="dt">unsigned</span> <span class="dt">int</span> elem_size,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>         <span class="dt">int</span> (*compare)(<span class="dt">const</span> <span class="dt">void</span> *a, <span class="dt">const</span> <span class="dt">void</span> *b))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; count - <span class="dv">1</span>; ++i) {</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; count - <span class="dv">1</span> - i; j++) {</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>            <span class="dt">void</span> *a = array + j * elem_size;</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>            <span class="dt">void</span> *b = array + (j + <span class="dv">1</span>) * elem_size;</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (compare(a, b) &gt;= <span class="dv">1</span>) {</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>                <span class="dt">unsigned</span> <span class="dt">char</span> tmp[elem_size];</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>                memcpy(tmp, a, elem_size);</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>                memcpy(a, b, elem_size);</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>                memcpy(b, tmp, elem_size);</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </section>
 <section id="zadanie-13" class="level2">
 <h2>Zadanie 13</h2>
 <p>Napisz program który jako pierwszy argument przyjmie ciąg znaków. Następnie wypisze ciąg znaków, zamieniając wszystkie duże litery na małe.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>$ ./program <span class="st">&quot;This Should Be Small 1234&quot;</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>this should be small <span class="dv">1234</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>$ ./program <span class="st">&quot;This Should Be Small 1234&quot;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>this should be small <span class="dv">1234</span></span></code></pre></div>
 <p>Zamiana znaków powinna się dokonać z wykorzystaniem autorskiej funkcji</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> autorskafunkcjadozamianyznakow(<span class="dt">char</span> *str);</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> autorskafunkcjadozamianyznakow(<span class="dt">char</span> *str);</span></code></pre></div>
 <p>Przydatne informacje:</p>
 <ul class="incremental">
 <li>Kopiowanie ciągów znaków można osiągnąc za pomocą <code>memcpy()</code>, <code>strncpy()</code>, <code>strcpy()</code>, <code>snprintf()</code>.</li>
@@ -615,90 +669,163 @@ $ ./program</code></pre>
 <li>Należy sprawdzić czy <code>'A' &lt;= litera &amp;&amp; litera &lt;= 'Z'</code>.</li>
 </ul>
 </section>
+<section id="rozwiązanie-13---funkcja-to_lower" class="level2">
+<h2>Rozwiązanie 13 - funkcja <code>to_lower()</code></h2>
+<div class="sourceCode" id="cb40"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> to_lower(<span class="dt">char</span> *str)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> len = strlen(str);</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">unsigned</span> <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; len; ++i) {</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="ch">&#39;A&#39;</span> &lt;= str[i] &amp;&amp; str[i] &lt;= <span class="ch">&#39;Z&#39;</span>) {</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>            str[i] += <span class="ch">&#39;a&#39;</span> - <span class="ch">&#39;A&#39;</span>;</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="rozwiązanie-13---funkcja-main" class="level2">
+<h2>Rozwiązanie 13 - funkcja <code>main()</code></h2>
+<div class="sourceCode" id="cb41"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> to_lower(<span class="dt">char</span> *str) { ... }</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (argc != <span class="dv">2</span>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> str[<span class="dv">256</span>];</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> size = snprintf(str, <span class="kw">sizeof</span>(str), <span class="st">&quot;%s&quot;</span>, argv[<span class="dv">1</span>]);</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (size &gt;= <span class="kw">sizeof</span>(str))</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>    to_lower(str);</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;%s</span><span class="sc">\n</span><span class="st">&quot;</span>, str);</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
 <section id="zadanie-14" class="level2">
 <h2>Zadanie 14</h2>
 <p>Terminalem, na który wypisujemy można sterować specjalnymi kodami ANSI (<a href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>). Możemy w ten sposób na przykład:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>fprintf(stderr, <span class="st">&quot;%c[2J&quot;</span>, <span class="bn">0x1b</span>); <span class="co">/* Wyczyścić ekran */</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>fprintf(stderr, <span class="st">&quot;%c[%d;%dH&quot;</span>, <span class="bn">0x1b</span>, y, x); <span class="co">/* Umieścić kursor w wierszu y i kolumnie x */</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>fprintf(stderr, <span class="st">&quot;%c[2J&quot;</span>, <span class="bn">0x1b</span>); <span class="co">/* Wyczyścić ekran */</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>fprintf(stderr, <span class="st">&quot;%c[%d;%dH&quot;</span>, <span class="bn">0x1b</span>, y, x); <span class="co">/* Umieścić kursor w wierszu y i kolumnie x */</span></span></code></pre></div>
 <p>Napisz 2 funkcje:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Czyści ekran */</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> clrscr(<span class="dt">void</span>);</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* Umieszcza kursor w wierszu y i kolumnie x */</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> gotoxy(<span class="dt">int</span> x, <span class="dt">int</span> y);</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Czyści ekran */</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> clrscr(<span class="dt">void</span>);</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* Umieszcza kursor w wierszu y i kolumnie x */</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> gotoxy(<span class="dt">int</span> x, <span class="dt">int</span> y);</span></code></pre></div>
 <p>Narysuj za ich pomocą animację przypominającą “kod z matrixa”. Do generowania liczb losowych możesz użyć <code>rand()</code>. Do kontroli szybkości animacji <code>usleep()</code>.</p>
 </section>
 <section id="zadanie-14---efekt" class="level2">
 <h2>Zadanie 14 - Efekt</h2>
 <p><img src="assets/matrix.gif" /></p>
 </section>
+<section id="rozwiązanie-14---funkcje-pomocnicze" class="level2">
+<h2>Rozwiązanie 14 - funkcje pomocnicze</h2>
+<div class="sourceCode" id="cb44"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> gotoxy(<span class="dt">int</span> x, <span class="dt">int</span> y)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    fprintf(stderr, <span class="st">&quot;%c[%d;%dH&quot;</span>, <span class="bn">0x1b</span>, y, x);</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> clrscr(<span class="dt">void</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    fprintf(stderr, <span class="st">&quot;%c[2J&quot;</span>, <span class="bn">0x1b</span>);</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </section>
-<script>
-/*!	
-* FitText.js 1.0 jQuery free version
-*
-* Copyright 2011, Dave Rupert http://daverupert.com 
-* Released under the WTFPL license 
-* http://sam.zoy.org/wtfpl/
-* Modified by Slawomir Kolodziej http://slawekk.info
-*
-* Date: Tue Aug 09 2011 10:45:54 GMT+0200 (CEST)
-*/
-(function(){
+<section id="rozwiązanie-14---funkcja-main" class="level2">
+<h2>Rozwiązanie 14 - funkcja main</h2>
+<div class="sourceCode" id="cb45"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> gotoxy(<span class="dt">int</span> x, <span class="dt">int</span> y) { ... }</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> clrscr(<span class="dt">void</span>) { ... }</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    clrscr();</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (<span class="dv">1</span>) {</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> column = rand() % <span class="dv">79</span> + <span class="dv">1</span>;</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> len = rand() % <span class="dv">24</span>;</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; len; ++i) {</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>            gotoxy(column, i);</span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>            <span class="dt">char</span> c = rand() % <span class="dv">30</span> + <span class="dv">50</span>;</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>            fprintf(stderr, <span class="st">&quot;%c&quot;</span>, c);</span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>            gotoxy(column, i);</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>            usleep(<span class="dv">50000</span>);</span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+</section>
+  <script>
+    /*!	
+    * FitText.js 1.0 jQuery free version
+    *
+    * Copyright 2011, Dave Rupert http://daverupert.com 
+    * Released under the WTFPL license 
+    * http://sam.zoy.org/wtfpl/
+    * Modified by Slawomir Kolodziej http://slawekk.info
+    *
+    * Date: Tue Aug 09 2011 10:45:54 GMT+0200 (CEST)
+    */
+    (function(){
 
-  var addEvent = function (el, type, fn) {
-    if (el.addEventListener)
-      el.addEventListener(type, fn, false);
-		else
-			el.attachEvent('on'+type, fn);
-  };
-  
-  var extend = function(obj,ext){
-    for(var key in ext)
-      if(ext.hasOwnProperty(key))
-        obj[key] = ext[key];
-    return obj;
-  };
-
-  window.fitText = function (el, kompressor, options) {
-
-    var settings = extend({
-      'minFontSize' : -1/0,
-      'maxFontSize' : 1/0
-    },options);
-
-    var fit = function (el) {
-      var compressor = kompressor || 1;
-
-      var resizer = function () {
-        el.style.fontSize = Math.max(Math.min(el.clientWidth / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)) + 'px';
+      var addEvent = function (el, type, fn) {
+        if (el.addEventListener)
+          el.addEventListener(type, fn, false);
+            else
+                el.attachEvent('on'+type, fn);
+      };
+      
+      var extend = function(obj,ext){
+        for(var key in ext)
+          if(ext.hasOwnProperty(key))
+            obj[key] = ext[key];
+        return obj;
       };
 
-      // Call once to set.
-      resizer();
+      window.fitText = function (el, kompressor, options) {
 
-      // Bind events
-      // If you have any js library which support Events, replace this part
-      // and remove addEvent function (or use original jQuery version)
-      addEvent(window, 'resize', resizer);
-      addEvent(window, 'orientationchange', resizer);
-    };
+        var settings = extend({
+          'minFontSize' : -1/0,
+          'maxFontSize' : 1/0
+        },options);
 
-    if (el.length)
-      for(var i=0; i<el.length; i++)
-        fit(el[i]);
-    else
-      fit(el);
+        var fit = function (el) {
+          var compressor = kompressor || 1;
 
-    // return set of elements
-    return el;
-  };
-})();
+          var resizer = function () {
+            el.style.fontSize = Math.max(Math.min(el.clientWidth / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)) + 'px';
+          };
+
+          // Call once to set.
+          resizer();
+
+          // Bind events
+          // If you have any js library which support Events, replace this part
+          // and remove addEvent function (or use original jQuery version)
+          addEvent(window, 'resize', resizer);
+          addEvent(window, 'orientationchange', resizer);
+        };
+
+        if (el.length)
+          for(var i=0; i<el.length; i++)
+            fit(el[i]);
+        else
+          fit(el);
+
+        // return set of elements
+        return el;
+      };
+    })();
 
     fitText(document.querySelectorAll('.level2'), 5);
     fitText(document.querySelectorAll('h1'), 2.5);
 
     document.querySelectorAll('p > img').forEach(e => e.parentNode.style.overflow="hidden");
 
-</script>
+  </script>
   </body>
 </html>

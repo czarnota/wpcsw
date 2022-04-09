@@ -11,7 +11,7 @@ all: $(MARKDOWN_FILES) $(DIAGRAM_FILES)
 	browserrefresh firefox
 
 $(MARKDOWN_FILES): %slides.html : %README.md $(SLIDES)
-	$(SLIDES) $< > $@
+	$(SLIDES) $< $@
 
 $(DIAGRAM_FILES): %.lock : % $(DIAGRAMS)
 	$(DIAGRAMS) $<

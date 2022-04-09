@@ -341,9 +341,9 @@ int main(int argc, char **argv)
     int count = 0;
     int number;
     while (1 == scanf("%d", &number)) {
-	numbers = realloc(numbers, (count + 1) * sizeof(numbers[0]));
-	if (!numbers)
-		goto out; /* goto nie jest "złe", jeżeli używamy do obsługi błędów */
+        numbers = realloc(numbers, (count + 1) * sizeof(numbers[0]));
+        if (!numbers)
+            goto out; /* goto nie jest "złe", jeżeli używamy do obsługi błędów */
         numbers[count] = number;
         count++;
     }
@@ -374,13 +374,26 @@ no
 
 Z tą drobną różnicą, że będzie obsługiwał tylko jeden argument.
 
+## Rozwiązanie zadanie rozgrzewkowego
+
+```c
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+    while (1)
+        printf("%s\n", argc >= 2 ? argv[1] : "y");
+    return 0;
+}
+```
+
 ## Zadanie 9
 
 Napisz funkcję która będzie sortować tablicę liczb typu `int` algorytmem
 sortowania bąbelkowego. Pseudokod:
 ```
 sort(items, len) {
-    for (i = 0; i < len - 1; j++) {
+    for (i = 0; i < len - 1; i++) {
         for (j = 0; j < len - 1 - i; j++) {
             if (items[j] > items[j + 1])
                 swap(items[j], items[j + 1]);
@@ -394,6 +407,23 @@ Wykorzystanie:
 ```c
 int n[] = {8, 3, 4, 5, 6, 7, 8};
 sort(n, 7);
+```
+
+## Rozwiązanie 9
+
+```c
+void sort(int *items, unsigned int len)
+{
+    for (unsigned int i = 0; i < len - 1; ++i) {
+        for (unsigned int j = 0; j < len - 1 - i; j++) {
+            if (items[j] > items[j + 1]) {
+                int tmp = items[j];
+                items[j] = items[j + 1];
+                items[j + 1] = tmp;
+            }
+        }
+    }
+}
 ```
 
 ## Zadanie 10
@@ -410,6 +440,30 @@ Wykorzystanie:
 ```c
 float n[] = {8.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f};
 sort_float(n, 7, false);
+```
+
+## Rozwiązanie 10
+
+```c
+void sort_float(float *items, unsigned int len, bool reversed)
+{
+    for (unsigned int i = 0; i < len - 1; ++i) {
+        for (unsigned int j = 0; j < len - 1 - i; j++) {
+            bool swap;
+
+            if (reversed)
+                swap = items[j] < items[j + 1];
+            else
+                swap = items[j] > items[j + 1];
+
+            if (swap) {
+                float tmp = items[j];
+                items[j] = items[j + 1];
+                items[j + 1] = tmp;
+            }
+        }
+    }
+}
 ```
 
 ## Zadanie 11
@@ -430,6 +484,12 @@ sort_float(n, ARRAY_SIZE(n));
 Przydatny operator:
 
 - `sizeof(x)` - podaje rozmiar wyrażenia
+
+## Rozwiązanie 11
+
+```c
+#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
+```
 
 ## Zadanie 12
 
@@ -457,6 +517,30 @@ sort(items, ARRAY_SIZE(items), sizeof(items[0]), compare_double);
 ```
 Funkcja powinna dawać taki sam efekt jak `qsort()`.
 
+## Rozwiązanie 12
+
+```c
+#include <string.h>
+
+void sort(void *array, int count, unsigned int elem_size,
+         int (*compare)(const void *a, const void *b))
+{
+    for (int i = 0; i < count - 1; ++i) {
+        for (int j = 0; j < count - 1 - i; j++) {
+            void *a = array + j * elem_size;
+            void *b = array + (j + 1) * elem_size;
+            if (compare(a, b) >= 1) {
+                unsigned char tmp[elem_size];
+
+                memcpy(tmp, a, elem_size);
+                memcpy(a, b, elem_size);
+                memcpy(b, tmp, elem_size);
+            }
+        }
+    }
+}
+```
+
 ## Zadanie 13
 
 Napisz program który jako pierwszy argument przyjmie ciąg znaków. Następnie
@@ -477,6 +561,46 @@ Przydatne informacje:
 - Kopiowanie ciągów znaków można osiągnąc za pomocą `memcpy()`, `strncpy()`, `strcpy()`, `snprintf()`.
 - Aby zamienic dużą literę na małą wystarczy dodać do niej `'a' - 'A'`.
 - Należy sprawdzić czy `'A' <= litera && litera <= 'Z'`.
+
+## Rozwiązanie 13 - funkcja `to_lower()`
+
+```c
+void to_lower(char *str)
+{
+	unsigned int len = strlen(str);
+
+	for (unsigned int i = 0; i < len; ++i) {
+		if ('A' <= str[i] && str[i] <= 'Z') {
+			str[i] += 'a' - 'A';
+		}
+	}
+}
+```
+
+## Rozwiązanie 13 - funkcja `main()`
+
+```c
+#include <stdio.h>
+
+void to_lower(char *str) { ... }
+
+int main(int argc, char **argv)
+{
+	if (argc != 2)
+		return 1;
+	
+	char str[256];
+	int size = snprintf(str, sizeof(str), "%s", argv[1]);
+	if (size >= sizeof(str))
+		return 1;
+	
+	to_lower(str);
+
+	printf("%s\n", str);
+
+	return 0;
+}
+```
 
 ## Zadanie 14
 
@@ -501,3 +625,44 @@ liczb losowych możesz użyć `rand()`. Do kontroli szybkości animacji `usleep(
 ## Zadanie 14 - Efekt
 
 ![](assets/matrix.gif)
+
+## Rozwiązanie 14 - funkcje pomocnicze
+
+```c
+void gotoxy(int x, int y)
+{
+	fprintf(stderr, "%c[%d;%dH", 0x1b, y, x);
+}
+
+void clrscr(void)
+{
+	fprintf(stderr, "%c[2J", 0x1b);
+}
+```
+
+## Rozwiązanie 14 - funkcja main
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+void gotoxy(int x, int y) { ... }
+void clrscr(void) { ... }
+
+int main(void)
+{
+	clrscr();
+	while (1) {
+		int column = rand() % 79 + 1;
+		int len = rand() % 24;
+		for (int i = 1; i < len; ++i) {
+			gotoxy(column, i);
+			char c = rand() % 30 + 50;
+			fprintf(stderr, "%c", c);
+			gotoxy(column, i);
+			usleep(50000);
+		}
+	}
+}
+```
