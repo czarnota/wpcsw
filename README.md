@@ -52,3 +52,5 @@ dnia 09.04.2022, to otrzymuje ocenę 3.
 Jeżeli ktoś nie oddał żadnego zadania i nie rozwiąże zadania sprawdzającego na zajęciach
 dnia 09.04.2022, to otrzymuje zadanie ratunkowe, którego oddanie do końca
 semestru skutkuje oceną 3.
+
+**Bezpieczny termin wysłania zadania ratunkowego**: `06.06.2022`
