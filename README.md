@@ -54,3 +54,11 @@ dnia 09.04.2022, to otrzymuje zadanie ratunkowe, którego oddanie do końca
 semestru skutkuje oceną 3.
 
 **Bezpieczny termin wysłania zadania ratunkowego**: `06.06.2022`
+
+## Archiwum
+
+### 2022
+
+#### Laboratoria
+
+- Zadania ([slides](https://czarnota.github.io/wpcsw/2022/1/slides.html), [html](https://czarnota.github.io/wpcsw/2022/1/), [md](https://github.com/czarnota/wpcsw/tree/main/2022/1/))
