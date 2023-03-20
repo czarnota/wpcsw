@@ -5,6 +5,7 @@ read -rd '' STYLE <<'EOF'
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>$title$</title>
     <style>
     html { -moz-text-size-adjust: none; -webkit-text-size-adjust: none; text-size-adjust: none; }
