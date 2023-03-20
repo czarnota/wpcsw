@@ -7,6 +7,7 @@ read -rd '' STYLE <<'EOF'
     <meta charset="utf-8">
     <title>$title$</title>
     <style>
+    html { -moz-text-size-adjust: none; -webkit-text-size-adjust: none; text-size-adjust: none; }
     * { box-sizing: border-box; }
     .level2, h1 { max-height: 92vh; margin: 1em auto; background: #fff;
                   font-size: 12px; aspect-ratio: 16 / 9; padding: 1.5em;
