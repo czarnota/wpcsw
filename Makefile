@@ -4,11 +4,11 @@ DIAGRAM_FILES=$(addsuffix .lock, $(shell find . -name diagrams))
 SLIDES=bin/slides.sh
 DIAGRAMS=bin/diagrams.sh
 
-all: $(MARKDOWN_FILES) $(DIAGRAM_FILES)
+all: $(MARKDOWN_FILES) $(DIAGRAM_FILES) .lock
 
 .lock: $(MARKDOWN_FILES) $(DIAGRAM_FILES)
 	touch $@
-	browserrefresh firefox
+	browserrefresh
 
 $(MARKDOWN_FILES): %slides.html : %README.md $(SLIDES)
 	$(SLIDES) $< $@

@@ -239,524 +239,363 @@
   <body>
 <section id="wstęp-do-programowania-w-c-w-systemach-wbudowanych" class="level1">
 <h1>Wstęp do programowania w C w systemach wbudowanych</h1>
+</section>
+<section id="pierwszy-program" class="level1">
+<h1>Pierwszy program</h1>
+<section id="szkielet-programu" class="level2">
+<h2>Szkielet programu</h2>
+<p>Program typu “Witaj świecie” można napisać w języku C w następujący sposób:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Wklejenie zawartości pliku naglówkowego stdio.h, potrzebne aby skorzystać</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">   z funkcji printf(). */</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">/* Definicja funkcji main() - funkcji wywoływanej</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">   jako pierwszej po uruchomieniu programu */</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Wywołanie funkcji printf() z ciągiem znaków &quot;Hello world\n&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">       podanym jako pierwszy argument */</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;Hello world</span><span class="sc">\n</span><span class="st">&quot;</span>); </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Zwrócenie kodu błędu do systemu operacyjnego.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">       Kod 0 oznacza, że nie wystąpił żaden błąd */</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="kompilacja-programu" class="level2">
+<h2>Kompilacja programu</h2>
+<p>Kod źródłowy umieszczony w pliku <code>plik.c</code> można skompilować za pomocą kompilatora GCC. W tym celu należy wpisać w terminalu:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">gcc</span> plik.c -o nazwa</span></code></pre></div>
+<p>W ten sposób kod źródłowy zostanie przekształcony w plik wykonywalny o nazwie <code>nazwa</code>. Można go uruchomić w następujący sposób:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>$ <span class="ex">./nazwa</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> world</span></code></pre></div>
+</section>
 <section id="zadanie-1" class="level2">
 <h2>Zadanie 1</h2>
-<p>Napisz program który po uruchomieniu wyświeli twoje imię i nazwisko. Skompiluj go za pomocą <code>gcc</code> i uruchom z terminala.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>$ ./a.out</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>Jan Kowalski</span></code></pre></div>
+<p>Napisz program który po uruchomieniu wyświeli <strong>twoje</strong> imię i nazwisko. Skompiluj go za pomocą <code>gcc</code> i uruchom z terminala.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>$ ./twojprogram</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Jan Kowalski</span></code></pre></div>
 </section>
-<section id="rozwiązanie-1" class="level2">
-<h2>Rozwiązanie 1</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>{</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    printf(<span class="st">&quot;Jan Kowalski</span><span class="sc">\n</span><span class="st">&quot;</span>); </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>}</span></code></pre></div>
-<p>Znak <code>\n</code> to znak nowej linii (czyli “enter”).</p>
-<p>Następnie:</p>
-<pre class="console"><code>$ gcc main.c -o imieinazwisko
-$ ./imieinazwisko
-Jak Kowalski</code></pre>
+</section>
+<section id="zmienne-i-typy-danych" class="level1">
+<h1>Zmienne i typy danych</h1>
+<section id="zmienne" class="level2">
+<h2>Zmienne</h2>
+<p>Zmienne wykorzystujemy do tego aby zapisywać wyniki obliczeń. Reprezentują one obszary pamięci w których przechowywane są dane.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> birth_year = <span class="dv">1993</span>;</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> current_year = <span class="dv">2023</span>;</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> age = current_year - birth_year;</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;wiek to: %d</span><span class="sc">\n</span><span class="st">&quot;</span>, age);</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> time = <span class="fl">0.0</span><span class="bu">f</span>;</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> distance;</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    time = <span class="fl">10.0</span><span class="bu">f</span>;</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    distance = <span class="fl">5.0</span><span class="bu">f</span>;</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> speed = distance / time;</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;szybkosc to %f</span><span class="sc">\n</span><span class="st">&quot;</span>, speed);</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="wypisywanie-wartości-zmiennych" class="level2">
+<h2>Wypisywanie wartości zmiennych</h2>
+<p>Do wypisywania zmiennych służy funkcja printf. Jako pierwszy argument przyjmuje ona “format string”, który określa type zmiennej oraz w którym miejscu zostanie ona wypisana.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> temperature = -<span class="dv">10</span>;</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>printf(<span class="st">&quot;temperatura: %d</span><span class="sc">\n</span><span class="st">&quot;</span>, temperatura);</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> money = <span class="dv">10000</span>;</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>printf(<span class="st">&quot;bilans konta: %u</span><span class="sc">\n</span><span class="st">&quot;</span>, money);</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> interest_rate = <span class="fl">0.08</span><span class="bu">f</span>;</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>printf(<span class="st">&quot;oprocentowanie: %f</span><span class="sc">\n</span><span class="st">&quot;</span>, interest_rate);</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>printf(<span class="st">&quot;temperatura %d bilans %u oprocentowanie %f</span><span class="sc">\n</span><span class="st">&quot;</span>, temperature,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>       interest_rate, money);</span></code></pre></div>
+</section>
+<section id="zmienne---sekcja-danych-bss-i-stos" class="level2">
+<h2>Zmienne - sekcja danych, bss i stos</h2>
+<p>Zmienne mogą być zadeklarowana w różnych obszarach pamięci:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> global_x = <span class="dv">34</span>; <span class="co">// zmienna zinicjalizowana w sekcji danych</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> global_y; <span class="co">// zmienna w sekcji BSS - zainicjalizowana 0</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x; <span class="co">// zmienna na stosie - początkowa wartość niezdefiniowana</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span> <span class="dt">int</span> y; <span class="co">// zmienna w sekcji BSS</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span> <span class="dt">int</span> z = <span class="dv">32</span>; <span class="co">// zmienna w sekcji danych</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="typy-danych---liczby-całkowite" class="level2">
+<h2>Typy danych - liczby całkowite</h2>
+<p>Typ zmiennej określa zbiór wartości jaki może ona przyjmować oraz określa jej rozmiar w pamięci.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> a = <span class="ch">&#39;X&#39;</span>;              <span class="co">// dokładnie 1 bajt [-127; 127]</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">short</span> b = -<span class="dv">30000</span>;          <span class="co">// minimum 2 bajty  [-32767; 32767]</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> c = <span class="dv">30000</span>;             <span class="co">// minimum 2 bajty  [-32767; 32767]</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> d = -<span class="dv">3000000</span>;         <span class="co">// minimum 4 bajty  [-2147483648; 2147483647]</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="dt">long</span> e = <span class="dv">32147483648</span>; <span class="co">// minimum 8 bajtów [-9223372036854775807; 9223372036854775807]</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;%c %d %d %l %ll&quot;</span>, a, b, c, d, e);</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="typy-danych---liczby-całkowite-bez-znaku" class="level2">
+<h2>Typy danych - liczby całkowite bez znaku</h2>
+<p>Dodanie słowa <code>unsigned</code> to nazwy typu liczby całkowitej powoduje, że będzie ona przechowywać tylko dodatnie wartości.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">char</span> a = <span class="dv">234</span>;             <span class="co">// dokładnie 1 bajt [0; 255]</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">short</span> b = <span class="dv">60000</span>;          <span class="co">// minimum 2 bajty  [0; 65536]</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> c = <span class="dv">60000</span>;            <span class="co">// minimum 2 bajty  [0; 65536]</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> d = <span class="dv">70000</span>;           <span class="co">// minimum 4 bajty  [0; 4294967295]</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> <span class="dt">long</span> e = <span class="dv">4294967295</span>; <span class="co">// minimum 8 bajtów [0; 18446744073709551615]</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;%u %u %u %lu %llu</span><span class="sc">\n</span><span class="st">&quot;</span>, a, b, c, d, e);</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="typy-danych---liczby-zmiennoprzecinkowe" class="level2">
+<h2>Typy danych - liczby zmiennoprzecinkowe</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> a = <span class="fl">0.121371</span><span class="bu">f</span>;</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> b = <span class="fl">0.2132</span>;</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;%f %d</span><span class="sc">\n</span><span class="st">&quot;</span>, a, b);</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="typy-danych---inne" class="level2">
+<h2>Typy danych - inne</h2>
+<p>Do przechowywania wartości logicznych można wykorzystać <code>bool</code>, natomiast do przechowywania rozmiarów <code>size_t</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdbool.h&gt;</span><span class="pp"> </span><span class="co">// potrzebny dla bool</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stddef.h&gt;</span><span class="pp">  </span><span class="co">// potrzebny dla size_t</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> a = true; <span class="co">// dokładnie 1 bajt {false, true}</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">size_t</span> b = <span class="dv">0</span>;  <span class="co">// tyle bajtów, ile potrzeba do zapisania rozmiaru dowolnego obiektu</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;%d %zu</span><span class="sc">\n</span><span class="st">&quot;</span>, a, b);</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </section>
 <section id="zadanie-2" class="level2">
 <h2>Zadanie 2</h2>
-<p>Napisz program który przyjmuje 2 argumenty: imie i nazwisko, a następnie je wyświetla.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>$ ./a.out Przemyslaw Czarnota</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>Przemyslaw Czarnota</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>$ echo $?</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="dv">0</span></span></code></pre></div>
-<p>Podanie niepoprawnej liczby argumentów, powinno skutkować wyświetleniem błędu na standardowy strumień błędów oraz zwróceniem kodu błędu różnego od 0.</p>
-<pre><code>$ ./a.out Za duzo argumentow &gt;/dev/null
-error: wrong number of arguments
-$ echo $?
-1</code></pre>
+<p>Napisz program który wypisze rozmiary następujących typów danych:</p>
+<ul class="incremental">
+<li><code>char</code>, <code>unsigned char</code></li>
+<li><code>short</code>, <code>unsigned short</code></li>
+<li><code>int</code>, <code>unsigned int</code></li>
+<li><code>long</code>, <code>unsigned int</code></li>
+<li><code>long long</code>, <code>unsigned int</code></li>
+<li><code>bool</code>, <code>size_t</code></li>
+</ul>
+<p>Sprawdzić rozmiar zmiennej można za pomocą operatora <code>sizeof()</code>. Operator <code>sizeof()</code> zwraca wartość typu <code>size_t</code>, do której wypisania należy użyć specyfikatora <code>%zu</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>printf(<span class="st">&quot;%zu</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="kw">sizeof</span>(<span class="dt">char</span>));</span></code></pre></div>
 </section>
-<section id="rozwiązanie-2" class="level2">
-<h2>Rozwiązanie 2</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>{</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>    <span class="cf">if</span> (argc != <span class="dv">3</span>) {</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>        fprintf(stderr, <span class="st">&quot;error: wrong number of arguments</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>    }</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>    printf(<span class="st">&quot;%s %s</span><span class="sc">\n</span><span class="st">&quot;</span>, argv[<span class="dv">1</span>], argv[<span class="dv">2</span>]);</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>}</span></code></pre></div>
-<p>Gdy uruchamiamy <code>./program Jan Kowalski</code>, system operacyjny jako drugi argument funkcji <code>main()</code> przekazuje następującą tablicę ciągów znaków:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="dt">char</span> *argv[] = { <span class="st">&quot;./program&quot;</span>, <span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Kowalski&quot;</span> };</span></code></pre></div>
-<p>Warto zauważyć że wywołanie systemowe <code>execvp</code> przyjmuje podobny argument :)</p>
+</section>
+<section id="instrukcje-warunkowe" class="level1">
+<h1>Instrukcje warunkowe</h1>
+<section id="instrukcja-if" class="level2">
+<h2>Instrukcja <code>if</code></h2>
+<p>Jedną z podstawowych instrukcji służących do sterowania programem jest <code>if</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (wyrazenie) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;prawda</span><span class="sc">\n</span><span class="st">&quot;</span>);   <span class="co">// wykona się gdy wyrażenie to prawda, czyli wartość różna od zera </span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;fałsz</span><span class="sc">\n</span><span class="st">&quot;</span>);    <span class="co">// wykona się gdy wyrażenie to fałsz, czyli wartość równa zero</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> b = <span class="dv">0</span>;</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (b) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;foo</span><span class="sc">\n</span><span class="st">&quot;</span>);      <span class="co">// nie wykona się, ponieważ b jest fałszem</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>}                         <span class="co">// &quot;else&quot; jest opcjonalne</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (b &gt;= <span class="dv">0</span>)               <span class="co">// gdy jest tylko jedna instrukcja, można pominąć {}</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;baz</span><span class="sc">\n</span><span class="st">&quot;</span>);      </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="cf">if</span> (b == -<span class="dv">1</span>)         <span class="co">// możemy zagnieżdzać &quot;if&quot;, w celu obsługi kilku przypadków</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;bad</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="cf">if</span> (b == -<span class="dv">2</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;bak</span><span class="sc">\n</span><span class="st">&quot;</span>);          </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;bax</span><span class="sc">\n</span><span class="st">&quot;</span>);</span></code></pre></div>
+</section>
+<section id="instrukcja-if---przykład---rzut-monetą" class="level2">
+<h2>Instrukcja <code>if</code> - przykład - rzut monetą</h2>
+<p>Przykład programu symulującego rzut monetą:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span><span class="pp">   </span><span class="co">// printf()</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span><span class="pp">  </span><span class="co">// rand()</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;time.h&gt;</span><span class="pp">    </span><span class="co">// time()</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    srand(time(NULL));     <span class="co">// ustawiamy ziarno dla generatora liczb losowych</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> number = rand();   <span class="co">// rand() zwraca wartość od 0 do RAND_MAX (przynajmniej 32767)</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (number % <span class="dv">2</span>)        <span class="co">// jeżeli reszta z dzielenia przez 2 jest rózna od 0</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        printf(<span class="st">&quot;heads</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        printf(<span class="st">&quot;tails</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>$ ./coin_toss
+heads
+$ ./coin_toss
+tails</code></pre>
 </section>
 <section id="zadanie-3" class="level2">
 <h2>Zadanie 3</h2>
-<p>Napisz program, który będzie odczytywał ze standardowego wejścia liczby do momentu wystąpienia wejścia, które nie jest liczbą lub końca strumienia i na końcu wyświetli ich średnią arytmetyczną.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>$ ./a.out</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="dv">1</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="dv">2</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="dv">3</span>            &lt;--- tu wcisnąłem Ctrl-d</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="fl">2.000000</span></span></code></pre></div>
-<p>Przydatne funkcje:</p>
-<ul class="incremental">
-<li><code>scanf()</code> - odczytuje zmienne ze standardowego wejścia</li>
-</ul>
-<p>Skrót klawiaturowy <code>Ctrl-d</code>, powoduje wysłanie znaku końca pliku.</p>
+<p>Napisz program symulujący rzut kostką sześcienną. Przykład działania:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>$ <span class="ex">./cube</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">*</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>$ <span class="ex">./cube</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span> *</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span> *</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span> *</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>$ <span class="ex">./cube</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span> *</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a> <span class="ex">*</span> </span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span> *</span></code></pre></div>
 </section>
-<section id="rozwiązanie-3" class="level2">
-<h2>Rozwiązanie 3</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>{</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>    <span class="dt">int</span> sum = <span class="dv">0</span>;</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>    <span class="dt">int</span> count = <span class="dv">0</span>;</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a>    <span class="cf">while</span> (<span class="dv">1</span>) {</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a>        <span class="dt">int</span> number;</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a>        <span class="dt">int</span> num = scanf(<span class="st">&quot;%d&quot;</span>, &amp;number);</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a>        <span class="cf">if</span> (num != <span class="dv">1</span>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a>            <span class="cf">break</span>;</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a>        sum += number;</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a>        count++;</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a>    }</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true"></a>    printf(<span class="st">&quot;%f</span><span class="sc">\n</span><span class="st">&quot;</span>, (<span class="dt">float</span>)sum / count);</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true"></a>}</span></code></pre></div>
 </section>
-<section id="rozwiązanie-3---alternatywne" class="level2">
-<h2>Rozwiązanie 3 - alternatywne</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>{</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>    <span class="dt">int</span> sum = <span class="dv">0</span>, count = <span class="dv">0</span>, number;</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a>    <span class="cf">while</span> (scanf(<span class="st">&quot;%d&quot;</span>, &amp;number) == <span class="dv">1</span>) {</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a>        sum += number;</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a>        count++;</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a>    }</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a>    printf(<span class="st">&quot;%f</span><span class="sc">\n</span><span class="st">&quot;</span>, (<span class="dt">float</span>)sum / count);</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a>}</span></code></pre></div>
+<section id="wczytywanie-wejścia" class="level1">
+<h1>Wczytywanie wejścia</h1>
+<section id="funkcja-scanf" class="level2">
+<h2>Funkcja scanf()</h2>
+<p>Funkcja <code>scanf()</code> pozwala na odczytywanie danych ze standardowego wejścia</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> age;</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;Ile masz lat?: &quot;</span>);</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    scanf(<span class="st">&quot;%d&quot;</span>, &amp;age);</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;Masz %d lat!</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>$ <span class="ex">./program</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Ile</span> masz lat?: 29</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Masz</span> 29 lat!</span></code></pre></div>
+</section>
+<section id="funkcja-scanf---format" class="level2">
+<h2>Funkcja scanf() - format</h2>
+<p>Funkcja <code>scanf()</code> odczytuje standardowe wejście zgodnie z “formatem” podanym jako pierwszy argument. Przykładowe wejście:</p>
+<pre><code>xyz   abc 1 2</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> x = <span class="dv">99</span>, y = <span class="dv">99</span>;</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>scanf(<span class="st">&quot;xyz   abc %d %d&quot;</span>, &amp;x, &amp;y); <span class="co">// x = 1, y = 2</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>scanf(<span class="st">&quot;xyz abc %d %d&quot;</span>, &amp;x, &amp;y);   <span class="co">// x = 1, y = 2 (biały znak oznacza &quot;jeden lub więcej&quot;)</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>scanf(<span class="st">&quot;xyz abc%d%d&quot;</span>, &amp;x, &amp;y);     <span class="co">// x = 1, y = 2 (% ignoruje biała znaki wystepujące przed)</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>scanf(<span class="st">&quot;xyzabc %d %d&quot;</span>, &amp;x, &amp;y);    <span class="co">// x = 99, y = 99 (nie dopasowaliśmy spacji po xyz)</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>scanf(<span class="st">&quot;xyz abc %d%d&quot;</span>, &amp;x, &amp;y);    <span class="co">// x = 99, y = 99 (nie dopasowaliśmy spacji po xyz)</span></span></code></pre></div>
+</section>
+<section id="funkcja-scanf---wartość-zwracana" class="level2">
+<h2>Funkcja scanf() - wartość zwracana</h2>
+<p>Funkcja <code>scanf()</code> zwraca liczbę poprawnie przypisanych zmiennych.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> age;</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;Ile masz lat?: &quot;</span>);</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (scanf(<span class="st">&quot;%d&quot;</span>, &amp;age) != <span class="dv">1</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> -<span class="dv">1</span>;</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;Masz %d lat!</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </section>
 <section id="zadanie-4" class="level2">
 <h2>Zadanie 4</h2>
-<p>Napisz program, który będzie odczytywał liczby ze standardowego wejścia i wypisze je w odwrotnej kolejności.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>$ seq <span class="dv">1</span> <span class="dv">3</span> | ./a.out</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="dv">3</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="dv">2</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="dv">1</span></span></code></pre></div>
-<p>Program powinien działać maksymalnie dla 4096 liczb całkowitych. Dalsze liczby są odrzucane.</p>
-<p>Do rozwiązania będzie potrzebne wykorzystanie tablicy. Na przykład</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="dt">int</span> tablica[<span class="dv">4096</span>];</span></code></pre></div>
+<p>Napisz program który wczytuje 3 zmienne: liczbę, znak działania (-, +, /, *) i drugą liczbę i zwraca wynik.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>$ <span class="ex">./program</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">2</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span></span></code></pre></div>
 </section>
-<section id="rozwiązanie-4" class="level2">
-<h2>Rozwiązanie 4</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>{</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a>    <span class="dt">int</span> numbers[<span class="dv">4096</span>];</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a>    <span class="dt">int</span> count = <span class="dv">0</span>;</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a>    <span class="dt">int</span> number;</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a>    <span class="co">/* Dopóki liczby są na standardowym wejściu */</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a>    <span class="cf">while</span> (<span class="dv">1</span> == scanf(<span class="st">&quot;%d&quot;</span>, &amp;number)) {</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a>        <span class="cf">if</span> (count &gt;= <span class="dv">4096</span>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a>            <span class="cf">break</span>;</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a>        numbers[count] = number;</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a>        count++;</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true"></a>    }</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true"></a></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = count - <span class="dv">1</span>; i &gt;= <span class="dv">0</span>; --i)</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true"></a>        printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, numbers[i]);</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true"></a></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>; </span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true"></a>}</span></code></pre></div>
+</section>
+<section id="pętle" class="level1">
+<h1>Pętle</h1>
+<section id="pętla-while" class="level2">
+<h2>Pętla <code>while</code></h2>
+<p>Pętle pozwalają na kilkukrotne wykonanie tego samego kawałka kodu, tak długo jak warunek pętli jest spełniony.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i = <span class="dv">0</span>;</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (i &lt; <span class="dv">10</span>) {        <span class="co">// wykonuj instrukcje dopóki i &lt; 10</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;%d&quot;</span>, i);</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    i++;</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>printf(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>$ <span class="ex">./program</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">0123456789</span></span></code></pre></div>
+</section>
+<section id="pętla-for" class="level2">
+<h2>Pętla <code>for</code></h2>
+<p>Pętle pozwalają na kilkukrotne wykonanie tego samego kawałka kodu, tak długo jak warunek pętli jest spełniony.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i;</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">// i = 0  jest wykonywane najpierw</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">// i &lt; 9  jest wykonywane przed każdą iteracją pętli</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">// i += 1 jest wykonywane po każdej iteracji pętli</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>; i += <span class="dv">1</span>) {</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;%d&quot;</span>, i);</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Przykład: Wypisanie liczb od 10 do 1</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">10</span>; j &gt; <span class="dv">0</span>; --j)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;%d&quot;</span>, j);</span></code></pre></div>
+</section>
+<section id="instrukcja-break" class="level2">
+<h2>Instrukcja <code>break</code></h2>
+<p>Instrukcja <code>break</code> przerywa wykonywania pętli.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Wczytuj kolejne liczby tak długo jak odczytana wartość jest liczbą</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="dv">1</span>) {</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> number;</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> ret = scanf(<span class="st">&quot;%d&quot;</span>, &amp;number);</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (ret != <span class="dv">1</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span>;</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="instrukcja-continue" class="level2">
+<h2>Instrukcja <code>continue</code></h2>
+<p>Instrukcja <code>continue</code> powoduje przeskok do następnej iteracji pętli</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Wypisz tylko parzyste liczby</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>; ++i) {</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i % <span class="dv">2</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span>;</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, i);</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </section>
 <section id="zadanie-5" class="level2">
 <h2>Zadanie 5</h2>
-<p>Napisz program który wyświetli wszystkie argumenty przekazane do programu</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>$ ./a.out a b d e foo bar</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>a</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>b</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a>d</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a>e</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a>foo</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a>bar</span></code></pre></div>
-</section>
-<section id="rozwiązanie-5" class="level2">
-<h2>Rozwiązanie 5</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a>{</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; argc; ++i)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a>        printf(<span class="st">&quot;%s</span><span class="sc">\n</span><span class="st">&quot;</span>, argv[i]);</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="zadanie-6" class="level2">
-<h2>Zadanie 6</h2>
-<p>Napisz program, który będzie odczytywał ze standardowego wejścia liczby do momentu wystąpienia wejścia, które nie jest liczbą lub końca strumienia i na końcu wyświetli najmniejszą liczbę. Program powinien też działać dla liczb ujemnych.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>$ ./a.out</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="dv">1</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a>-<span class="dv">2</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a><span class="dv">2</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a>-<span class="dv">1</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a>-<span class="dv">2</span>            &lt;--- tu wcisnąłem Ctrl-d co powoduje wyświetlenie wyniku</span></code></pre></div>
-<p>Przydatne funkcje:</p>
-<ul class="incremental">
-<li><code>scanf()</code> - odczytuje zmienne ze standardowego wejścia</li>
-</ul>
-</section>
-<section id="rozwiązanie-6" class="level2">
-<h2>Rozwiązanie 6</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>{</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a>    <span class="dt">int</span> min, number;</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a>    <span class="cf">if</span> (<span class="dv">1</span> != scanf(<span class="st">&quot;%d&quot;</span>, &amp;min))</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true"></a>    <span class="cf">while</span> (<span class="dv">1</span> == scanf(<span class="st">&quot;%d&quot;</span>, &amp;number)) {</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true"></a>        <span class="cf">if</span> (number &lt; min)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true"></a>            min = number;</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true"></a>    }</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true"></a></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true"></a>    printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, min);</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="zadanie-7" class="level2">
-<h2>Zadanie 7</h2>
-<p>Rozwiń program z Zadania 4, tak aby działał dla dowolnej ilości liczb, która jest podana jako pierwszy argument.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>./a.out <span class="dv">5</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="dv">1</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a><span class="dv">2</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a><span class="dv">3</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a><span class="dv">4</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a><span class="dv">5</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a><span class="dv">5</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a><span class="dv">4</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a><span class="dv">3</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a><span class="dv">2</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a><span class="dv">1</span></span></code></pre></div>
-</section>
-<section id="rozwiązanie-7" class="level2">
-<h2>Rozwiązanie 7</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a>{</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true"></a>    <span class="dt">int</span> max_count, count = <span class="dv">0</span>, number;</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true"></a>    <span class="cf">if</span> (argc != <span class="dv">2</span>)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true"></a>    <span class="cf">if</span> (<span class="dv">1</span> != sscanf(argv[<span class="dv">1</span>], <span class="st">&quot;%d&quot;</span>, &amp;max_count))</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true"></a></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true"></a>    <span class="dt">int</span> *numbers = malloc(max_count * <span class="kw">sizeof</span>(numbers[<span class="dv">0</span>]));</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true"></a>    <span class="co">/* Dopóki liczby są na standardowym wejściu */</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true"></a>    <span class="cf">while</span> (count &lt; max_count &amp;&amp; <span class="dv">1</span> == scanf(<span class="st">&quot;%d&quot;</span>, &amp;number)) {</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true"></a>        numbers[count] = number;</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true"></a>        count++;</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true"></a>    }</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = count - <span class="dv">1</span>; i &gt;= <span class="dv">0</span>; --i)</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true"></a>        printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, numbers[i]);</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true"></a></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true"></a>    free(numbers);</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>; </span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="zadanie-8" class="level2">
-<h2>Zadanie 8</h2>
-<p>Rozwiń program z Zadania 4, tak aby działał dla dowolnej ilości liczb, ale bez podawania maksymalnej ilości liczb jako pierwszy argument. Wewnętrzna tablica powinna się dynamicznie rozszerzać.</p>
-<p>Przydatne funkcje:</p>
-<ul class="incremental">
-<li><code>malloc()</code> - alokuje pamięć</li>
-<li><code>realloc()</code> - realokuje pamięć</li>
-<li><code>free()</code> - zwalnia pamięć</li>
-<li><code>memcpy()</code> - kopiuje dane</li>
-</ul>
-<p>Sprawdź czy nie ma wycieków pamięci:</p>
-<pre class="console"><code>$ valgrind --leak-check=full --show-leak-kinds=all ./program
-
-$ gcc main.c -fsanitize=address -o program
-$ ./program</code></pre>
-</section>
-<section id="rozwiązanie-8" class="level2">
-<h2>Rozwiązanie 8</h2>
-<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a>{</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a>    <span class="dt">int</span> *numbers = NULL; <span class="co">/* realloc(NULL, ...) i free(NULL) jest ok */</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a>    <span class="dt">int</span> count = <span class="dv">0</span>;</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true"></a>    <span class="dt">int</span> number;</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true"></a>    <span class="cf">while</span> (<span class="dv">1</span> == scanf(<span class="st">&quot;%d&quot;</span>, &amp;number)) {</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true"></a>        numbers = realloc(numbers, (count + <span class="dv">1</span>) * <span class="kw">sizeof</span>(numbers[<span class="dv">0</span>]));</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true"></a>        <span class="cf">if</span> (!numbers)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true"></a>            <span class="cf">goto</span> out; <span class="co">/* goto nie jest &quot;złe&quot;, jeżeli używamy do obsługi błędów */</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true"></a>        numbers[count] = number;</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true"></a>        count++;</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true"></a>    }</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = count - <span class="dv">1</span>; i &gt;= <span class="dv">0</span>; --i)</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true"></a>        printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, numbers[i]);</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true"></a>out:</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true"></a>    free(numbers);</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>; </span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="zadanie-rozgrzewkowe" class="level2">
-<h2>Zadanie rozgrzewkowe</h2>
-<p>Napisz program który będzie działał jak program <code>yes</code>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a>$ ./program | head -n <span class="dv">3</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a>y</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a>y</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a>y</span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>$ ./program no | head -n <span class="dv">3</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a>no</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a>no</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a>no</span></code></pre></div>
-<p>Z tą drobną różnicą, że będzie obsługiwał tylko jeden argument.</p>
-</section>
-<section id="rozwiązanie-zadanie-rozgrzewkowego" class="level2">
-<h2>Rozwiązanie zadanie rozgrzewkowego</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true"></a>{</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true"></a>    <span class="cf">while</span> (<span class="dv">1</span>)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true"></a>        printf(<span class="st">&quot;%s</span><span class="sc">\n</span><span class="st">&quot;</span>, argc &gt;= <span class="dv">2</span> ? argv[<span class="dv">1</span>] : <span class="st">&quot;y&quot;</span>);</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="zadanie-9" class="level2">
-<h2>Zadanie 9</h2>
-<p>Napisz funkcję która będzie sortować tablicę liczb typu <code>int</code> algorytmem sortowania bąbelkowego. Pseudokod:</p>
-<pre><code>sort(items, len) {
-    for (i = 0; i &lt; len - 1; i++) {
-        for (j = 0; j &lt; len - 1 - i; j++) {
-            if (items[j] &gt; items[j + 1])
-                swap(items[j], items[j + 1]);
-        }
-    }
-}</code></pre>
-<p>Wykorzystanie:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a>sort(n, <span class="dv">7</span>);</span></code></pre></div>
-</section>
-<section id="rozwiązanie-9" class="level2">
-<h2>Rozwiązanie 9</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="dt">void</span> sort(<span class="dt">int</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a>{</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">unsigned</span> <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; len - <span class="dv">1</span>; ++i) {</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true"></a>        <span class="cf">for</span> (<span class="dt">unsigned</span> <span class="dt">int</span> j = <span class="dv">0</span>; j &lt; len - <span class="dv">1</span> - i; j++) {</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true"></a>            <span class="cf">if</span> (items[j] &gt; items[j + <span class="dv">1</span>]) {</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true"></a>                <span class="dt">int</span> tmp = items[j];</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true"></a>                items[j] = items[j + <span class="dv">1</span>];</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true"></a>                items[j + <span class="dv">1</span>] = tmp;</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true"></a>            }</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true"></a>        }</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true"></a>    }</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="zadanie-10" class="level2">
-<h2>Zadanie 10</h2>
-<p>Napisz funkcję która będzie sortować tablicę liczby typu <code>float</code> algorytmem sortowania bąbelkowego. Dodaj do niej parametr określający porządek sortowania.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a><span class="dt">void</span> sort_float(<span class="dt">float</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len, <span class="dt">bool</span> reversed);</span></code></pre></div>
-<p>Wykorzystanie:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a>sort_float(n, <span class="dv">7</span>, false);</span></code></pre></div>
-</section>
-<section id="rozwiązanie-10" class="level2">
-<h2>Rozwiązanie 10</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="dt">void</span> sort_float(<span class="dt">float</span> *items, <span class="dt">unsigned</span> <span class="dt">int</span> len, <span class="dt">bool</span> reversed)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a>{</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">unsigned</span> <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; len - <span class="dv">1</span>; ++i) {</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true"></a>        <span class="cf">for</span> (<span class="dt">unsigned</span> <span class="dt">int</span> j = <span class="dv">0</span>; j &lt; len - <span class="dv">1</span> - i; j++) {</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true"></a>            <span class="dt">bool</span> swap;</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true"></a>            <span class="cf">if</span> (reversed)</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true"></a>                swap = items[j] &lt; items[j + <span class="dv">1</span>];</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true"></a>            <span class="cf">else</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true"></a>                swap = items[j] &gt; items[j + <span class="dv">1</span>];</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true"></a></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true"></a>            <span class="cf">if</span> (swap) {</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true"></a>                <span class="dt">float</span> tmp = items[j];</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true"></a>                items[j] = items[j + <span class="dv">1</span>];</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true"></a>                items[j + <span class="dv">1</span>] = tmp;</span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true"></a>            }</span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true"></a>        }</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true"></a>    }</span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="zadanie-11" class="level2">
-<h2>Zadanie 11</h2>
-<p>Zdefiniuj makro <code>ARRAY_SIZE()</code>, które pozwoli obliczać liczbę elementów w tablicy w trakcie kompilacji (jeżeli rozmiar jest znany w trakcie kompilacji)</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="dt">int</span> n[] = {<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>};</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a>sort(n, ARRAY_SIZE(n));</span></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a><span class="dt">float</span> n[] = {<span class="fl">8.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span>, <span class="fl">4.0</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">6.0</span><span class="bu">f</span>, <span class="fl">7.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>};</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true"></a>sort_float(n, ARRAY_SIZE(n));</span></code></pre></div>
-<p>Przydatny operator:</p>
-<ul class="incremental">
-<li><code>sizeof(x)</code> - podaje rozmiar wyrażenia</li>
-</ul>
-</section>
-<section id="rozwiązanie-11" class="level2">
-<h2>Rozwiązanie 11</h2>
-<div class="sourceCode" id="cb33"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true"></a><span class="pp">#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))</span></span></code></pre></div>
-</section>
-<section id="zadanie-12" class="level2">
-<h2>Zadanie 12</h2>
-<p>Napisz generyczną funkcję <code>sort()</code>, która może posortować tablicę dowolnego typu:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a><span class="dt">void</span> sort(<span class="dt">void</span> *ptr, <span class="dt">unsigned</span> <span class="dt">int</span> count, <span class="dt">unsigned</span> <span class="dt">int</span> element_size,</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true"></a>          <span class="dt">int</span> (*comparator)(<span class="dt">const</span> <span class="dt">void</span> *a, <span class="dt">const</span> <span class="dt">void</span> *b));</span></code></pre></div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a><span class="dt">int</span> compare_double(<span class="dt">const</span> <span class="dt">void</span> *__a, <span class="dt">const</span> <span class="dt">void</span> *__b)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a>{</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true"></a>    <span class="dt">const</span> <span class="dt">double</span> *a = __a, *b == __b;</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true"></a>    <span class="cf">if</span> (*a == *b)</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true"></a>        <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true"></a>    <span class="cf">return</span> *a &lt; *b ? -<span class="dv">1</span> : <span class="dv">1</span>;</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a><span class="dt">double</span> items[] = { <span class="fl">2.0</span><span class="bu">f</span>, <span class="fl">8.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">3.0</span><span class="bu">f</span> };</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true"></a>sort(items, ARRAY_SIZE(items), <span class="kw">sizeof</span>(items[<span class="dv">0</span>]), compare_double);</span></code></pre></div>
-<p>Funkcja powinna dawać taki sam efekt jak <code>qsort()</code>.</p>
-</section>
-<section id="rozwiązanie-12" class="level2">
-<h2>Rozwiązanie 12</h2>
-<div class="sourceCode" id="cb37"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;string.h&gt;</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true"></a><span class="dt">void</span> sort(<span class="dt">void</span> *array, <span class="dt">int</span> count, <span class="dt">unsigned</span> <span class="dt">int</span> elem_size,</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true"></a>         <span class="dt">int</span> (*compare)(<span class="dt">const</span> <span class="dt">void</span> *a, <span class="dt">const</span> <span class="dt">void</span> *b))</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true"></a>{</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; count - <span class="dv">1</span>; ++i) {</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; count - <span class="dv">1</span> - i; j++) {</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true"></a>            <span class="dt">void</span> *a = array + j * elem_size;</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true"></a>            <span class="dt">void</span> *b = array + (j + <span class="dv">1</span>) * elem_size;</span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true"></a>            <span class="cf">if</span> (compare(a, b) &gt;= <span class="dv">1</span>) {</span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true"></a>                <span class="dt">unsigned</span> <span class="dt">char</span> tmp[elem_size];</span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true"></a></span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true"></a>                memcpy(tmp, a, elem_size);</span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true"></a>                memcpy(a, b, elem_size);</span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true"></a>                memcpy(b, tmp, elem_size);</span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true"></a>            }</span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true"></a>        }</span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true"></a>    }</span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="zadanie-13" class="level2">
-<h2>Zadanie 13</h2>
-<p>Napisz program który jako pierwszy argument przyjmie ciąg znaków. Następnie wypisze ciąg znaków, zamieniając wszystkie duże litery na małe.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true"></a>$ ./program <span class="st">&quot;This Should Be Small 1234&quot;</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true"></a>this should be small <span class="dv">1234</span></span></code></pre></div>
-<p>Zamiana znaków powinna się dokonać z wykorzystaniem autorskiej funkcji</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a><span class="dt">void</span> autorskafunkcjadozamianyznakow(<span class="dt">char</span> *str);</span></code></pre></div>
-<p>Przydatne informacje:</p>
-<ul class="incremental">
-<li>Kopiowanie ciągów znaków można osiągnąc za pomocą <code>memcpy()</code>, <code>strncpy()</code>, <code>strcpy()</code>, <code>snprintf()</code>.</li>
-<li>Aby zamienic dużą literę na małą wystarczy dodać do niej <code>'a' - 'A'</code>.</li>
-<li>Należy sprawdzić czy <code>'A' &lt;= litera &amp;&amp; litera &lt;= 'Z'</code>.</li>
-</ul>
-</section>
-<section id="rozwiązanie-13---funkcja-to_lower" class="level2">
-<h2>Rozwiązanie 13 - funkcja <code>to_lower()</code></h2>
-<div class="sourceCode" id="cb40"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true"></a><span class="dt">void</span> to_lower(<span class="dt">char</span> *str)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true"></a>{</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> len = strlen(str);</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true"></a></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">unsigned</span> <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; len; ++i) {</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true"></a>        <span class="cf">if</span> (<span class="ch">&#39;A&#39;</span> &lt;= str[i] &amp;&amp; str[i] &lt;= <span class="ch">&#39;Z&#39;</span>) {</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true"></a>            str[i] += <span class="ch">&#39;a&#39;</span> - <span class="ch">&#39;A&#39;</span>;</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true"></a>        }</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true"></a>    }</span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="rozwiązanie-13---funkcja-main" class="level2">
-<h2>Rozwiązanie 13 - funkcja <code>main()</code></h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true"></a></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true"></a><span class="dt">void</span> to_lower(<span class="dt">char</span> *str) { ... }</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true"></a>{</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true"></a>    <span class="cf">if</span> (argc != <span class="dv">2</span>)</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true"></a>    </span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true"></a>    <span class="dt">char</span> str[<span class="dv">256</span>];</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true"></a>    <span class="dt">int</span> size = snprintf(str, <span class="kw">sizeof</span>(str), <span class="st">&quot;%s&quot;</span>, argv[<span class="dv">1</span>]);</span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true"></a>    <span class="cf">if</span> (size &gt;= <span class="kw">sizeof</span>(str))</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true"></a>        <span class="cf">return</span> <span class="dv">1</span>;</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true"></a>    </span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true"></a>    to_lower(str);</span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true"></a></span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true"></a>    printf(<span class="st">&quot;%s</span><span class="sc">\n</span><span class="st">&quot;</span>, str);</span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true"></a></span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="zadanie-14" class="level2">
-<h2>Zadanie 14</h2>
-<p>Terminalem, na który wypisujemy można sterować specjalnymi kodami ANSI (<a href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>). Możemy w ten sposób na przykład:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true"></a>fprintf(stderr, <span class="st">&quot;%c[2J&quot;</span>, <span class="bn">0x1b</span>); <span class="co">/* Wyczyścić ekran */</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true"></a>fprintf(stderr, <span class="st">&quot;%c[%d;%dH&quot;</span>, <span class="bn">0x1b</span>, y, x); <span class="co">/* Umieścić kursor w wierszu y i kolumnie x */</span></span></code></pre></div>
-<p>Napisz 2 funkcje:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true"></a><span class="co">/* Czyści ekran */</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true"></a><span class="dt">void</span> clrscr(<span class="dt">void</span>);</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true"></a><span class="co">/* Umieszcza kursor w wierszu y i kolumnie x */</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true"></a><span class="dt">void</span> gotoxy(<span class="dt">int</span> x, <span class="dt">int</span> y);</span></code></pre></div>
-<p>Narysuj za ich pomocą animację przypominającą “kod z matrixa”. Do generowania liczb losowych możesz użyć <code>rand()</code>. Do kontroli szybkości animacji <code>usleep()</code>.</p>
-</section>
-<section id="zadanie-14---efekt" class="level2">
-<h2>Zadanie 14 - Efekt</h2>
-<p><img src="assets/matrix.gif" /></p>
-</section>
-<section id="rozwiązanie-14---funkcje-pomocnicze" class="level2">
-<h2>Rozwiązanie 14 - funkcje pomocnicze</h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true"></a><span class="dt">void</span> gotoxy(<span class="dt">int</span> x, <span class="dt">int</span> y)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true"></a>{</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true"></a>    fprintf(stderr, <span class="st">&quot;%c[%d;%dH&quot;</span>, <span class="bn">0x1b</span>, y, x);</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true"></a>}</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true"></a></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true"></a><span class="dt">void</span> clrscr(<span class="dt">void</span>)</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true"></a>{</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true"></a>    fprintf(stderr, <span class="st">&quot;%c[2J&quot;</span>, <span class="bn">0x1b</span>);</span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="rozwiązanie-14---funkcja-main" class="level2">
-<h2>Rozwiązanie 14 - funkcja main</h2>
-<div class="sourceCode" id="cb45"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true"></a></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true"></a><span class="dt">void</span> gotoxy(<span class="dt">int</span> x, <span class="dt">int</span> y) { ... }</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true"></a><span class="dt">void</span> clrscr(<span class="dt">void</span>) { ... }</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true"></a></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true"></a>{</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true"></a>    clrscr();</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true"></a>    <span class="cf">while</span> (<span class="dv">1</span>) {</span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true"></a>        <span class="dt">int</span> column = rand() % <span class="dv">79</span> + <span class="dv">1</span>;</span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true"></a>        <span class="dt">int</span> len = rand() % <span class="dv">24</span>;</span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true"></a>        <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; len; ++i) {</span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true"></a>            gotoxy(column, i);</span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true"></a>            <span class="dt">char</span> c = rand() % <span class="dv">30</span> + <span class="dv">50</span>;</span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true"></a>            fprintf(stderr, <span class="st">&quot;%c&quot;</span>, c);</span>
-<span id="cb45-18"><a href="#cb45-18" aria-hidden="true"></a>            gotoxy(column, i);</span>
-<span id="cb45-19"><a href="#cb45-19" aria-hidden="true"></a>            usleep(<span class="dv">50000</span>);</span>
-<span id="cb45-20"><a href="#cb45-20" aria-hidden="true"></a>        }</span>
-<span id="cb45-21"><a href="#cb45-21" aria-hidden="true"></a>    }</span>
-<span id="cb45-22"><a href="#cb45-22" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Napisz program który odczytuje dwie liczby - wysokość i szerokość. Program powinien narysować prostokąt o zadanej wysokości i szerokości.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>$ <span class="ex">./rect</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="ex">5</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="ex">*****</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ex">*****</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="ex">*****</span></span></code></pre></div>
 </section>
 </section>
   <script>

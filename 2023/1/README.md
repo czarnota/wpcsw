@@ -1,668 +1,452 @@
 # Wstęp do programowania w C w systemach wbudowanych
 
+# Pierwszy program
+
+## Szkielet programu
+
+Program typu "Witaj świecie" można napisać w języku C w następujący sposób:
+
+```c
+/* Wklejenie zawartości pliku naglówkowego stdio.h, potrzebne aby skorzystać
+   z funkcji printf(). */
+#include <stdio.h>
+
+/* Definicja funkcji main() - funkcji wywoływanej
+   jako pierwszej po uruchomieniu programu */
+int main(void)
+{
+    /* Wywołanie funkcji printf() z ciągiem znaków "Hello world\n"
+       podanym jako pierwszy argument */
+	printf("Hello world\n"); 
+
+    /* Zwrócenie kodu błędu do systemu operacyjnego.
+       Kod 0 oznacza, że nie wystąpił żaden błąd */
+	return 0;
+}
+```
+
+## Kompilacja programu
+
+Kod źródłowy umieszczony w pliku `plik.c` można skompilować za pomocą kompilatora GCC.
+W tym celu należy wpisać w terminalu:
+```bash
+$ gcc plik.c -o nazwa
+```
+
+W ten sposób kod źródłowy zostanie przekształcony w plik wykonywalny o nazwie
+`nazwa`. Można go uruchomić w następujący sposób:
+
+```bash
+$ ./nazwa
+Hello world
+```
+
 ## Zadanie 1
 
-Napisz program który po uruchomieniu wyświeli twoje imię i nazwisko.
+Napisz program który po uruchomieniu wyświeli **twoje** imię i nazwisko.
 Skompiluj go za pomocą `gcc` i uruchom z terminala.
 
 ```c
-$ ./a.out
+$ ./twojprogram
 Jan Kowalski
 ```
 
-## Rozwiązanie 1
+# Zmienne i typy danych
+
+## Zmienne
+Zmienne wykorzystujemy do tego aby zapisywać wyniki obliczeń.
+Reprezentują one obszary pamięci w których przechowywane są dane.
 
 ```c
 #include <stdio.h>
 
 int main(void)
 {
-	printf("Jan Kowalski\n"); 
-	return 0;
+    int birth_year = 1993;
+    int current_year = 2023;
+    int age = current_year - birth_year;
+    printf("wiek to: %d\n", age);
+
+    float time = 0.0f;
+    float distance;
+    time = 10.0f;
+    distance = 5.0f;
+    float speed = distance / time;
+    printf("szybkosc to %f\n", speed);
+
+    return 0;
 }
 ```
 
-Znak `\n` to znak nowej linii (czyli "enter").
+## Wypisywanie wartości zmiennych
 
-Następnie:
+Do wypisywania zmiennych służy funkcja printf. Jako pierwszy argument przyjmuje
+ona "format string", który określa type zmiennej oraz w którym miejscu zostanie
+ona wypisana.
 
-```console
-$ gcc main.c -o imieinazwisko
-$ ./imieinazwisko
-Jak Kowalski
+```c
+int temperature = -10;
+printf("temperatura: %d\n", temperatura);
+
+unsigned int money = 10000;
+printf("bilans konta: %u\n", money);
+
+float interest_rate = 0.08f;
+printf("oprocentowanie: %f\n", interest_rate);
+
+printf("temperatura %d bilans %u oprocentowanie %f\n", temperature,
+       interest_rate, money);
+```
+
+## Zmienne - sekcja danych, bss i stos
+
+Zmienne mogą być zadeklarowana w różnych obszarach pamięci:
+
+```c
+int global_x = 34; // zmienna zinicjalizowana w sekcji danych
+
+int global_y; // zmienna w sekcji BSS - zainicjalizowana 0
+
+int main(void)
+{
+    int x; // zmienna na stosie - początkowa wartość niezdefiniowana
+    static int y; // zmienna w sekcji BSS
+    static int z = 32; // zmienna w sekcji danych
+
+    return 0
+}
+```
+
+## Typy danych - liczby całkowite
+
+Typ zmiennej określa zbiór wartości jaki może ona przyjmować oraz określa jej rozmiar
+w pamięci. 
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    char a = 'X';              // dokładnie 1 bajt [-127; 127]
+    short b = -30000;          // minimum 2 bajty  [-32767; 32767]
+    int c = 30000;             // minimum 2 bajty  [-32767; 32767]
+    long d = -3000000;         // minimum 4 bajty  [-2147483648; 2147483647]
+    long long e = 32147483648; // minimum 8 bajtów [-9223372036854775807; 9223372036854775807]
+
+    printf("%c %d %d %l %ll", a, b, c, d, e);
+
+    return 0;
+}
+```
+
+## Typy danych - liczby całkowite bez znaku
+
+Dodanie słowa `unsigned` to nazwy typu liczby całkowitej powoduje, że będzie ona
+przechowywać tylko dodatnie wartości.
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    unsigned char a = 234;             // dokładnie 1 bajt [0; 255]
+    unsigned short b = 60000;          // minimum 2 bajty  [0; 65536]
+    unsigned int c = 60000;            // minimum 2 bajty  [0; 65536]
+    unsigned long d = 70000;           // minimum 4 bajty  [0; 4294967295]
+    unsigned long long e = 4294967295; // minimum 8 bajtów [0; 18446744073709551615]
+
+    printf("%u %u %u %lu %llu\n", a, b, c, d, e);
+
+    return 0;
+}
+```
+
+## Typy danych - liczby zmiennoprzecinkowe
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    float a = 0.121371f;
+    double b = 0.2132;
+
+    printf("%f %d\n", a, b);
+
+    return 0;
+}
+```
+
+## Typy danych - inne
+
+Do przechowywania wartości logicznych można wykorzystać `bool`, natomiast do
+przechowywania rozmiarów `size_t`.
+
+```c
+#include <stdbool.h> // potrzebny dla bool
+#include <stddef.h>  // potrzebny dla size_t
+
+int main(void)
+{
+    bool a = true; // dokładnie 1 bajt {false, true}
+    size_t b = 0;  // tyle bajtów, ile potrzeba do zapisania rozmiaru dowolnego obiektu
+
+    printf("%d %zu\n", a, b);
+
+    return 0;
+}
 ```
 
 ## Zadanie 2
 
-Napisz program który przyjmuje 2 argumenty: imie i nazwisko, a następnie
-je wyświetla. 
+Napisz program który wypisze rozmiary następujących typów danych:
+
+- `char`, `unsigned char`
+- `short`, `unsigned short`
+- `int`, `unsigned int`
+- `long`, `unsigned int`
+- `long long`, `unsigned int`
+- `bool`, `size_t`
+
+Sprawdzić rozmiar zmiennej można za pomocą operatora `sizeof()`. Operator `sizeof()`
+zwraca wartość typu `size_t`, do której wypisania należy użyć specyfikatora `%zu`.
 
 ```c
-$ ./a.out Przemyslaw Czarnota
-Przemyslaw Czarnota
-$ echo $?
-0
+printf("%zu\n", sizeof(char));
 ```
 
-Podanie niepoprawnej liczby argumentów, powinno skutkować
-wyświetleniem błędu na standardowy strumień błędów oraz zwróceniem
-kodu błędu różnego od 0.
+# Instrukcje warunkowe
 
-```
-$ ./a.out Za duzo argumentow >/dev/null
-error: wrong number of arguments
-$ echo $?
-1
-```
+## Instrukcja `if`
 
-## Rozwiązanie 2
+Jedną z podstawowych instrukcji służących do sterowania programem jest `if`.
 
 ```c
-#include <stdio.h>
+if (wyrazenie) {
+    printf("prawda\n");   // wykona się gdy wyrażenie to prawda, czyli wartość różna od zera 
+} else {
+    printf("fałsz\n");    // wykona się gdy wyrażenie to fałsz, czyli wartość równa zero
+}
+```
+```c
+int b = 0;
+if (b) {
+    printf("foo\n");      // nie wykona się, ponieważ b jest fałszem
+}                         // "else" jest opcjonalne
 
-int main(int argc, char **argv)
+if (b >= 0)               // gdy jest tylko jedna instrukcja, można pominąć {}
+    printf("baz\n");      
+else if (b == -1)         // możemy zagnieżdzać "if", w celu obsługi kilku przypadków
+    printf("bad\n");
+else if (b == -2)
+    printf("bak\n");          
+else
+    printf("bax\n");
+
+```
+## Instrukcja `if` - przykład - rzut monetą
+Przykład programu symulującego rzut monetą:
+```c
+#include <stdio.h>   // printf()
+#include <stdlib.h>  // rand()
+#include <time.h>    // time()
+
+int main(void)
 {
-	if (argc != 3) {
-		fprintf(stderr, "error: wrong number of arguments\n");
-		return 1;
-	}
-
-	printf("%s %s\n", argv[1], argv[2]);
-	return 0;
+    srand(time(NULL));     // ustawiamy ziarno dla generatora liczb losowych
+    int number = rand();   // rand() zwraca wartość od 0 do RAND_MAX (przynajmniej 32767)
+    if (number % 2)        // jeżeli reszta z dzielenia przez 2 jest rózna od 0
+        printf("heads\n");
+    else
+        printf("tails\n");
+    return 0;
 }
 ```
 
-Gdy uruchamiamy `./program Jan Kowalski`, system operacyjny jako drugi argument
-funkcji `main()` przekazuje następującą tablicę ciągów znaków:
-
-```c
-char *argv[] = { "./program", "Jan", "Kowalski" };
 ```
-
-Warto zauważyć że wywołanie systemowe `execvp` przyjmuje podobny argument :)
-
+$ ./coin_toss
+heads
+$ ./coin_toss
+tails
+```
 ## Zadanie 3
 
-Napisz program, który będzie odczytywał ze standardowego wejścia
-liczby do momentu wystąpienia wejścia, które nie jest liczbą lub
-końca strumienia i na końcu wyświetli ich średnią arytmetyczną.
+Napisz program symulujący rzut kostką sześcienną. Przykład działania:
 
-```c
-$ ./a.out
-1
-2
-3            <--- tu wcisnąłem Ctrl-d
-2.000000
+```bash
+$ ./cube
+
+ *
+
+
+$ ./cube
+* *
+* *
+* *
+
+$ ./cube
+* *
+ * 
+* *
+
 ```
 
-Przydatne funkcje:
+# Wczytywanie wejścia
 
-- `scanf()` - odczytuje zmienne ze standardowego wejścia
+## Funkcja scanf()
 
-Skrót klawiaturowy `Ctrl-d`, powoduje wysłanie znaku końca pliku.
-
-## Rozwiązanie 3
+Funkcja `scanf()` pozwala na odczytywanie danych ze standardowego wejścia
 
 ```c
 #include <stdio.h>
 
 int main(void)
 {
-	int sum = 0;
-	int count = 0;
+    int age;
 
-	while (1) {
-		int number;
+    printf("Ile masz lat?: ");
+    scanf("%d", &age);
+    printf("Masz %d lat!\n");
 
-		int num = scanf("%d", &number);
-		if (num != 1)
-			break;
-		sum += number;
-		count++;
-	}
-
-	printf("%f\n", (float)sum / count);
-	return 0;
+    return 0;
 }
 ```
 
-## Rozwiązanie 3 - alternatywne
+```bash
+$ ./program
+Ile masz lat?: 29
+Masz 29 lat!
+```
+
+## Funkcja scanf() - format
+
+Funkcja `scanf()` odczytuje standardowe wejście zgodnie z "formatem" podanym
+jako pierwszy argument. Przykładowe wejście:
+```
+xyz   abc 1 2
+```
+```c
+int x = 99, y = 99;
+scanf("xyz   abc %d %d", &x, &y); // x = 1, y = 2
+scanf("xyz abc %d %d", &x, &y);   // x = 1, y = 2 (biały znak oznacza "jeden lub więcej")
+scanf("xyz abc%d%d", &x, &y);     // x = 1, y = 2 (% ignoruje biała znaki wystepujące przed)
+scanf("xyzabc %d %d", &x, &y);    // x = 99, y = 99 (nie dopasowaliśmy spacji po xyz)
+scanf("xyz abc %d%d", &x, &y);    // x = 99, y = 99 (nie dopasowaliśmy spacji po xyz)
+```
+
+## Funkcja scanf() - wartość zwracana
+
+Funkcja `scanf()` zwraca liczbę poprawnie przypisanych zmiennych.
 
 ```c
 #include <stdio.h>
 
 int main(void)
 {
-	int sum = 0, count = 0, number;
+    int age;
 
-	while (scanf("%d", &number) == 1) {
-		sum += number;
-		count++;
-	}
+    printf("Ile masz lat?: ");
+    if (scanf("%d", &age) != 1)
+        return -1;
+    printf("Masz %d lat!\n");
 
-	printf("%f\n", (float)sum / count);
-	return 0;
+    return 0;
 }
 ```
 
 ## Zadanie 4
 
-Napisz program, który będzie odczytywał liczby ze standardowego wejścia
-i wypisze je w odwrotnej kolejności.
+Napisz program który wczytuje 3 zmienne: liczbę, znak działania (-, +, /, *) i drugą liczbę
+i zwraca wynik.
 
-```c
-$ seq 1 3 | ./a.out
-3
-2
+```bash
+$ ./program
 1
++
+2
+3
+
+```
+# Pętle
+
+## Pętla `while`
+
+Pętle pozwalają na kilkukrotne wykonanie tego samego kawałka kodu, tak długo jak
+warunek pętli jest spełniony.
+
+```c
+int i = 0;
+while (i < 10) {        // wykonuj instrukcje dopóki i < 10
+    printf("%d", i);
+    i++;
+}
+printf("\n");
 ```
 
-Program powinien działać maksymalnie dla 4096 liczb całkowitych.
-Dalsze liczby są odrzucane.
-
-Do rozwiązania będzie potrzebne wykorzystanie tablicy. Na przykład
-```c
-int tablica[4096];
+```bash
+$ ./program
+0123456789
 ```
 
-## Rozwiązanie 4
+## Pętla `for`
+
+Pętle pozwalają na kilkukrotne wykonanie tego samego kawałka kodu, tak długo jak
+warunek pętli jest spełniony.
 
 ```c
-#include <stdio.h>
+int i;
 
-int main(void)
-{
-	int numbers[4096];
-	int count = 0;
-	int number;
-	/* Dopóki liczby są na standardowym wejściu */
-	while (1 == scanf("%d", &number)) {
-		if (count >= 4096)
-			break;
-		numbers[count] = number;
-		count++;
-	}
+// i = 0  jest wykonywane najpierw
+// i < 9  jest wykonywane przed każdą iteracją pętli
+// i += 1 jest wykonywane po każdej iteracji pętli
+for (i = 0; i < 10; i += 1) {
+    printf("%d", i);
+}
+```
 
-	for (int i = count - 1; i >= 0; --i)
-		printf("%d\n", numbers[i]);
+Przykład: Wypisanie liczb od 10 do 1
+```c
+for (int j = 10; j > 0; --j)
+    printf("%d", j);
+```
 
-	return 0; 
+## Instrukcja `break`
+
+Instrukcja `break` przerywa wykonywania pętli.
+
+```c
+// Wczytuj kolejne liczby tak długo jak odczytana wartość jest liczbą
+while (1) {
+    int number;
+    int ret = scanf("%d", &number);
+    if (ret != 1)
+        break;
+}
+```
+
+## Instrukcja `continue`
+
+Instrukcja `continue` powoduje przeskok do następnej iteracji pętli
+
+```c
+// Wypisz tylko parzyste liczby
+for (int i = 0; i < 10; ++i) {
+    if (i % 2)
+        continue;
+    printf("%d\n", i);
 }
 ```
 
 ## Zadanie 5
 
-Napisz program który wyświetli wszystkie argumenty przekazane do programu
-```c
-$ ./a.out a b d e foo bar
-a
-b
-d
-e
-foo
-bar
-```
+Napisz program który odczytuje dwie liczby - wysokość i szerokość.
+Program powinien narysować prostokąt o zadanej wysokości i szerokości.
 
-## Rozwiązanie 5
-
-```c
-#include <stdio.h>
-
-int main(int argc, char **argv)
-{
-    for (int i = 1; i < argc; ++i)
-        printf("%s\n", argv[i]);
-
-    return 0;
-}
-```
-
-## Zadanie 6
-
-Napisz program, który będzie odczytywał ze standardowego wejścia
-liczby do momentu wystąpienia wejścia, które nie jest liczbą lub
-końca strumienia i na końcu wyświetli najmniejszą liczbę. Program powinien
-też działać dla liczb ujemnych.
-
-```c
-$ ./a.out
-1
--2
-2
--1
--2            <--- tu wcisnąłem Ctrl-d co powoduje wyświetlenie wyniku
-```
-
-Przydatne funkcje:
-
-- `scanf()` - odczytuje zmienne ze standardowego wejścia
-
-## Rozwiązanie 6
-
-```c
-#include <stdio.h>
-
-int main(int argc, char **argv)
-{
-    int min, number;
-    if (1 != scanf("%d", &min))
-        return 0;
-
-    while (1 == scanf("%d", &number)) {
-        if (number < min)
-            min = number;
-    }
-
-    printf("%d\n", min);
-
-    return 0;
-}
-```
-
-## Zadanie 7
-
-Rozwiń program z Zadania 4, tak aby działał
-dla dowolnej ilości liczb, która jest podana jako pierwszy argument.
-
-```c
-./a.out 5
-1
-2
+```bash
+$ ./rect
 3
-4
 5
-5
-4
-3
-2
-1
-```
-
-## Rozwiązanie 7
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char **argv)
-{
-    int max_count, count = 0, number;
-    if (argc != 2)
-        return 1;
-    if (1 != sscanf(argv[1], "%d", &max_count))
-        return 1;
-
-    int *numbers = malloc(max_count * sizeof(numbers[0]));
-    /* Dopóki liczby są na standardowym wejściu */
-    while (count < max_count && 1 == scanf("%d", &number)) {
-        numbers[count] = number;
-        count++;
-    }
-    for (int i = count - 1; i >= 0; --i)
-        printf("%d\n", numbers[i]);
-
-    free(numbers);
-    return 0; 
-}
-```
-
-## Zadanie 8
-
-Rozwiń program z Zadania 4, tak aby działał
-dla dowolnej ilości liczb, ale bez podawania maksymalnej
-ilości liczb jako pierwszy argument. Wewnętrzna tablica powinna się
-dynamicznie rozszerzać.
-
-Przydatne funkcje:
-
-- `malloc()` - alokuje pamięć
-- `realloc()` - realokuje pamięć
-- `free()` - zwalnia pamięć
-- `memcpy()` - kopiuje dane
-
-Sprawdź czy nie ma wycieków pamięci:
-
-```console
-$ valgrind --leak-check=full --show-leak-kinds=all ./program
-
-$ gcc main.c -fsanitize=address -o program
-$ ./program
-```
-
-## Rozwiązanie 8
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char **argv)
-{
-    int *numbers = NULL; /* realloc(NULL, ...) i free(NULL) jest ok */
-    int count = 0;
-    int number;
-    while (1 == scanf("%d", &number)) {
-        numbers = realloc(numbers, (count + 1) * sizeof(numbers[0]));
-        if (!numbers)
-            goto out; /* goto nie jest "złe", jeżeli używamy do obsługi błędów */
-        numbers[count] = number;
-        count++;
-    }
-    for (int i = count - 1; i >= 0; --i)
-        printf("%d\n", numbers[i]);
-out:
-    free(numbers);
-    return 0; 
-}
-```
-
-## Zadanie rozgrzewkowe
-
-Napisz program który będzie działał jak program `yes`.
-```c
-$ ./program | head -n 3
-y
-y
-y
-```
-
-```c
-$ ./program no | head -n 3
-no
-no
-no
-```
-
-Z tą drobną różnicą, że będzie obsługiwał tylko jeden argument.
-
-## Rozwiązanie zadanie rozgrzewkowego
-
-```c
-#include <stdio.h>
-
-int main(int argc, char **argv)
-{
-    while (1)
-        printf("%s\n", argc >= 2 ? argv[1] : "y");
-    return 0;
-}
-```
-
-## Zadanie 9
-
-Napisz funkcję która będzie sortować tablicę liczb typu `int` algorytmem
-sortowania bąbelkowego. Pseudokod:
-```
-sort(items, len) {
-    for (i = 0; i < len - 1; i++) {
-        for (j = 0; j < len - 1 - i; j++) {
-            if (items[j] > items[j + 1])
-                swap(items[j], items[j + 1]);
-        }
-    }
-}
-```
-
-Wykorzystanie:
-
-```c
-int n[] = {8, 3, 4, 5, 6, 7, 8};
-sort(n, 7);
-```
-
-## Rozwiązanie 9
-
-```c
-void sort(int *items, unsigned int len)
-{
-    for (unsigned int i = 0; i < len - 1; ++i) {
-        for (unsigned int j = 0; j < len - 1 - i; j++) {
-            if (items[j] > items[j + 1]) {
-                int tmp = items[j];
-                items[j] = items[j + 1];
-                items[j + 1] = tmp;
-            }
-        }
-    }
-}
-```
-
-## Zadanie 10
-
-Napisz funkcję która będzie sortować tablicę liczby typu `float` algorytmem
-sortowania bąbelkowego. Dodaj do niej parametr określający porządek sortowania.
-
-```c
-void sort_float(float *items, unsigned int len, bool reversed);
-```
-
-Wykorzystanie:
-
-```c
-float n[] = {8.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f};
-sort_float(n, 7, false);
-```
-
-## Rozwiązanie 10
-
-```c
-void sort_float(float *items, unsigned int len, bool reversed)
-{
-    for (unsigned int i = 0; i < len - 1; ++i) {
-        for (unsigned int j = 0; j < len - 1 - i; j++) {
-            bool swap;
-
-            if (reversed)
-                swap = items[j] < items[j + 1];
-            else
-                swap = items[j] > items[j + 1];
-
-            if (swap) {
-                float tmp = items[j];
-                items[j] = items[j + 1];
-                items[j + 1] = tmp;
-            }
-        }
-    }
-}
-```
-
-## Zadanie 11
-
-Zdefiniuj makro `ARRAY_SIZE()`, które pozwoli obliczać liczbę elementów
-w tablicy w trakcie kompilacji (jeżeli rozmiar jest znany w trakcie kompilacji)
-
-```c
-int n[] = {8, 3, 4, 5, 6, 7, 8};
-sort(n, ARRAY_SIZE(n));
-```
-
-```c
-float n[] = {8.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f};
-sort_float(n, ARRAY_SIZE(n));
-```
-
-Przydatny operator:
-
-- `sizeof(x)` - podaje rozmiar wyrażenia
-
-## Rozwiązanie 11
-
-```c
-#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
-```
-
-## Zadanie 12
-
-Napisz generyczną funkcję `sort()`, która może posortować tablicę
-dowolnego typu:
-
-```c
-void sort(void *ptr, unsigned int count, unsigned int element_size,
-          int (*comparator)(const void *a, const void *b));
-```
-
-```c
-int compare_double(const void *__a, const void *__b)
-{
-    const double *a = __a, *b == __b;
-    if (*a == *b)
-        return 0;
-    return *a < *b ? -1 : 1;
-}
-```
-
-```c
-double items[] = { 2.0f, 8.0f, -1.0f, 3.0f };
-sort(items, ARRAY_SIZE(items), sizeof(items[0]), compare_double);
-```
-Funkcja powinna dawać taki sam efekt jak `qsort()`.
-
-## Rozwiązanie 12
-
-```c
-#include <string.h>
-
-void sort(void *array, int count, unsigned int elem_size,
-         int (*compare)(const void *a, const void *b))
-{
-    for (int i = 0; i < count - 1; ++i) {
-        for (int j = 0; j < count - 1 - i; j++) {
-            void *a = array + j * elem_size;
-            void *b = array + (j + 1) * elem_size;
-            if (compare(a, b) >= 1) {
-                unsigned char tmp[elem_size];
-
-                memcpy(tmp, a, elem_size);
-                memcpy(a, b, elem_size);
-                memcpy(b, tmp, elem_size);
-            }
-        }
-    }
-}
-```
-
-## Zadanie 13
-
-Napisz program który jako pierwszy argument przyjmie ciąg znaków. Następnie
-wypisze ciąg znaków, zamieniając wszystkie duże litery na małe.
-
-```c
-$ ./program "This Should Be Small 1234"
-this should be small 1234
-```
-
-Zamiana znaków powinna się dokonać z wykorzystaniem autorskiej funkcji
-```c
-void autorskafunkcjadozamianyznakow(char *str);
-```
-
-Przydatne informacje:
-
-- Kopiowanie ciągów znaków można osiągnąc za pomocą `memcpy()`, `strncpy()`, `strcpy()`, `snprintf()`.
-- Aby zamienic dużą literę na małą wystarczy dodać do niej `'a' - 'A'`.
-- Należy sprawdzić czy `'A' <= litera && litera <= 'Z'`.
-
-## Rozwiązanie 13 - funkcja `to_lower()`
-
-```c
-void to_lower(char *str)
-{
-	unsigned int len = strlen(str);
-
-	for (unsigned int i = 0; i < len; ++i) {
-		if ('A' <= str[i] && str[i] <= 'Z') {
-			str[i] += 'a' - 'A';
-		}
-	}
-}
-```
-
-## Rozwiązanie 13 - funkcja `main()`
-
-```c
-#include <stdio.h>
-
-void to_lower(char *str) { ... }
-
-int main(int argc, char **argv)
-{
-	if (argc != 2)
-		return 1;
-	
-	char str[256];
-	int size = snprintf(str, sizeof(str), "%s", argv[1]);
-	if (size >= sizeof(str))
-		return 1;
-	
-	to_lower(str);
-
-	printf("%s\n", str);
-
-	return 0;
-}
-```
-
-## Zadanie 14
-
-Terminalem, na który wypisujemy można sterować specjalnymi kodami ANSI
-([https://en.wikipedia.org/wiki/ANSI_escape_code](https://en.wikipedia.org/wiki/ANSI_escape_code)).
-Możemy w ten sposób na przykład:
-```c
-fprintf(stderr, "%c[2J", 0x1b); /* Wyczyścić ekran */
-fprintf(stderr, "%c[%d;%dH", 0x1b, y, x); /* Umieścić kursor w wierszu y i kolumnie x */
-```
-Napisz 2 funkcje:
-
-```c
-/* Czyści ekran */
-void clrscr(void);
-/* Umieszcza kursor w wierszu y i kolumnie x */
-void gotoxy(int x, int y);
-```
-Narysuj za ich pomocą animację przypominającą "kod z matrixa". Do generowania
-liczb losowych możesz użyć `rand()`. Do kontroli szybkości animacji `usleep()`.
-
-## Zadanie 14 - Efekt
-
-![](assets/matrix.gif)
-
-## Rozwiązanie 14 - funkcje pomocnicze
-
-```c
-void gotoxy(int x, int y)
-{
-	fprintf(stderr, "%c[%d;%dH", 0x1b, y, x);
-}
-
-void clrscr(void)
-{
-	fprintf(stderr, "%c[2J", 0x1b);
-}
-```
-
-## Rozwiązanie 14 - funkcja main
-
-```c
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-
-void gotoxy(int x, int y) { ... }
-void clrscr(void) { ... }
-
-int main(void)
-{
-	clrscr();
-	while (1) {
-		int column = rand() % 79 + 1;
-		int len = rand() % 24;
-		for (int i = 1; i < len; ++i) {
-			gotoxy(column, i);
-			char c = rand() % 30 + 50;
-			fprintf(stderr, "%c", c);
-			gotoxy(column, i);
-			usleep(50000);
-		}
-	}
-}
+*****
+*****
+*****
 ```
