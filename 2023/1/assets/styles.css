@@ -15,9 +15,8 @@ h1 {
     background-image: url("wczytywanie-wejscia.jpg");
 }
 #pętle h1 {
-background - image : url("petle.jpg");
+    background-image : url("petle.jpg");
 }
-
-#matrix h1 {
-    background-image: url("bg1.jpg");
+#zmienne-i-typy-danych h1 {
+    background-image : url("zmienne-i-type-danych.jpg");
 }
