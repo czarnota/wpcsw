@@ -1,13 +1,23 @@
-#wstęp-do-programowania-w-c-w-systemach-wbudowanych h1 {
-    background-image: url("bg0.jpg");
+h1 {
     background-size: cover;
     color: #fff;
     text-shadow: 0px 0px 5px #000;
 }
 
+#wstęp-do-programowania-w-c-w-systemach-wbudowanych h1 {
+    background-image: url("pierwszy-program.jpg");
+}
+
+#instrukcje-warunkowe h1 {
+    background-image: url("instrukcje-warunkowe.jpg");
+}
+#wczytywanie-wejścia h1 {
+    background-image: url("wczytywanie-wejscia.jpg");
+}
+#pętle h1 {
+background - image : url("petle.jpg");
+}
+
 #matrix h1 {
     background-image: url("bg1.jpg");
-    background-size: cover;
-    color: #fff;
-    text-shadow: 0px 0px 5px #000;
 }

@@ -1,7 +1,5 @@
 # Wstęp do programowania w C w systemach wbudowanych
 
-# Pierwszy program
-
 ## Szkielet programu
 
 Program typu "Witaj świecie" można napisać w języku C w następujący sposób:
