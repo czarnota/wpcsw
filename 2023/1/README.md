@@ -369,7 +369,7 @@ $ ./program
 
 ## Pętla `while`
 
-Pętle pozwalają na kilkukrotne wykonanie tego samego kawałka kodu, tak długo jak
+Pętle pozwalają na kilkukrotne wykonanie tego samego kawałka kodu, dopóki
 warunek pętli jest spełniony.
 
 ```c
@@ -388,8 +388,7 @@ $ ./program
 
 ## Pętla `for`
 
-Pętle pozwalają na kilkukrotne wykonanie tego samego kawałka kodu, tak długo jak
-warunek pętli jest spełniony.
+Pętla `for` pozwala na iterację ograniczoną.
 
 ```c
 int i;
