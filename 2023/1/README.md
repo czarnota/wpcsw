@@ -79,8 +79,8 @@ int main(void)
 ## Wypisywanie wartości zmiennych
 
 Do wypisywania zmiennych służy funkcja printf. Jako pierwszy argument przyjmuje
-ona "format string", który określa type zmiennej oraz w którym miejscu zostanie
-ona wypisana.
+ona "format string", który określa typy zmiennych i miejsca, w których zostaną
+one wypisane.
 
 ```c
 int temperature = -10;
