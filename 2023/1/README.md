@@ -452,8 +452,8 @@ $ ./rect
 
 ## Funkcje
 
-Funkcje pozwalają na podział programu na mniejsze "podprogramy", co ułatwia ich zrozumienie
-oraz pozwala wykorzystać kilkukrotnie podobne kawałki kodu.
+Funkcje pozwalają na podział programu na mniejsze "podprogramy", co ułatwia jego zrozumienie
+oraz pozwala wykorzystywać wielokrotnie podobne kawałki kodu.
 
 ```c
 int factorial(int n)
