@@ -447,3 +447,86 @@ $ ./rect
 *****
 *****
 ```
+
+# Funkcje
+
+## Funkcje
+
+Funkcje pozwalają na podział programu na mniejsze "podprogramy", co ułatwia ich zrozumienie
+oraz pozwala wykorzystać kilkukrotnie podobne kawałki kodu.
+
+```c
+int factorial(int n)
+{
+    int value = 1;
+    for (int i = 1; i <= n; ++i)
+        value = value * i;
+    return value;
+}
+
+int main(void)
+{
+    int n = factorial(4);
+    printf("%d\n", n);
+    return 0;
+}
+```
+
+```bash
+$ ./prog
+24
+```
+
+## Funkcje - definicja i deklaracja
+
+Deklaracja funkcji (typ zwracany, nazwa + argumenty), może być napisana odrębnie od
+definicji, co pozwala jej użyć zanim została zdefiniowana.
+
+```c
+void print_version(int major, int minor, int patch); // Deklaracja
+
+void print_name_with_version(void)
+{
+    printf("useless program ");
+    print_version(1, 0, 1);
+    printf("\n");
+}
+
+void print_version(int major, int minor, int patch) // Definicja
+{
+    printf("v%d.%d.%d", major, minor, patch);
+}
+
+int main(void)
+{
+    print_name_with_version(); // useless program v1.0.1
+    return 0;
+}
+```
+
+## Zadanie 6
+
+Połącz 3 poprzednie programy (prostokąt, kalkulator, kostka) w jeden. Wykorzystaj
+funkcje.
+
+```
+$ ./supertool
+Witaj użytkowniku. Co chcesz zrobić?
+
+1) Uruchom "prostokąt"
+2) Uruchom "kalkulator"
+3) Uruchom "kostka"
+twój wybór > 1
+Wybrałeś "kostka"
+
+* *
+* *
+* *
+
+Witaj użytkowniku. Co chcesz zrobić?
+
+1) Uruchom "prostokąt"
+2) Uruchom "kalkulator"
+3) Uruchom "kostka"
+```
+

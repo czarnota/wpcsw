@@ -598,6 +598,74 @@ tails</code></pre>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="ex">*****</span></span></code></pre></div>
 </section>
 </section>
+<section id="funkcje" class="level1">
+<h1>Funkcje</h1>
+<section id="funkcje-1" class="level2">
+<h2>Funkcje</h2>
+<p>Funkcje pozwalają na podział programu na mniejsze “podprogramy”, co ułatwia ich zrozumienie oraz pozwala wykorzystać kilkukrotnie podobne kawałki kodu.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> factorial(<span class="dt">int</span> n)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> value = <span class="dv">1</span>;</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= n; ++i)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        value = value * i;</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> value;</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> n = factorial(<span class="dv">4</span>);</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, n);</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>$ <span class="ex">./prog</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">24</span></span></code></pre></div>
+</section>
+<section id="funkcje---definicja-i-deklaracja" class="level2">
+<h2>Funkcje - definicja i deklaracja</h2>
+<p>Deklaracja funkcji (typ zwracany, nazwa + argumenty), może być napisana odrębnie od definicji, co pozwala jej użyć zanim została zdefiniowana.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> print_version(<span class="dt">int</span> major, <span class="dt">int</span> minor, <span class="dt">int</span> patch); <span class="co">// Deklaracja</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> print_name_with_version(<span class="dt">void</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;useless program &quot;</span>);</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    print_version(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>);</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> print_version(<span class="dt">int</span> major, <span class="dt">int</span> minor, <span class="dt">int</span> patch) <span class="co">// Definicja</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    printf(<span class="st">&quot;v%d.%d.%d&quot;</span>, major, minor, patch);</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    print_name_with_version(); <span class="co">// useless program v1.0.1</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="zadanie-6" class="level2">
+<h2>Zadanie 6</h2>
+<p>Połącz 3 poprzednie programy (prostokąt, kalkulator, kostka) w jeden. Wykorzystaj funkcje.</p>
+<pre><code>$ ./supertool
+Witaj użytkowniku. Co chcesz zrobić?
+
+1) Uruchom &quot;prostokąt&quot;
+2) Uruchom &quot;kalkulator&quot;
+3) Uruchom &quot;kostka&quot;
+twój wybór &gt; 1
+Wybrałeś &quot;kostka&quot;
+
+* *
+* *
+* *
+
+Witaj użytkowniku. Co chcesz zrobić?
+
+1) Uruchom &quot;prostokąt&quot;
+2) Uruchom &quot;kalkulator&quot;
+3) Uruchom &quot;kostka&quot;</code></pre>
+</section>
+</section>
   <script>
     /*!	
     * FitText.js 1.0 jQuery free version
