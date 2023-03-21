@@ -1,4 +1,4 @@
-MARKDOWN_FILES=$(patsubst %/README.md, %/slides.html, $(shell find . -name "README.md" -not -path "./README.md"))
+MARKDOWN_FILES=$(patsubst %/README.md, %/slides.html, $(shell find . -name "README.md" -not -path "./README.md" -not -path "./bin/README.md"))
 DIAGRAM_FILES=$(addsuffix .lock, $(shell find . -name diagrams))
 
 SLIDES=bin/slides.sh
