@@ -15,11 +15,11 @@ int main(void)
 {
     /* Wywołanie funkcji printf() z ciągiem znaków "Hello world\n"
        podanym jako pierwszy argument */
-	printf("Hello world\n"); 
+    printf("Hello world\n");
 
     /* Zwrócenie kodu błędu do systemu operacyjnego.
        Kod 0 oznacza, że nie wystąpił żaden błąd */
-	return 0;
+    return 0;
 }
 ```
 
