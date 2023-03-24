@@ -643,6 +643,142 @@ Witaj użytkowniku. Co chcesz zrobić?
 3) Uruchom "kostka"
 ```
 
+# Podział projektu na wiele plików
+
+## Kilka plików `.c`
+
+Definicje funkcji i zmiennych możemy umieszczać w osobnych plikach.
+
+```c
+// calculator.c
+int add(int a, int b)
+{
+    return a + b;
+}
+```
+
+```c
+// main.c
+int add(int a, int b);
+int main(void)
+{
+    printf("%d\n", add(1, 2));
+    return 0;
+}
+```
+
+```c
+gcc main.c calculator.c -o program
+```
+
+## Pliki nagłówkowe
+
+Najczęściej deklaracje funkcji umieszczane są w osobnych plikach nagłówkowych, które
+następnie dołączane są w plikach, w których chcemy z tych deklaracji skorzystać.
+
+```c
+// calculator.c
+int add(int a, int b)
+{
+    return a + b;
+}
+```
+```c
+// calculator.h
+int add(int a, int b)
+```
+```c
+// main.c
+#include "calculator.h"
+int main(void)
+{
+    printf("%d\n", add(1, 2));
+    return 0;
+}
+```
+
+## Zapobieganie ponownemu dołączeniu
+
+```c
+// calculator.h
+#ifdef __calculator_h__
+#define __calculator_h__
+int add(int a, int b);
+#endif
+```
+
+```c
+// other.h
+#ifdef __other_h__
+#define __other_h__
+#include "calculator.h"
+#endif
+```
+
+```c
+// main.c
+#include "other.h"
+#include "calculator.h"
+int main(void)
+{
+    printf("%d\n", add(1, 2));
+    return 0;
+}
+```
+
+## Zadanie 8
+
+# Systemy budowania
+
+## GNU Make
+
+Systemy budowania umożliwiają automatyzację budowania kodu. Jednym z najbardziej
+podstawowych systemów budowania jest `make`. Proces budowania jest opisywany w
+pliku `Makefile`, który jest następnie wykonywany przez `make`.
+
+```Makefile
+program: main.o foo.o
+    gcc main.o foo.o -o program
+
+main.o: main.c
+    gcc -c main.c -o main.o
+
+foo.o: foo.c
+    gcc -c foo.c -o foo.o
+
+clean:
+    rm main.o foo.o program
+```
+
+Umożliwia to zbudowanie kodu jednym poleceniem
+```
+$ make
+```
+
+## CMake
+
+Innym często stosowanym systemem budowania jest CMake. Do opisu procesu budowania
+używa on plików `CMakeLists.txt`.
+Zaletą stosowania CMake jest to, że posiada on lepsze wsparcie kompilacji kodu na wiele platform
+(m. in Linux, MacOS i Windows) niż GNU Make.
+
+```cmake
+cmake_minimum_required(VERSION 3.19)
+
+project(twojprogram VERSION 1.0.0)
+
+add_executable(twojprogram main.c foo.c)
+```
+
+```bash
+$ mkdir build
+$ cd build
+$ cmake ..
+$ cmake --build .
+```
+
+## Zadanie 9
+
 # Tablice
 
 ## Tablice
@@ -1229,87 +1365,3 @@ int main(void)
 $ gcc main.c -DDEBUG_INFO -o program
 ```
 
-# Podział projektu na wiele plików
-
-## Kilka plików `.c`
-
-Definicje funkcji i zmiennych możemy umieszczać w osobnych plikach.
-
-```c
-// calculator.c
-int add(int a, int b)
-{
-    return a + b;
-}
-```
-
-```c
-// main.c
-int add(int a, int b);
-int main(void)
-{
-    printf("%d\n", add(1, 2));
-    return 0;
-}
-```
-
-```c
-gcc main.c calculator.c -o program
-```
-
-## Pliki nagłówkowe
-
-Najczęściej deklaracje funkcji umieszczane są w osobnych plikach nagłówkowych, które
-następnie dołączane są w plikach, w których chcemy z tych deklaracji skorzystać.
-
-```c
-// calculator.c
-int add(int a, int b)
-{
-    return a + b;
-}
-```
-```c
-// calculator.h
-int add(int a, int b)
-```
-```c
-// main.c
-#include "calculator.h"
-int main(void)
-{
-    printf("%d\n", add(1, 2));
-    return 0;
-}
-```
-
-## Zapobieganie ponownemu dołączeniu
-
-```c
-// calculator.h
-#ifdef __calculator_h__
-#define __calculator_h__
-int add(int a, int b);
-#endif
-```
-
-```c
-// other.h
-#ifdef __other_h__
-#define __other_h__
-#include "calculator.h"
-#endif
-```
-
-```c
-// main.c
-#include "other.h"
-#include "calculator.h"
-int main(void)
-{
-    printf("%d\n", add(1, 2));
-    return 0;
-}
-```
-
-## Zadanie 12
