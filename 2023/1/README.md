@@ -332,12 +332,19 @@ jako pierwszy argument. Przykładowe wejście:
 xyz   abc 1 2
 ```
 ```c
-int x = 99, y = 99;
 scanf("xyz   abc %d %d", &x, &y); // x = 1, y = 2
+```
+```c
 scanf("xyz abc %d %d", &x, &y);   // x = 1, y = 2 (biały znak oznacza "jeden lub więcej")
+```
+```c
 scanf("xyz abc%d%d", &x, &y);     // x = 1, y = 2 (% ignoruje biała znaki wystepujące przed)
-scanf("xyzabc %d %d", &x, &y);    // x = 99, y = 99 (nie dopasowaliśmy spacji po xyz)
-scanf("xyz abc %d%d", &x, &y);    // x = 99, y = 99 (nie dopasowaliśmy spacji po xyz)
+```
+```c
+scanf("xyzabc %d %d", &x, &y);    // x = ?, y = ? (nie dopasowaliśmy spacji po xyz)
+```
+```c
+scanf("xyz abc %d%d", &x, &y);    // x = ?, y = ? (nie dopasowaliśmy spacji po xyz)
 ```
 
 ## Funkcja scanf() - wartość zwracana
