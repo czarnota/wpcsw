@@ -643,3 +643,673 @@ Witaj użytkowniku. Co chcesz zrobić?
 3) Uruchom "kostka"
 ```
 
+# Tablice
+
+## Tablice
+
+Tablice pozwalają na tworzenie zmiennych odpowiadającym wielu komórkom pamięci.
+
+```c
+float velocity[2];
+
+velocity[0] = 5.0f;
+velocity[1] = 1.0f;
+```
+
+```c
+int days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+for (int i = 0; i < 12; ++i)
+    printf("%d\n", days[i]);
+```
+
+```c
+float grades[] = { 3.0f, 4.0f, 5.0f };
+float sum = 0.0f
+
+for (int i = 0; i < 3; ++i)
+    sum += grades[i];
+
+printf("result: %f\n", sum / 3.0f);
+```
+
+## Tablice - inicjalizacja
+
+Tablice można zainicjalicować w następujący sposób
+
+```c
+int main(void)
+{
+    // Wszystkie wartości niezainicjalizowane
+    int a[10];
+    // Wszystkie wartości zainicjalizowane 0
+    int b[10] = {0};
+    // Pierwsza wartosć zainicjalizowana 1, reszta 0
+    int c[10] = {1};
+    // Pierwszych 5 wartosci zainicjalizowane liczbami, reszta 0
+    int d[10] = {1, 2, 3, 4, 5};
+    // Szósta wartość zanicjalizowana 1, ósma 2, reszra 0
+    int e[10] = { [5] = 1, [7] = 2, };
+}
+```
+
+## Tablice - kopiowanie
+
+Żeby skopiować tablicę należy skopiować jej każdy element.
+
+```c
+int a[] = {1, 2, 3, 4};
+int b[4];
+
+for (int i = 0; i < sizeof(a) / sizeof(a[0]); ++i)
+    a[i] = b[i];
+```
+
+Można do tego wykorzystać funkcję `memcpy()` pochodzącą z nagłówka `string.h`
+
+```c
+memcpy(a, b, sizeof(a));
+```
+
+## Zadanie 7
+
+# Wskaźniki
+
+## Wskaźniki do zmiennych
+
+Wskaźnik to zmienna, która może zawierać adres do innej zmiennej. Przykład:
+
+```c
+int age = 20; /* zmienna */
+int *age_pointer = &age; /* wskaźnik pokazujący do zmiennej */
+```
+
+Za pomocą takiego wskaźnika możemy następnie modyfikować oraz odczytywać wartość
+zmiennej:
+
+```c
+int age = 20; /* zmienna */
+int *age_pointer = &age; /* wskaźnik pokazujący do zmiennej */
+
+*age_pointer = 80;
+printf("%d", age);
+printf("%d", *age_pointer);
+
+age = 15;
+
+printf("%d", age);
+printf("%d", *age_pointer);
+```
+
+## Wskaźnik 0
+
+Ustawiając wskaźnik na wartość `NULL`, sprawiamy, że będzie on przechowywał adres
+zerowy
+
+```c
+int *x = NULL;
+int *y;
+y = NULL;
+
+/* Dereferencja takich wskaźników najprawdopodobniej skończy się naruszeniem
+   ochrony pamięci (Segmentation fault) */
+int liczba = *x; /* Problem */
+```
+
+## Wskaźnik `void *`
+
+Pomimo tego że rozmiary zmiennych wskaźnikowych są zawsze takie same, nie powinno
+się mieszać typów:
+
+```c
+int x = 1;
+float *y = &x; /* Ostrzeżenie przy kompilacji */
+printf("%f", *y); /* Niezdefiniowane zachowanie (ang. Undefined behavior) */
+```
+
+Wskaźnik `void *`, jest wyjątkiem. Może on przechowywać adres do zmiennej
+dowolnego typu.
+```c
+int x = 1;
+float y = 1.0f;
+int *z = &x;
+void *ptr = &x; /* Można mu przypisać dowolny adres */
+ptr = z; /* Można mu przypisać dowolny wskaźnik */
+ptr = &y;
+float *py = ptr; /* Można go przypisywać do wskaźnika innego typu */
+```
+
+Nie można wykonać dereferencji na wskaźniku `void`. Czyli `*ptr`, nie działa.
+Trzeba go przypisać do konkretnego typu i dopiero potem wykonać dereferencje.
+
+
+## Przekazywanie zmiennych do funkcji przez wskaźnik a przez wartość
+
+Przykład - funkcja która zwiększa wartość zmiennej o 1:
+
+```c
+void increment(int *x)              void increment(int x)
+{                                   {
+    *x = *x + 1;                        x = x + 1;
+}                                   }
+```
+
+Wywołanie:
+```c
+int x = 17;                         int x = 17;
+
+increment(&x);                      increment(x);
+increment(&x);                      increment(x);
+increment(&x);                      increment(x);
+
+printf("%d\n", x);                  printf("%d\n", x);
+```
+
+Jaka jest różnica?
+
+## Tablice i wskaźniki
+
+Tablica może zostać przypisana do zmiennej wskaźnikowej. W poniższym przykładzie
+`p` będzie pokazywać na pierwszy element tablicy:
+
+```c
+int x[3] = {1, 2, 3}
+
+int *p = x; // ma taki sam efekt jak p = &x[0]
+
+printf("%d\n", *p);
+```
+
+## Tablice - przekazywanie do funkcji
+
+```c
+int print_numbers(int *array, int n)
+{
+    for (int i = 0; i < n; ++i)
+        printf("%d\n", array[i]);
+}
+```
+
+```c
+int array[3] = { 1, 2, 3 };
+print_numbers(array, 3);
+```
+
+## Tablice - zamiana tablicy na wskaźnik 
+
+Nie ma praktycznej róznicy pomiędzy poniższymi definicjami funkcji
+
+```c
+void foo(int *bar)
+{
+    printf("%zu\n", sizeof(bar)); // rozmiar wskaźnika
+}
+```
+
+```c
+void foo(int bar[3])
+{
+    printf("%zu\n", sizeof(bar)); // rozmiar wskaźnika (sic!)
+}
+```
+
+```c
+void foo(int bar[])
+{
+    printf("%zu\n", sizeof(bar)); // rozmiar wskaźnika (sic!)
+}
+```
+
+## Tablice - wskaźnik do tablicy 
+
+Jeżeli chcemy aby było można przekazać do funkcji tylko tablice o określonym
+rozmiarze, musimy użyć *wskaźnika do tablicy*.
+
+```c
+int print_numbers(int (*array)[3])
+{
+    for (int i = 0; i < sizeof(*array) / sizeof((*array)[0]); ++i)
+        printf("%d\n", (*array)[i]);
+}
+```
+
+```c
+int array[3] = { 1, 2, 3 };
+print_numbers(&array);
+```
+
+
+## Zadanie 8
+
+# Ciągi znaków
+
+## Ciągi znaków
+
+Język C nie ma dedykowanego typu służącego do przedstawiania ciągów znaków.
+Do operowania na ciągach znaków wykorzystuje się tablice znaków zakończone zerem.
+
+```c
+char text[] = { 'H', 'e', 'l', 'l', 'o', 0 };
+printf("%s", text);
+```
+
+```c
+char text[] = "Hello";         // zero automatycznie dodane na końcu
+printf("%s", text);
+```
+
+```c
+char text[] = "Hello";         // zero automatycznie dodane na końcu
+const char *p_text = text;
+printf("%s", p_text);
+```
+
+```c
+// inicjalizacja wskaźnika, by pokazywał na niemodyfikowalny ciąg znaków
+const char *p_text = "Hello";  
+printf("%s", p_text);
+```
+
+## Ciągi znaków - odczytywanie ze standardowego wejścia
+
+```c
+char name[32] = {0};
+scanf("%31s", name);
+```
+
+```c
+char name[32] = {0};
+fgets(name, sizeof(name), stdin);
+```
+
+## Ciągi znaków - kopiowanie
+
+Ciągi znaków są tablicami, więc żeby je skopiować musimy podobnie jak w przypadku
+tablic przkopiować każdy element. Do kopiowania ciągów znaków można wykorzystać
+funkcję `snprintf`.
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    const char *src = "Hello";
+    char dst[64];
+
+    int written = snprintf(dst, sizeof(dst), "%s", src);
+    if (written < 0 || written >= (int)sizeof(dst))
+        return -1;
+
+    return 0;
+}
+```
+
+## Ciągi znaków - porównywanie
+
+Do porównywania ciągów znaków służy funkcja `strcmp()`, która zwraca `0` gdy
+ciągi znaków są równe.
+
+```c
+#include <string.h>
+#include <stdio.h>
+
+int main(void)
+{
+    const char *str = "hello";
+
+    if (strcmp("hello", str) == 0)
+        printf("ok\n");
+
+    return 0;
+}
+```
+
+## Ciągi znaków - argumenty przekazywane do programu
+
+Funkcja `main()` może mieć alternatywną sygnaturę, która umożliwia odczytywanie
+argumentów przekazywanych do programu.
+
+```c
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+    for (int i = 1; i < argc; ++i)
+        printf("%s\n", argv[i]);
+    return 0;
+}
+```
+
+```bash
+$ ./program hello world
+hello
+world
+```
+
+## Zadanie 9
+
+## Zadanie 10
+
+# Struktury
+
+## Struktury
+Struktury pozwalają na definiowanie typów złożonych.
+
+```c
+struct vec3 {
+    float x;
+    float y;
+    float z;
+};
+```
+
+```c
+struct vec3 position;
+position.x = 5.0f;
+position.y = 10.0f;
+position.z = 5.0f;
+```
+
+## Struktury - inicjalizacja
+
+```c
+struct color {
+    unsigned char red;
+    unsigned char green;
+    unsigned char blue;
+};
+```
+
+```c
+struct color white = { 255, 255, 255 };
+struct color black = { 0 };
+struct color yellow = {
+    .red = 255,
+    .green = 255,
+};
+```
+
+```c
+struct color yellow = (struct color) {
+    .red = 255,
+    .green = 255,
+};
+```
+
+## Struktury - kopiowanie
+
+Kopiowanie struktur odbywa się poprzez operator `=`.
+
+```c
+struct color green = { 0, 255, 0 };
+struct color tmp;
+tmp = green;
+```
+
+Można to wykonać również za pomocą funkcji `memcpy()`.
+
+```c
+memcpy(&tmp, &green, sizeof(tmp));
+```
+
+## Struktury - wskaźniki do struktur
+
+```c
+struct led_light {
+    struct color color;
+    bool on;
+};
+
+void led_light_init(struct led_light *light)
+{
+    light->color.red = 255;
+    light->on = false;
+}
+
+void led_light_switch(struct led_light *light)
+{
+    light->on = !light->on;
+}
+
+int main(void)
+{
+    struct led_light light;
+    led_light_init(&light);
+    led_light_switch(&light);
+    return 0;
+}
+
+```
+
+## Zadanie 11
+
+# Typy wyliczeniowe
+
+## Typy wyliczeniowe
+
+Słowo kluczowe `enum` pozwala na definicję typu poprzez wymienienie możliwych
+jego wartości oraz nadanie im nazwy. Pozwala to uniknać tzw magicznych wartości
+(ang. Magic numbers) w kodzie.
+
+```c
+enum operation { ADD, SUB, DIV, MUL };
+
+int perform(enum operation op, int a, int b)
+{
+    if (op == ADD)
+        return a + b;
+    if (op == SUB)
+        return a - b;
+    if (op == DIV && b != 0)
+        return a / b;
+    if (op == MUL)
+        return a * b;
+    return op;
+}
+```
+
+```c
+printf("%d\n", perform(MUL, 2, 4));
+```
+
+## Typy wyliczeniowe jako indeks tablicy
+
+```c
+enum operation { ADD, SUB, DIV, MUL, OPERATION_COUNT };
+
+const char *names[OPERATION_COUNT] = {
+    [ADD] = "+",
+    [SUB] = "-",
+    [DIV] = "/",
+    [MUL] = "*",
+};
+
+void print_operation(enum operation op, int a, int b)
+{
+    printf("%d %s %d = %d\n", names[op], perform(op, a, b));
+}
+```
+
+```c
+print_operation(ADD, 1, 1); // 1 + 1 = 2
+```
+
+# Preprocesor
+
+## Używanie makr
+
+Makra preprocesora pozwalają na zautomatyzowane zmienianie i generowanie kodu
+w trakcie kompilacji.
+
+```c
+#include <stdio.h>
+
+#define BUFFER_SIZE 16
+
+int main(void)
+{
+    char buf[BUFFER_SIZE];
+
+    while (fgets(buf, BUFFER_SIZE, stdin))
+        printf("%s", buf);
+
+    return 0;
+}
+```
+
+## Makra z argumentami
+
+Makra, podobnie jak funkcje mogą przyjmować argumenty.
+
+```c
+#include <stdio.h>
+
+#define ARRAY_SIZE(x) (sizeof(x) / ssizeof(*(x)))
+
+int main(void)
+{
+    int numbers[] = {1, 2, 3, 4};
+
+    for (int i = 0; i < ARRAY_SIZE(numbers); ++i)
+        printf("%d\n", i);
+
+    return 0;
+}
+```
+
+## Makra operują na tekście
+
+Makra preprocesora są wykonywane przed kompilacją programu i operują na tekscie
+programu - nie są elementem języka programowania
+
+```c
+#include <stdio.h>
+
+#define ARRAY_SIZE(x) (sizeof(x) / ssizeof(*(x)))
+#define for_each(var, array) for (var = array; var < array + ARRAY_SIZE(array); ++array)
+
+int main(void)
+{
+    int numbers[] = {1, 2, 3, 4};
+
+    int *number;
+    for_each(number, numbers)
+        printf("%d\n", *number);
+
+    return 0;
+}
+```
+
+## Preprocesor - kompilacja warunkowa
+
+Za pomocą dyrektyw preprocesora `#ifdef` i `#endif`, można sprawdzić czy
+makro jest zdefiniowane.
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+#ifdef DEBUG_INFO
+    printf("program is started\n");
+#endif
+
+    for (int i = 0; i < 10; ++i)
+        printf("%d\n", i)
+
+#ifdef DEBUG_INFO
+    printf("program is finished\n");
+#endif
+
+    return 0;
+}
+```
+
+```c
+$ gcc main.c -DDEBUG_INFO -o program
+```
+
+# Podział projektu na wiele plików
+
+## Kilka plików `.c`
+
+Definicje funkcji i zmiennych możemy umieszczać w osobnych plikach.
+
+```c
+// calculator.c
+int add(int a, int b)
+{
+    return a + b;
+}
+```
+
+```c
+// main.c
+int add(int a, int b);
+int main(void)
+{
+    printf("%d\n", add(1, 2));
+    return 0;
+}
+```
+
+```c
+gcc main.c calculator.c -o program
+```
+
+## Pliki nagłówkowe
+
+Najczęściej deklaracje funkcji umieszczane są w osobnych plikach nagłówkowych, które
+następnie dołączane są w plikach, w których chcemy z tych deklaracji skorzystać.
+
+```c
+// calculator.c
+int add(int a, int b)
+{
+    return a + b;
+}
+```
+```c
+// calculator.h
+int add(int a, int b)
+```
+```c
+// main.c
+#include "calculator.h"
+int main(void)
+{
+    printf("%d\n", add(1, 2));
+    return 0;
+}
+```
+
+## Zapobieganie ponownemu dołączeniu
+
+```c
+// calculator.h
+#ifdef __calculator_h__
+#define __calculator_h__
+int add(int a, int b);
+#endif
+```
+
+```c
+// other.h
+#ifdef __other_h__
+#define __other_h__
+#include "calculator.h"
+#endif
+```
+
+```c
+// main.c
+#include "other.h"
+#include "calculator.h"
+int main(void)
+{
+    printf("%d\n", add(1, 2));
+    return 0;
+}
+```
+
+## Zadanie 12

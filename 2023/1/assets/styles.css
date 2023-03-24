@@ -23,3 +23,24 @@ h1 {
 #funkcje h1 {
     background-image : url("funkcje.jpg");
 }
+#ciągi-znaków h1 {
+    background-image: url("ciagi-znakow.jpg");
+}
+#podział-projektu-na-wiele-plików h1 {
+    background-image: url("podzial-projektu-na-wiele-plikow.jpg");
+}
+#preprocesor h1 {
+    background-image: url("preprocesor.jpg");
+}
+#struktury h1 {
+    background-image: url("struktury.jpg");
+}
+#tablice h1 {
+    background-image: url("tablice.jpg");
+}
+#typy-wyliczeniowe h1 {
+    background-image: url("typy-wyliczeniowe.jpg");
+}
+#wskaźniki h1 {
+    background-image: url("wskazniki.jpg");
+}
