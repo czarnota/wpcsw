@@ -93,22 +93,24 @@ int main(void)
 
 ## Wypisywanie wartości zmiennych
 
-Do wypisywania zmiennych służy funkcja printf. Jako pierwszy argument przyjmuje
+Do wypisywania zmiennych służy funkcja `printf()`. Jako pierwszy argument przyjmuje
 ona "format string", który określa typy zmiennych i miejsca, w których zostaną
 one wypisane.
 
 ```c
-int temperature = -10;
-printf("temperatura: %d\n", temperatura);
+#include <stdio.h>
 
-unsigned int money = 10000;
-printf("bilans konta: %u\n", money);
+int main(void)
+{
+    int temperature = -10;
+    unsigned int money = 10000;
+    float interest_rate = 0.08f;
 
-float interest_rate = 0.08f;
-printf("oprocentowanie: %f\n", interest_rate);
+    printf("temperatura %d bilans %u oprocentowanie %f\n",
+           temperature, interest_rate, money);
 
-printf("temperatura %d bilans %u oprocentowanie %f\n", temperature,
-       interest_rate, money);
+    return 0;
+}
 ```
 
 ## Zadanie 2
