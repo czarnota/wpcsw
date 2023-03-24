@@ -96,6 +96,14 @@ printf("temperatura %d bilans %u oprocentowanie %f\n", temperature,
        interest_rate, money);
 ```
 
+## Zadanie 2
+
+Napisz program, który dla prostokąta o bokach 57 i 13:
+
+- wyświetli jego pole
+- wyświetli jego obwód
+- wyświetli długość jego przekątnej
+
 ## Zmienne - sekcja danych, bss i stos
 
 Zmienne mogą być zadeklarowana w różnych obszarach pamięci:
@@ -195,7 +203,7 @@ int main(void)
 }
 ```
 
-## Zadanie 2
+## Zadanie 3
 
 Napisz program który wypisze rozmiary następujących typów danych:
 
@@ -267,7 +275,7 @@ heads
 $ ./coin_toss
 tails
 ```
-## Zadanie 3
+## Zadanie 4
 
 Napisz program symulujący rzut kostką sześcienną. Przykład działania:
 
@@ -352,7 +360,7 @@ int main(void)
 }
 ```
 
-## Zadanie 4
+## Zadanie 5
 
 Napisz program który wczytuje 3 zmienne: liczbę, znak działania (-, +, /, *) i drugą liczbę
 i zwraca wynik.
@@ -434,7 +442,7 @@ for (int i = 0; i < 10; ++i) {
 }
 ```
 
-## Zadanie 5
+## Zadanie 6
 
 Napisz program który odczytuje dwie liczby - wysokość i szerokość.
 Program powinien narysować prostokąt o zadanej wysokości i szerokości.
@@ -504,7 +512,7 @@ int main(void)
 }
 ```
 
-## Zadanie 6
+## Zadanie 7
 
 Połącz 3 poprzednie programy (prostokąt, kalkulator, kostka) w jeden. Wykorzystaj
 funkcje.
