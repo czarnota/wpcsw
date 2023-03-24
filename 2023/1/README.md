@@ -275,6 +275,87 @@ heads
 $ ./coin_toss
 tails
 ```
+
+## Instrukcja `switch`
+
+Instrukcja `switch` pozwala na selekcję gałęzi kodu w zależności od wartości wyrażenia.
+
+```c
+int option = 1;
+switch (day) {
+case 0:
+    printf("option 0\n");
+    break;
+case 1:
+    printf("option 1\n");
+    break;
+case 2:
+    printf("option 2\n");
+    break;
+default:
+    printf("default\n");
+    break;
+}
+```
+```bash
+$ ./program
+option 1
+```
+
+## Instrukcja `switch` - słowo kluczowe `break`
+
+Switch powoduje przeskok do etykiety `case` dla odpowiedniej wartości.
+Jeżeli nie użyjemy `break`, wykonywanie będzie miało miejsce dalej.
+
+```c
+int option = 1;
+switch (day) {
+case 0:
+    printf("option 0\n");
+case 1:
+    printf("option 1\n");
+case 2:
+    printf("option 2\n");
+default:
+    printf("default\n");
+}
+```
+```bash
+$ ./program
+option 1
+option 2
+default
+```
+
+## Instrukcja `switch` vs `if`
+
+Porównanie instrukcji `switch` z `if`:
+
+```c
+int animal = 1;
+switch (animal) {
+case 0:
+    printf("dog\n");
+    break;
+case 1:
+    printf("cat\n");
+    break;
+case 2:
+    printf("rabbit\n");
+    break;
+}
+```
+
+```c
+int animal = 1;
+if (animal == 0)
+    printf("dog\n");
+else if (animal == 1)
+    printf("cat\n");
+else if (animal == 2)
+    printf("rabbit\n");
+```
+
 ## Zadanie 4
 
 Napisz program symulujący rzut kostką sześcienną. Przykład działania:
