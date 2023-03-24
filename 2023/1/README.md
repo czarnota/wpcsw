@@ -51,9 +51,26 @@ Jan Kowalski
 
 # Zmienne i typy danych
 
-## Zmienne
+## Zmienne - deklaracja i inicjalizacja
+
+Zmienne reprezentują komórki pamięci w których przechowywane są dane.
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    int apples = 10;
+
+    unsigned int oranges;
+    oranges = 10;
+
+    return 0;
+}
+```
+
+## Zmienne - wykonywanie obliczeń
 Zmienne wykorzystujemy do tego aby zapisywać wyniki obliczeń.
-Reprezentują one obszary pamięci w których przechowywane są dane.
 
 ```c
 #include <stdio.h>
@@ -65,10 +82,8 @@ int main(void)
     int age = current_year - birth_year;
     printf("wiek to: %d\n", age);
 
-    float time = 0.0f;
-    float distance;
-    time = 10.0f;
-    distance = 5.0f;
+    float time = 10.0f;
+    float distance = 5.0f;
     float speed = distance / time;
     printf("szybkosc to %f\n", speed);
 
