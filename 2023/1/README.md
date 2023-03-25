@@ -410,7 +410,7 @@ int main(void)
 
     printf("Ile masz lat?: ");
     scanf("%d", &age);
-    printf("Masz %d lat!\n");
+    printf("Masz %d lat!\n", age);
 
     return 0;
 }
@@ -459,7 +459,7 @@ int main(void)
     printf("Ile masz lat?: ");
     if (scanf("%d", &age) != 1)
         return -1;
-    printf("Masz %d lat!\n");
+    printf("Masz %d lat!\n", age);
 
     return 0;
 }
