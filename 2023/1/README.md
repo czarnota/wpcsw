@@ -441,9 +441,6 @@ scanf("xyz abc%d%d", &x, &y);     // x = 1, y = 2 (% ignoruje biała znaki wyste
 ```c
 scanf("xyzabc %d %d", &x, &y);    // x = ?, y = ? (nie dopasowaliśmy spacji po xyz)
 ```
-```c
-scanf("xyz abc %d%d", &x, &y);    // x = ?, y = ? (nie dopasowaliśmy spacji po xyz)
-```
 
 ## Funkcja scanf() - wartość zwracana
 
