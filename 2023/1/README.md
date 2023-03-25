@@ -227,8 +227,8 @@ Napisz program który wypisze rozmiary następujących typów danych:
 - `char`, `unsigned char`
 - `short`, `unsigned short`
 - `int`, `unsigned int`
-- `long`, `unsigned int`
-- `long long`, `unsigned int`
+- `long`, `unsigned long`
+- `long long`, `unsigned long long`
 - `bool`, `size_t`
 
 Sprawdzić rozmiar zmiennej można za pomocą operatora `sizeof()`. Operator `sizeof()`
