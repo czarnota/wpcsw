@@ -299,7 +299,7 @@ Instrukcja `switch` pozwala na selekcję gałęzi kodu w zależności od wartoś
 
 ```c
 int option = 1;
-switch (day) {
+switch (option) {
 case 0:
     printf("option 0\n");
     break;
@@ -326,7 +326,7 @@ Jeżeli nie użyjemy `break`, wykonywanie będzie miało miejsce dalej.
 
 ```c
 int option = 1;
-switch (day) {
+switch (option) {
 case 0:
     printf("option 0\n");
 case 1:
