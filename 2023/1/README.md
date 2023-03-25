@@ -728,6 +728,25 @@ int main(void)
 
 ## Zadanie 8
 
+Połącz 3 poprzednie programy (prostokąt, kalkulator, kostka) w jeden:
+
+- Program "kalkulator" umieść w `calculator.c`
+- Program "prostokat" umieść w `rect.c`
+- Program "kostka" umieść w `dice.c`
+- W pliku `main.c` umieść kod integrujący trzy poprzednie programy
+
+Struktura projektu:
+```
+.
+├── calculator.c
+├── calculator.h
+├── dice.c
+├── dice.h
+├── main.c
+├── rect.c
+└── rect.h
+```
+
 # Systemy budowania
 
 ## GNU Make
