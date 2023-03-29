@@ -21,9 +21,13 @@ EOF
 
 old_settings=""
 tty=""
+child=""
 
 cleanup () {
     stty "$old_settings" < "$tty"
+    if [[ -n $child ]]; then
+        kill $child
+    fi
     echo
     echo catcom: original settings restored
 }
@@ -38,6 +42,7 @@ main () {
     stty raw -echo "$@" < "$tty"
 
     cat "$tty" &
+    child=$?
     cat > "$tty"
 }
 
