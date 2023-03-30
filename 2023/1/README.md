@@ -614,19 +614,19 @@ int main(void)
 }
 ```
 
-## Zadanie 7
+## Zadanie 8
 
-Połącz 3 poprzednie programy (prostokąt, kalkulator, kostka) w jeden. Wykorzystaj
+Połącz trzy poprzednie programy (prostokąt, kalkulator, kostka) w jeden. Wykorzystaj
 funkcje.
 
 ```
 $ ./supertool
 Witaj użytkowniku. Co chcesz zrobić?
 
-1) Uruchom "prostokąt"
-2) Uruchom "kalkulator"
-3) Uruchom "kostka"
-twój wybór > 1
+a) Uruchom "prostokąt"
+b) Uruchom "kalkulator"
+c) Uruchom "kostka"
+twój wybór > c
 Wybrałeś "kostka"
 
 * *
@@ -635,9 +635,9 @@ Wybrałeś "kostka"
 
 Witaj użytkowniku. Co chcesz zrobić?
 
-1) Uruchom "prostokąt"
-2) Uruchom "kalkulator"
-3) Uruchom "kostka"
+a) Uruchom "prostokąt"
+b) Uruchom "kalkulator"
+c) Uruchom "kostka"
 ```
 
 # Podział projektu na wiele plików
@@ -725,11 +725,12 @@ int main(void)
 
 ## Zadanie 8
 
-Połącz 3 poprzednie programy (prostokąt, kalkulator, kostka) w jeden:
+Połącz trzy poprzednie programy (prostokąt, kalkulator, kostka) w jeden:
 
 - Program "kalkulator" umieść w `calculator.c`
 - Program "prostokat" umieść w `rect.c`
 - Program "kostka" umieść w `dice.c`
+- Dodaj odpowiednie pliki nagłówkowe
 - W pliku `main.c` umieść kod integrujący trzy poprzednie programy
 
 Struktura projektu:
@@ -743,57 +744,6 @@ Struktura projektu:
 ├── rect.c
 └── rect.h
 ```
-
-# Systemy budowania
-
-## GNU Make
-
-Systemy budowania umożliwiają automatyzację budowania kodu. Jednym z najbardziej
-podstawowych systemów budowania jest `make`. Proces budowania jest opisywany w
-pliku `Makefile`, który jest następnie wykonywany przez `make`.
-
-```Makefile
-program: main.o foo.o
-    gcc main.o foo.o -o program
-
-main.o: main.c
-    gcc -c main.c -o main.o
-
-foo.o: foo.c
-    gcc -c foo.c -o foo.o
-
-clean:
-    rm main.o foo.o program
-```
-
-Umożliwia to zbudowanie kodu jednym poleceniem
-```
-$ make
-```
-
-## CMake
-
-Innym często stosowanym systemem budowania jest CMake. Do opisu procesu budowania
-używa on plików `CMakeLists.txt`.
-Zaletą stosowania CMake jest to, że posiada on lepsze wsparcie kompilacji kodu na wiele platform
-(m. in Linux, MacOS i Windows) niż GNU Make.
-
-```cmake
-cmake_minimum_required(VERSION 3.19)
-
-project(twojprogram VERSION 1.0.0)
-
-add_executable(twojprogram main.c foo.c)
-```
-
-```bash
-$ mkdir build
-$ cd build
-$ cmake ..
-$ cmake --build .
-```
-
-## Zadanie 9
 
 # Tablice
 
@@ -863,7 +813,34 @@ Można do tego wykorzystać funkcję `memcpy()` pochodzącą z nagłówka `strin
 memcpy(a, b, sizeof(a));
 ```
 
-## Zadanie 7
+## Zadanie 9
+
+Dodaj funkcjonalność "histogram" polegającą na odczytywaniu liczb i zliczaniu
+ile podano liczb od 0 do 9. Zakończ wczytywanie i wypisz
+histogram, gdy podana wartość jest z poza przedziału.
+
+```bash
+$ ./program
+...
+d) Uruchom "histogram"
+twój wybór > d
+Wybrałeś "histogram"
+0
+0
+4
+-1
+histogram:
+0: **
+1:  
+2:  
+3:
+4: *
+5:  
+6:
+7:
+8:
+9:
+```
 
 # Wskaźniki
 
@@ -1030,8 +1007,32 @@ int array[3] = { 1, 2, 3 };
 print_numbers(&array);
 ```
 
+## Zadanie 10
 
-## Zadanie 8
+Zmień podprogram `histogram`, tak aby wykorzystywał dwie funkcje:
+
+```c
+/**
+ * histogram_add() - dodaj liczbę do histogramu
+ *
+ * @histogram: tablica zawiarająca histogram
+ * @histogram_len: liczba elementów tablicy
+ * @number: liczba do dodania
+ * 
+ * Return:
+ * Zwraca 0 gdy liczbę dodano poprawnie, -1 gdy liczba jest mniejsza od 0 lub
+ * większa lub równa niż histogram_len
+ */
+int histogram_add(int *histogram, int histogram_len, int number);
+
+/**
+ * histogram_show() - wyświetl histogram
+ *
+ * @histogram: tablica zawiarająca histogram
+ * @histogram_len: liczba elementów tablicy
+ */
+void histogram_show(int *histogram, int histogram_len);
+```
 
 # Ciągi znaków
 
@@ -1138,9 +1139,276 @@ hello
 world
 ```
 
-## Zadanie 9
+## Zadanie 11
 
-## Zadanie 10
+Zmień program z poprzedniego zadania, w taki sposób aby uruchamianie "podprogramów"
+odbywało się za pomocą wpisania ich nazwy, zamiast za pomocą wpisania liczby.
+
+```bash
+$ ./supertool
+Dostepne komendy:
+- prostokat
+- kalkulator
+- kostka
+- histogram 
+
+twój wybór > kostka
+Wybrałeś "kostka"
+* *
+* *
+* *
+twój wybór > kalkulator
+1
++
+1
+2
+twój wybór > 
+```
+
+# Systemy budowania
+
+## GNU Make
+
+Systemy budowania umożliwiają automatyzację budowania kodu. Jednym z najbardziej
+podstawowych systemów budowania jest `make`. Proces budowania jest opisywany w
+pliku `Makefile`, który jest następnie wykonywany przez `make`.
+
+```Makefile
+program: main.o foo.o
+    gcc main.o foo.o -o program
+
+main.o: main.c
+    gcc -c main.c -o main.o
+
+foo.o: foo.c
+    gcc -c foo.c -o foo.o
+
+clean:
+    rm main.o foo.o program
+```
+
+Umożliwia to zbudowanie kodu jednym poleceniem
+```
+$ make
+```
+
+## CMake
+
+Innym często stosowanym systemem budowania jest CMake. Do opisu procesu budowania
+używa on plików `CMakeLists.txt`.
+Zaletą stosowania CMake jest to, że posiada on lepsze wsparcie kompilacji kodu na wiele platform
+(m. in Linux, MacOS i Windows) niż GNU Make.
+
+```cmake
+cmake_minimum_required(VERSION 3.19)
+
+project(twojprogram VERSION 1.0.0)
+
+add_executable(twojprogram main.c foo.c)
+```
+
+```bash
+$ mkdir build
+$ cd build
+$ cmake ..
+$ cmake --build .
+```
+
+## Zadanie 12
+
+Rozszerz projekt z poprzedniego zadania w następujący sposób:
+
+- Dodaj plik `CMakeLists.txt`.
+- Zbuduj projekt za pomocą `cmake`
+
+```bash
+$ mkdir build
+$ cd build
+$ cmake ..
+$ cmake --build .
+```
+
+# Raspberry Pi Pico
+
+## Instalacja SDK
+
+Raspberry Pi Pico SDK może zostaać pobrane w następujący sposób:
+```bash
+$ cd ~
+$ git clone https://github.com/raspberrypi/pico-sdk
+$ cd pico-sdk
+$ git submodule update --init
+```
+
+## Projekt CMake
+
+W celu kompilacji programu na platformę Raspberry Pi Pico można dodać linijki
+oznaczone poniżej znakami `+` do pliku `CMakeLists.txt`
+
+Plik `CMakeLists.txt` umożliwiający kompilację programu na Raspberry Pi Pico.
+
+```diff
+cmake_minimum_required(VERSION 3.19)
+
++include ($ENV{PICO_SDK_PATH}/pico_sdk_init.cmake)
+
+project(twojprogram VERSION 1.0.0)
+
++pico_sdk_init()
+
+add_executable(twojprogram main.c)
+
++if (NOT PICO_PLATFORM STREQUAL "host")
++	target_link_libraries(twojprogram pico_stdlib)
++end()
+
++pico_enable_stdio_usb(twojprogram 1)
++pico_enable_stdio_uart(twojprogram 0)
+
++pico_add_extra_outputs(twojprogram)
+```
+
+## Adaptacja programu do Raspberry Pi Pico
+
+Jeżeli chcemy korzystać z funkcjonalności wejścia i wyjścia, należy wywołać funkcję
+inicjalizującą o nazwa `stdio_init_all()`, specyficzną dla platformy Raspberry Pi Pico
+
+```diff
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+// ...
+
++#if PICO_ON_DEVICE
++#include "pico/stdlib.h"
++#endif
+
+int main(void)
+{
++#if PICO_ON_DEVICE
++	stdio_init_all();
++#endif
+
+	// ...
+
+	return 0;
+}
+```
+
+## Kompilacja na Raspberry Pi Pico
+
+Inicjalizacja projektu przed zbudowaniem na platforme Raspberry Pi Pico
+
+```sh
+$ mkdir build
+$ cd build
+$ PICO_SDK_PATH=~/pico-sdk cmake ..
+```
+
+Budowanie.
+```sh
+$ cd build
+$ cmake --build .
+```
+
+Wskazówka: żeby nie ustawiać co chwilę zmiennej środowiskowej `PICO_SDK_PATH`,
+można ją wyeksportować:
+```sh
+$ export PICO_SDK_PATH=~/pico-sdk
+```
+
+## Kompilacja na maszynę developerską - w celach testowych
+
+Inicjalizacja projektu przed zbudowaniem na maszynie deweloperskiej w celach
+testowych.
+
+```sh
+$ mkdir build_host
+$ cd build_host
+$ PICO_SDK_PATH=~/pico-sdk cmake .. -DPICO_PLATFORM=host
+```
+
+Dzięki temu, że wszystkie specyficzne wywołania otoczyliśmy makrami preprocesosowa
+`#if PICO_ON_DEVICE`, możliwa jest kompilacja projektu na maszynę hosta w celach
+testowych.
+
+```sh
+$ cd build_host
+$ cmake --build .
+$ ./twojprogram
+```
+
+## Programowanie Raspberry Pi Pico
+
+Programowanie Raspberry Pi Pico odbywa się w następujący sposób
+
+1. Trzymając przycisk `BOOTSEL`, należy podłączyć płytkę do portu USB.
+2. Płytka zamontuje się jako dysk USB.
+3. Należy skopiować plik `.uf2` na urządzenie USB.
+4. Płytka zaprogramuje się i wyjdzie z trybu programownia.
+
+## Łączenie się z portem szeregowym
+
+Komunikowanie z Raspberry Pi Pico może odbywać się za pomocą portu szeregowego, przy
+użyciu programu `picocom`.
+
+Instalacja picocom:
+
+```sh
+$ sudo apt install picocom
+```
+
+Podłączanie do portu szeregowego:
+
+```sh
+$ picocom --echo /dev/ttyACM0
+```
+
+Zamknięcie `picocom` odbywa się poprzez naciśnięcie kombinacji `Ctrl+A`, a następnie
+klawisza `X`.
+
+## Picocom - tryb "linii" przy pomocy `rlwrap`
+
+Picocom działa w trybie "raw" - wysyła znaki natychmiast do portu szeregowego.
+
+Żeby osiągnąć zachowanie podobne do terminala - wysyłanie znaków na standardowe
+wejście tylko po naciśnięciu klawisza `<Enter>`, można wykorzystać program `rlwrap`.
+
+```sh
+$ sudo apt install rlwrap
+```
+
+```sh
+$ rlwrap -aeN picocom --echo --baud 115200 /dev/ttyACM0
+```
+
+## Tryb "linii" przy pomocy programu `cat`
+
+Podobny efekt jak połączenie programów `rlwrap` i `picocom` można osiągnąć również
+za pomocą wykonując następujące komendy:
+```sh
+# Ustawienia początkowe portu szeregowego
+stty -F /dev/ttyACM0 raw -echo
+# Wyświetlanie danych z portu szeregowego w tle
+cat /dev/ttyACM0 &
+# Zapisywanie danych do portu szeregowego
+cat > /dev/ttyACM0
+```
+
+Lub można posłużyć się skryptem `catcom.sh`, który wykonuje powyżej zaprezentowane
+komendy.
+```sh
+$ wget czarnota.github.io/wpcsw/catcom.sh
+$ chmod u+x ./catcom.sh
+$ sudo ./catcom.sh /dev/ttyACM0
+```
+
+## Zadanie 13
+
+Zbuduj projekt z poprzedniego zadania na Raspberry Pi Pico. Zaprogramuj
+płytke. Połącz się z nią za pomocą portu szeregowego i zweryfikuj czy aplikacja
+działa poprawnie.
 
 # Struktury
 
@@ -1233,7 +1501,7 @@ int main(void)
 
 ```
 
-## Zadanie 11
+## Zadanie 14
 
 # Typy wyliczeniowe
 
