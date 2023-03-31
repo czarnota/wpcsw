@@ -614,7 +614,7 @@ int main(void)
 }
 ```
 
-## Zadanie 8
+## Zadanie 7
 
 Połącz trzy poprzednie programy (prostokąt, kalkulator, kostka) w jeden. Wykorzystaj
 funkcje.
