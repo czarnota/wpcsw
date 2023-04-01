@@ -698,7 +698,7 @@ int main(void)
 
 ```c
 // calculator.h
-#ifdef __calculator_h__
+#ifndef __calculator_h__
 #define __calculator_h__
 int add(int a, int b);
 #endif
@@ -706,7 +706,7 @@ int add(int a, int b);
 
 ```c
 // other.h
-#ifdef __other_h__
+#ifndef __other_h__
 #define __other_h__
 #include "calculator.h"
 #endif
