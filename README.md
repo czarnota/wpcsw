@@ -42,6 +42,27 @@ Przyśpieszy to sprawdzanie zadań i wysyłanie informacji zwrotnej.
 - [EN] Książka twórców języka C: Brian W. Kernighan, Dennis M. Ritchie. C Programming Language, 2nd Edition [link](https://github.com/germanoa/compiladores/blob/master/doc/ebook/The%20C%20Programming%20Language%20-%202nd%20Edition%20-%20Ritchie%20Kernighan.pdf)
 - [EN] Zbiór przykładowych programów w C: [link](https://github.com/randerson112358/C-Programs)
 
+## Zasady zaliczenia
+
+Oceniane będą 3 rzeczy
+
+| Zadanie                       | Termin     | Punkty  |
+| ----------------------------- | ---------- | ------- |
+| Zadanie 4 i 5                 | 01.04.2023 |  +1     |
+| Zadanie 11                    | 23.04.2023 |  +1     | 
+| Wgranie aplikacja na RPI Pico | 23.04.2023 |  +1     |
+
+Liczba punktów i oceny jakie temu odpowiadają:
+
+| Liczba punków | Ocena |
+| ------------- | ----- |
+| 1             | 3     |
+| 2             | 4     |
+| 3             | 5     |
+
+Jeżeli, ktoś nie zdobędzie żadnego punktu, to na ostatnich zajęciach otrzyma
+zadanie ratunkowe, którego rozwiązanie do końca semestru skutkuje oceną 3.
+
 ## Archiwum
 
 ### 2022
