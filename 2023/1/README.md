@@ -1230,6 +1230,15 @@ $ cmake --build .
 
 # Raspberry Pi Pico
 
+## Toolchain ARM - instalacja
+
+Raspberry Pi Pico posiada procesor ARM Cortex-M0+. Żeby móc kompilować na niego
+programy, musimy zainstalować toolchain dla ARM.
+
+```bash
+$ sudo apt install gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
+```
+
 ## Instalacja SDK
 
 Raspberry Pi Pico SDK może zostaać pobrane w następujący sposób:
@@ -1360,7 +1369,7 @@ $ sudo apt install picocom
 Podłączanie do portu szeregowego:
 
 ```sh
-$ picocom --echo /dev/ttyACM0
+$ picocom --echo --omap crlf /dev/ttyACM0
 ```
 
 Zamknięcie `picocom` odbywa się poprzez naciśnięcie kombinacji `Ctrl+A`, a następnie

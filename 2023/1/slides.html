@@ -1182,81 +1182,86 @@ c) Uruchom &quot;kostka&quot;</code></pre>
 </section>
 <section id="raspberry-pi-pico" class="level1">
 <h1>Raspberry Pi Pico</h1>
+<section id="toolchain-arm---instalacja" class="level2">
+<h2>Toolchain ARM - instalacja</h2>
+<p>Raspberry Pi Pico posiada procesor ARM Cortex-M0+. Żeby móc kompilować na niego programy, musimy zainstalować toolchain dla ARM.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true"></a>$ <span class="fu">sudo</span> apt install gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib</span></code></pre></div>
+</section>
 <section id="instalacja-sdk" class="level2">
 <h2>Instalacja SDK</h2>
 <p>Raspberry Pi Pico SDK może zostaać pobrane w następujący sposób:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true"></a>$ <span class="bu">cd</span> ~</span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true"></a>$ <span class="fu">git</span> clone https://github.com/raspberrypi/pico-sdk</span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true"></a>$ <span class="bu">cd</span> pico-sdk</span>
-<span id="cb94-4"><a href="#cb94-4" aria-hidden="true"></a>$ <span class="fu">git</span> submodule update --init</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true"></a>$ <span class="bu">cd</span> ~</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true"></a>$ <span class="fu">git</span> clone https://github.com/raspberrypi/pico-sdk</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true"></a>$ <span class="bu">cd</span> pico-sdk</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true"></a>$ <span class="fu">git</span> submodule update --init</span></code></pre></div>
 </section>
 <section id="projekt-cmake" class="level2">
 <h2>Projekt CMake</h2>
 <p>W celu kompilacji programu na platformę Raspberry Pi Pico można dodać linijki oznaczone poniżej znakami <code>+</code> do pliku <code>CMakeLists.txt</code></p>
 <p>Plik <code>CMakeLists.txt</code> umożliwiający kompilację programu na Raspberry Pi Pico.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true"></a>cmake_minimum_required(VERSION 3.19)</span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true"></a></span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true"></a><span class="va">+include ($ENV{PICO_SDK_PATH}/pico_sdk_init.cmake)</span></span>
-<span id="cb95-4"><a href="#cb95-4" aria-hidden="true"></a></span>
-<span id="cb95-5"><a href="#cb95-5" aria-hidden="true"></a>project(twojprogram VERSION 1.0.0)</span>
-<span id="cb95-6"><a href="#cb95-6" aria-hidden="true"></a></span>
-<span id="cb95-7"><a href="#cb95-7" aria-hidden="true"></a><span class="va">+pico_sdk_init()</span></span>
-<span id="cb95-8"><a href="#cb95-8" aria-hidden="true"></a></span>
-<span id="cb95-9"><a href="#cb95-9" aria-hidden="true"></a>add_executable(twojprogram main.c)</span>
-<span id="cb95-10"><a href="#cb95-10" aria-hidden="true"></a></span>
-<span id="cb95-11"><a href="#cb95-11" aria-hidden="true"></a><span class="va">+if (NOT PICO_PLATFORM STREQUAL &quot;host&quot;)</span></span>
-<span id="cb95-12"><a href="#cb95-12" aria-hidden="true"></a><span class="va">+   target_link_libraries(twojprogram pico_stdlib)</span></span>
-<span id="cb95-13"><a href="#cb95-13" aria-hidden="true"></a><span class="va">+endif()</span></span>
-<span id="cb95-14"><a href="#cb95-14" aria-hidden="true"></a></span>
-<span id="cb95-15"><a href="#cb95-15" aria-hidden="true"></a><span class="va">+pico_enable_stdio_usb(twojprogram 1)</span></span>
-<span id="cb95-16"><a href="#cb95-16" aria-hidden="true"></a><span class="va">+pico_enable_stdio_uart(twojprogram 0)</span></span>
-<span id="cb95-17"><a href="#cb95-17" aria-hidden="true"></a><span class="va">+pico_add_extra_outputs(twojprogram)</span></span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true"></a>cmake_minimum_required(VERSION 3.19)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true"></a></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true"></a><span class="va">+include ($ENV{PICO_SDK_PATH}/pico_sdk_init.cmake)</span></span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true"></a></span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true"></a>project(twojprogram VERSION 1.0.0)</span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true"></a></span>
+<span id="cb96-7"><a href="#cb96-7" aria-hidden="true"></a><span class="va">+pico_sdk_init()</span></span>
+<span id="cb96-8"><a href="#cb96-8" aria-hidden="true"></a></span>
+<span id="cb96-9"><a href="#cb96-9" aria-hidden="true"></a>add_executable(twojprogram main.c)</span>
+<span id="cb96-10"><a href="#cb96-10" aria-hidden="true"></a></span>
+<span id="cb96-11"><a href="#cb96-11" aria-hidden="true"></a><span class="va">+if (NOT PICO_PLATFORM STREQUAL &quot;host&quot;)</span></span>
+<span id="cb96-12"><a href="#cb96-12" aria-hidden="true"></a><span class="va">+   target_link_libraries(twojprogram pico_stdlib)</span></span>
+<span id="cb96-13"><a href="#cb96-13" aria-hidden="true"></a><span class="va">+endif()</span></span>
+<span id="cb96-14"><a href="#cb96-14" aria-hidden="true"></a></span>
+<span id="cb96-15"><a href="#cb96-15" aria-hidden="true"></a><span class="va">+pico_enable_stdio_usb(twojprogram 1)</span></span>
+<span id="cb96-16"><a href="#cb96-16" aria-hidden="true"></a><span class="va">+pico_enable_stdio_uart(twojprogram 0)</span></span>
+<span id="cb96-17"><a href="#cb96-17" aria-hidden="true"></a><span class="va">+pico_add_extra_outputs(twojprogram)</span></span></code></pre></div>
 </section>
 <section id="adaptacja-programu-do-raspberry-pi-pico" class="level2">
 <h2>Adaptacja programu do Raspberry Pi Pico</h2>
 <p>Jeżeli chcemy korzystać z funkcjonalności wejścia i wyjścia, należy wywołać funkcję inicjalizującą o nazwa <code>stdio_init_all()</code>, specyficzną dla platformy Raspberry Pi Pico</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true"></a>#include &lt;stdio.h&gt;</span>
-<span id="cb96-2"><a href="#cb96-2" aria-hidden="true"></a>#include &lt;string.h&gt;</span>
-<span id="cb96-3"><a href="#cb96-3" aria-hidden="true"></a>#include &lt;stdlib.h&gt;</span>
-<span id="cb96-4"><a href="#cb96-4" aria-hidden="true"></a></span>
-<span id="cb96-5"><a href="#cb96-5" aria-hidden="true"></a>// ...</span>
-<span id="cb96-6"><a href="#cb96-6" aria-hidden="true"></a></span>
-<span id="cb96-7"><a href="#cb96-7" aria-hidden="true"></a><span class="va">+#if PICO_ON_DEVICE</span></span>
-<span id="cb96-8"><a href="#cb96-8" aria-hidden="true"></a><span class="va">+#include &quot;pico/stdlib.h&quot;</span></span>
-<span id="cb96-9"><a href="#cb96-9" aria-hidden="true"></a><span class="va">+#endif</span></span>
-<span id="cb96-10"><a href="#cb96-10" aria-hidden="true"></a></span>
-<span id="cb96-11"><a href="#cb96-11" aria-hidden="true"></a>int main(void)</span>
-<span id="cb96-12"><a href="#cb96-12" aria-hidden="true"></a>{</span>
-<span id="cb96-13"><a href="#cb96-13" aria-hidden="true"></a><span class="va">+#if PICO_ON_DEVICE</span></span>
-<span id="cb96-14"><a href="#cb96-14" aria-hidden="true"></a><span class="va">+   stdio_init_all();</span></span>
-<span id="cb96-15"><a href="#cb96-15" aria-hidden="true"></a><span class="va">+#endif</span></span>
-<span id="cb96-16"><a href="#cb96-16" aria-hidden="true"></a></span>
-<span id="cb96-17"><a href="#cb96-17" aria-hidden="true"></a>    // ...</span>
-<span id="cb96-18"><a href="#cb96-18" aria-hidden="true"></a>    return 0;</span>
-<span id="cb96-19"><a href="#cb96-19" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode diff"><code class="sourceCode diff"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true"></a>#include &lt;stdio.h&gt;</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true"></a>#include &lt;string.h&gt;</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true"></a>#include &lt;stdlib.h&gt;</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true"></a></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true"></a>// ...</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true"></a></span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true"></a><span class="va">+#if PICO_ON_DEVICE</span></span>
+<span id="cb97-8"><a href="#cb97-8" aria-hidden="true"></a><span class="va">+#include &quot;pico/stdlib.h&quot;</span></span>
+<span id="cb97-9"><a href="#cb97-9" aria-hidden="true"></a><span class="va">+#endif</span></span>
+<span id="cb97-10"><a href="#cb97-10" aria-hidden="true"></a></span>
+<span id="cb97-11"><a href="#cb97-11" aria-hidden="true"></a>int main(void)</span>
+<span id="cb97-12"><a href="#cb97-12" aria-hidden="true"></a>{</span>
+<span id="cb97-13"><a href="#cb97-13" aria-hidden="true"></a><span class="va">+#if PICO_ON_DEVICE</span></span>
+<span id="cb97-14"><a href="#cb97-14" aria-hidden="true"></a><span class="va">+   stdio_init_all();</span></span>
+<span id="cb97-15"><a href="#cb97-15" aria-hidden="true"></a><span class="va">+#endif</span></span>
+<span id="cb97-16"><a href="#cb97-16" aria-hidden="true"></a></span>
+<span id="cb97-17"><a href="#cb97-17" aria-hidden="true"></a>    // ...</span>
+<span id="cb97-18"><a href="#cb97-18" aria-hidden="true"></a>    return 0;</span>
+<span id="cb97-19"><a href="#cb97-19" aria-hidden="true"></a>}</span></code></pre></div>
 </section>
 <section id="kompilacja-na-raspberry-pi-pico" class="level2">
 <h2>Kompilacja na Raspberry Pi Pico</h2>
 <p>Inicjalizacja projektu przed zbudowaniem na platforme Raspberry Pi Pico</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true"></a>$ <span class="fu">mkdir</span> build</span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true"></a>$ <span class="bu">cd</span> build</span>
-<span id="cb97-3"><a href="#cb97-3" aria-hidden="true"></a>$ <span class="va">PICO_SDK_PATH=</span>~/pico-sdk <span class="fu">cmake</span> ..</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true"></a>$ <span class="fu">mkdir</span> build</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true"></a>$ <span class="bu">cd</span> build</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true"></a>$ <span class="va">PICO_SDK_PATH=</span>~/pico-sdk <span class="fu">cmake</span> ..</span></code></pre></div>
 <p>Budowanie.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true"></a>$ <span class="bu">cd</span> build</span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true"></a>$ <span class="fu">cmake</span> --build .</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true"></a>$ <span class="bu">cd</span> build</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true"></a>$ <span class="fu">cmake</span> --build .</span></code></pre></div>
 <p>Wskazówka: żeby nie ustawiać co chwilę zmiennej środowiskowej <code>PICO_SDK_PATH</code>, można ją wyeksportować:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true"></a>$ <span class="bu">export</span> <span class="va">PICO_SDK_PATH=</span>~/pico-sdk</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true"></a>$ <span class="bu">export</span> <span class="va">PICO_SDK_PATH=</span>~/pico-sdk</span></code></pre></div>
 </section>
 <section id="kompilacja-na-maszynę-developerską---w-celach-testowych" class="level2">
 <h2>Kompilacja na maszynę developerską - w celach testowych</h2>
 <p>Inicjalizacja projektu przed zbudowaniem na maszynie deweloperskiej w celach testowych.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true"></a>$ <span class="fu">mkdir</span> build_host</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true"></a>$ <span class="bu">cd</span> build_host</span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true"></a>$ <span class="va">PICO_SDK_PATH=</span>~/pico-sdk <span class="fu">cmake</span> .. -DPICO_PLATFORM=host</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true"></a>$ <span class="fu">mkdir</span> build_host</span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true"></a>$ <span class="bu">cd</span> build_host</span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true"></a>$ <span class="va">PICO_SDK_PATH=</span>~/pico-sdk <span class="fu">cmake</span> .. -DPICO_PLATFORM=host</span></code></pre></div>
 <p>Dzięki temu, że wszystkie specyficzne wywołania otoczyliśmy makrami preprocesosowa <code>#if PICO_ON_DEVICE</code>, możliwa jest kompilacja projektu na maszynę hosta w celach testowych.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true"></a>$ <span class="bu">cd</span> build_host</span>
-<span id="cb101-2"><a href="#cb101-2" aria-hidden="true"></a>$ <span class="fu">cmake</span> --build .</span>
-<span id="cb101-3"><a href="#cb101-3" aria-hidden="true"></a>$ <span class="ex">./twojprogram</span></span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true"></a>$ <span class="bu">cd</span> build_host</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true"></a>$ <span class="fu">cmake</span> --build .</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true"></a>$ <span class="ex">./twojprogram</span></span></code></pre></div>
 </section>
 <section id="programowanie-raspberry-pi-pico" class="level2">
 <h2>Programowanie Raspberry Pi Pico</h2>
@@ -1272,31 +1277,31 @@ c) Uruchom &quot;kostka&quot;</code></pre>
 <h2>Łączenie się z portem szeregowym</h2>
 <p>Komunikowanie z Raspberry Pi Pico może odbywać się za pomocą portu szeregowego, przy użyciu programu <code>picocom</code>.</p>
 <p>Instalacja picocom:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true"></a>$ <span class="fu">sudo</span> apt install picocom</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true"></a>$ <span class="fu">sudo</span> apt install picocom</span></code></pre></div>
 <p>Podłączanie do portu szeregowego:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true"></a>$ <span class="ex">picocom</span> --echo /dev/ttyACM0</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true"></a>$ <span class="ex">picocom</span> --echo --omap crlf /dev/ttyACM0</span></code></pre></div>
 <p>Zamknięcie <code>picocom</code> odbywa się poprzez naciśnięcie kombinacji <code>Ctrl+A</code>, a następnie klawisza <code>X</code>.</p>
 </section>
 <section id="picocom---tryb-linii-przy-pomocy-rlwrap" class="level2">
 <h2>Picocom - tryb “linii” przy pomocy <code>rlwrap</code></h2>
 <p>Picocom działa w trybie “raw” - wysyła znaki natychmiast do portu szeregowego.</p>
 <p>Żeby osiągnąć zachowanie podobne do terminala - wysyłanie znaków na standardowe wejście tylko po naciśnięciu klawisza <code>&lt;Enter&gt;</code>, można wykorzystać program <code>rlwrap</code>.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true"></a>$ <span class="fu">sudo</span> apt install rlwrap</span></code></pre></div>
-<div class="sourceCode" id="cb105"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true"></a>$ <span class="ex">rlwrap</span> -aeN picocom --echo --baud 115200 /dev/ttyACM0</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true"></a>$ <span class="fu">sudo</span> apt install rlwrap</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true"></a>$ <span class="ex">rlwrap</span> -aeN picocom --echo --baud 115200 /dev/ttyACM0</span></code></pre></div>
 </section>
 <section id="tryb-linii-przy-pomocy-programu-cat" class="level2">
 <h2>Tryb “linii” przy pomocy programu <code>cat</code></h2>
 <p>Podobny efekt jak połączenie programów <code>rlwrap</code> i <code>picocom</code> można osiągnąć również za pomocą wykonując następujące komendy:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true"></a><span class="co"># Ustawienia początkowe portu szeregowego</span></span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true"></a><span class="fu">stty</span> -F /dev/ttyACM0 raw -echo</span>
-<span id="cb106-3"><a href="#cb106-3" aria-hidden="true"></a><span class="co"># Wyświetlanie danych z portu szeregowego w tle</span></span>
-<span id="cb106-4"><a href="#cb106-4" aria-hidden="true"></a><span class="fu">cat</span> /dev/ttyACM0 <span class="kw">&amp;</span></span>
-<span id="cb106-5"><a href="#cb106-5" aria-hidden="true"></a><span class="co"># Zapisywanie danych do portu szeregowego</span></span>
-<span id="cb106-6"><a href="#cb106-6" aria-hidden="true"></a><span class="fu">cat</span> <span class="op">&gt;</span> /dev/ttyACM0</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true"></a><span class="co"># Ustawienia początkowe portu szeregowego</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true"></a><span class="fu">stty</span> -F /dev/ttyACM0 raw -echo</span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true"></a><span class="co"># Wyświetlanie danych z portu szeregowego w tle</span></span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true"></a><span class="fu">cat</span> /dev/ttyACM0 <span class="kw">&amp;</span></span>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true"></a><span class="co"># Zapisywanie danych do portu szeregowego</span></span>
+<span id="cb107-6"><a href="#cb107-6" aria-hidden="true"></a><span class="fu">cat</span> <span class="op">&gt;</span> /dev/ttyACM0</span></code></pre></div>
 <p>Lub można posłużyć się skryptem <code>catcom.sh</code>, który wykonuje powyżej zaprezentowane komendy.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true"></a>$ <span class="fu">wget</span> czarnota.github.io/wpcsw/catcom.sh</span>
-<span id="cb107-2"><a href="#cb107-2" aria-hidden="true"></a>$ <span class="fu">chmod</span> u+x ./catcom.sh</span>
-<span id="cb107-3"><a href="#cb107-3" aria-hidden="true"></a>$ <span class="fu">sudo</span> ./catcom.sh /dev/ttyACM0</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true"></a>$ <span class="fu">wget</span> czarnota.github.io/wpcsw/catcom.sh</span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true"></a>$ <span class="fu">chmod</span> u+x ./catcom.sh</span>
+<span id="cb108-3"><a href="#cb108-3" aria-hidden="true"></a>$ <span class="fu">sudo</span> ./catcom.sh /dev/ttyACM0</span></code></pre></div>
 </section>
 <section id="zadanie-13" class="level2">
 <h2>Zadanie 13</h2>
@@ -1308,68 +1313,68 @@ c) Uruchom &quot;kostka&quot;</code></pre>
 <section id="struktury-1" class="level2">
 <h2>Struktury</h2>
 <p>Struktury pozwalają na definiowanie typów złożonych.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true"></a><span class="kw">struct</span> vec3 {</span>
-<span id="cb108-2"><a href="#cb108-2" aria-hidden="true"></a>    <span class="dt">float</span> x;</span>
-<span id="cb108-3"><a href="#cb108-3" aria-hidden="true"></a>    <span class="dt">float</span> y;</span>
-<span id="cb108-4"><a href="#cb108-4" aria-hidden="true"></a>    <span class="dt">float</span> z;</span>
-<span id="cb108-5"><a href="#cb108-5" aria-hidden="true"></a>};</span></code></pre></div>
-<div class="sourceCode" id="cb109"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true"></a><span class="kw">struct</span> vec3 position;</span>
-<span id="cb109-2"><a href="#cb109-2" aria-hidden="true"></a>position.x = <span class="fl">5.0</span><span class="bu">f</span>;</span>
-<span id="cb109-3"><a href="#cb109-3" aria-hidden="true"></a>position.y = <span class="fl">10.0</span><span class="bu">f</span>;</span>
-<span id="cb109-4"><a href="#cb109-4" aria-hidden="true"></a>position.z = <span class="fl">5.0</span><span class="bu">f</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true"></a><span class="kw">struct</span> vec3 {</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true"></a>    <span class="dt">float</span> x;</span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true"></a>    <span class="dt">float</span> y;</span>
+<span id="cb109-4"><a href="#cb109-4" aria-hidden="true"></a>    <span class="dt">float</span> z;</span>
+<span id="cb109-5"><a href="#cb109-5" aria-hidden="true"></a>};</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true"></a><span class="kw">struct</span> vec3 position;</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true"></a>position.x = <span class="fl">5.0</span><span class="bu">f</span>;</span>
+<span id="cb110-3"><a href="#cb110-3" aria-hidden="true"></a>position.y = <span class="fl">10.0</span><span class="bu">f</span>;</span>
+<span id="cb110-4"><a href="#cb110-4" aria-hidden="true"></a>position.z = <span class="fl">5.0</span><span class="bu">f</span>;</span></code></pre></div>
 </section>
 <section id="struktury---inicjalizacja" class="level2">
 <h2>Struktury - inicjalizacja</h2>
-<div class="sourceCode" id="cb110"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true"></a><span class="kw">struct</span> color {</span>
-<span id="cb110-2"><a href="#cb110-2" aria-hidden="true"></a>    <span class="dt">unsigned</span> <span class="dt">char</span> red;</span>
-<span id="cb110-3"><a href="#cb110-3" aria-hidden="true"></a>    <span class="dt">unsigned</span> <span class="dt">char</span> green;</span>
-<span id="cb110-4"><a href="#cb110-4" aria-hidden="true"></a>    <span class="dt">unsigned</span> <span class="dt">char</span> blue;</span>
-<span id="cb110-5"><a href="#cb110-5" aria-hidden="true"></a>};</span></code></pre></div>
-<div class="sourceCode" id="cb111"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true"></a><span class="kw">struct</span> color white = { <span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span> };</span>
-<span id="cb111-2"><a href="#cb111-2" aria-hidden="true"></a><span class="kw">struct</span> color black = { <span class="dv">0</span> };</span>
-<span id="cb111-3"><a href="#cb111-3" aria-hidden="true"></a><span class="kw">struct</span> color yellow = {</span>
-<span id="cb111-4"><a href="#cb111-4" aria-hidden="true"></a>    .red = <span class="dv">255</span>,</span>
-<span id="cb111-5"><a href="#cb111-5" aria-hidden="true"></a>    .green = <span class="dv">255</span>,</span>
-<span id="cb111-6"><a href="#cb111-6" aria-hidden="true"></a>};</span></code></pre></div>
-<div class="sourceCode" id="cb112"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true"></a><span class="kw">struct</span> color yellow = (<span class="kw">struct</span> color) {</span>
-<span id="cb112-2"><a href="#cb112-2" aria-hidden="true"></a>    .red = <span class="dv">255</span>,</span>
-<span id="cb112-3"><a href="#cb112-3" aria-hidden="true"></a>    .green = <span class="dv">255</span>,</span>
-<span id="cb112-4"><a href="#cb112-4" aria-hidden="true"></a>};</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true"></a><span class="kw">struct</span> color {</span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true"></a>    <span class="dt">unsigned</span> <span class="dt">char</span> red;</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true"></a>    <span class="dt">unsigned</span> <span class="dt">char</span> green;</span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true"></a>    <span class="dt">unsigned</span> <span class="dt">char</span> blue;</span>
+<span id="cb111-5"><a href="#cb111-5" aria-hidden="true"></a>};</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true"></a><span class="kw">struct</span> color white = { <span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span> };</span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true"></a><span class="kw">struct</span> color black = { <span class="dv">0</span> };</span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true"></a><span class="kw">struct</span> color yellow = {</span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true"></a>    .red = <span class="dv">255</span>,</span>
+<span id="cb112-5"><a href="#cb112-5" aria-hidden="true"></a>    .green = <span class="dv">255</span>,</span>
+<span id="cb112-6"><a href="#cb112-6" aria-hidden="true"></a>};</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true"></a><span class="kw">struct</span> color yellow = (<span class="kw">struct</span> color) {</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true"></a>    .red = <span class="dv">255</span>,</span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true"></a>    .green = <span class="dv">255</span>,</span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true"></a>};</span></code></pre></div>
 </section>
 <section id="struktury---kopiowanie" class="level2">
 <h2>Struktury - kopiowanie</h2>
 <p>Kopiowanie struktur odbywa się poprzez operator <code>=</code>.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true"></a><span class="kw">struct</span> color green = { <span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span> };</span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true"></a><span class="kw">struct</span> color tmp;</span>
-<span id="cb113-3"><a href="#cb113-3" aria-hidden="true"></a>tmp = green;</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true"></a><span class="kw">struct</span> color green = { <span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span> };</span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true"></a><span class="kw">struct</span> color tmp;</span>
+<span id="cb114-3"><a href="#cb114-3" aria-hidden="true"></a>tmp = green;</span></code></pre></div>
 <p>Można to wykonać również za pomocą funkcji <code>memcpy()</code>.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true"></a>memcpy(&amp;tmp, &amp;green, <span class="kw">sizeof</span>(tmp));</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true"></a>memcpy(&amp;tmp, &amp;green, <span class="kw">sizeof</span>(tmp));</span></code></pre></div>
 </section>
 <section id="struktury---wskaźniki-do-struktur" class="level2">
 <h2>Struktury - wskaźniki do struktur</h2>
-<div class="sourceCode" id="cb115"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true"></a><span class="kw">struct</span> led_light {</span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true"></a>    <span class="kw">struct</span> color color;</span>
-<span id="cb115-3"><a href="#cb115-3" aria-hidden="true"></a>    <span class="dt">bool</span> on;</span>
-<span id="cb115-4"><a href="#cb115-4" aria-hidden="true"></a>};</span>
-<span id="cb115-5"><a href="#cb115-5" aria-hidden="true"></a></span>
-<span id="cb115-6"><a href="#cb115-6" aria-hidden="true"></a><span class="dt">void</span> led_light_init(<span class="kw">struct</span> led_light *light)</span>
-<span id="cb115-7"><a href="#cb115-7" aria-hidden="true"></a>{</span>
-<span id="cb115-8"><a href="#cb115-8" aria-hidden="true"></a>    light-&gt;color.red = <span class="dv">255</span>;</span>
-<span id="cb115-9"><a href="#cb115-9" aria-hidden="true"></a>    light-&gt;on = false;</span>
-<span id="cb115-10"><a href="#cb115-10" aria-hidden="true"></a>}</span>
-<span id="cb115-11"><a href="#cb115-11" aria-hidden="true"></a></span>
-<span id="cb115-12"><a href="#cb115-12" aria-hidden="true"></a><span class="dt">void</span> led_light_switch(<span class="kw">struct</span> led_light *light)</span>
-<span id="cb115-13"><a href="#cb115-13" aria-hidden="true"></a>{</span>
-<span id="cb115-14"><a href="#cb115-14" aria-hidden="true"></a>    light-&gt;on = !light-&gt;on;</span>
-<span id="cb115-15"><a href="#cb115-15" aria-hidden="true"></a>}</span>
-<span id="cb115-16"><a href="#cb115-16" aria-hidden="true"></a></span>
-<span id="cb115-17"><a href="#cb115-17" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
-<span id="cb115-18"><a href="#cb115-18" aria-hidden="true"></a>{</span>
-<span id="cb115-19"><a href="#cb115-19" aria-hidden="true"></a>    <span class="kw">struct</span> led_light light;</span>
-<span id="cb115-20"><a href="#cb115-20" aria-hidden="true"></a>    led_light_init(&amp;light);</span>
-<span id="cb115-21"><a href="#cb115-21" aria-hidden="true"></a>    led_light_switch(&amp;light);</span>
-<span id="cb115-22"><a href="#cb115-22" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb115-23"><a href="#cb115-23" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true"></a><span class="kw">struct</span> led_light {</span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true"></a>    <span class="kw">struct</span> color color;</span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true"></a>    <span class="dt">bool</span> on;</span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true"></a>};</span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true"></a></span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true"></a><span class="dt">void</span> led_light_init(<span class="kw">struct</span> led_light *light)</span>
+<span id="cb116-7"><a href="#cb116-7" aria-hidden="true"></a>{</span>
+<span id="cb116-8"><a href="#cb116-8" aria-hidden="true"></a>    light-&gt;color.red = <span class="dv">255</span>;</span>
+<span id="cb116-9"><a href="#cb116-9" aria-hidden="true"></a>    light-&gt;on = false;</span>
+<span id="cb116-10"><a href="#cb116-10" aria-hidden="true"></a>}</span>
+<span id="cb116-11"><a href="#cb116-11" aria-hidden="true"></a></span>
+<span id="cb116-12"><a href="#cb116-12" aria-hidden="true"></a><span class="dt">void</span> led_light_switch(<span class="kw">struct</span> led_light *light)</span>
+<span id="cb116-13"><a href="#cb116-13" aria-hidden="true"></a>{</span>
+<span id="cb116-14"><a href="#cb116-14" aria-hidden="true"></a>    light-&gt;on = !light-&gt;on;</span>
+<span id="cb116-15"><a href="#cb116-15" aria-hidden="true"></a>}</span>
+<span id="cb116-16"><a href="#cb116-16" aria-hidden="true"></a></span>
+<span id="cb116-17"><a href="#cb116-17" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb116-18"><a href="#cb116-18" aria-hidden="true"></a>{</span>
+<span id="cb116-19"><a href="#cb116-19" aria-hidden="true"></a>    <span class="kw">struct</span> led_light light;</span>
+<span id="cb116-20"><a href="#cb116-20" aria-hidden="true"></a>    led_light_init(&amp;light);</span>
+<span id="cb116-21"><a href="#cb116-21" aria-hidden="true"></a>    led_light_switch(&amp;light);</span>
+<span id="cb116-22"><a href="#cb116-22" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb116-23"><a href="#cb116-23" aria-hidden="true"></a>}</span></code></pre></div>
 </section>
 <section id="zadanie-14" class="level2">
 <h2>Zadanie 14</h2>
@@ -1380,38 +1385,38 @@ c) Uruchom &quot;kostka&quot;</code></pre>
 <section id="typy-wyliczeniowe-1" class="level2">
 <h2>Typy wyliczeniowe</h2>
 <p>Słowo kluczowe <code>enum</code> pozwala na definicję typu poprzez wymienienie możliwych jego wartości oraz nadanie im nazwy. Pozwala to uniknać tzw magicznych wartości (ang. Magic numbers) w kodzie.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true"></a><span class="kw">enum</span> operation { ADD, SUB, DIV, MUL };</span>
-<span id="cb116-2"><a href="#cb116-2" aria-hidden="true"></a></span>
-<span id="cb116-3"><a href="#cb116-3" aria-hidden="true"></a><span class="dt">int</span> perform(<span class="kw">enum</span> operation op, <span class="dt">int</span> a, <span class="dt">int</span> b)</span>
-<span id="cb116-4"><a href="#cb116-4" aria-hidden="true"></a>{</span>
-<span id="cb116-5"><a href="#cb116-5" aria-hidden="true"></a>    <span class="cf">if</span> (op == ADD)</span>
-<span id="cb116-6"><a href="#cb116-6" aria-hidden="true"></a>        <span class="cf">return</span> a + b;</span>
-<span id="cb116-7"><a href="#cb116-7" aria-hidden="true"></a>    <span class="cf">if</span> (op == SUB)</span>
-<span id="cb116-8"><a href="#cb116-8" aria-hidden="true"></a>        <span class="cf">return</span> a - b;</span>
-<span id="cb116-9"><a href="#cb116-9" aria-hidden="true"></a>    <span class="cf">if</span> (op == DIV &amp;&amp; b != <span class="dv">0</span>)</span>
-<span id="cb116-10"><a href="#cb116-10" aria-hidden="true"></a>        <span class="cf">return</span> a / b;</span>
-<span id="cb116-11"><a href="#cb116-11" aria-hidden="true"></a>    <span class="cf">if</span> (op == MUL)</span>
-<span id="cb116-12"><a href="#cb116-12" aria-hidden="true"></a>        <span class="cf">return</span> a * b;</span>
-<span id="cb116-13"><a href="#cb116-13" aria-hidden="true"></a>    <span class="cf">return</span> op;</span>
-<span id="cb116-14"><a href="#cb116-14" aria-hidden="true"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb117"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true"></a>printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, perform(MUL, <span class="dv">2</span>, <span class="dv">4</span>));</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true"></a><span class="kw">enum</span> operation { ADD, SUB, DIV, MUL };</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true"></a></span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true"></a><span class="dt">int</span> perform(<span class="kw">enum</span> operation op, <span class="dt">int</span> a, <span class="dt">int</span> b)</span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true"></a>{</span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true"></a>    <span class="cf">if</span> (op == ADD)</span>
+<span id="cb117-6"><a href="#cb117-6" aria-hidden="true"></a>        <span class="cf">return</span> a + b;</span>
+<span id="cb117-7"><a href="#cb117-7" aria-hidden="true"></a>    <span class="cf">if</span> (op == SUB)</span>
+<span id="cb117-8"><a href="#cb117-8" aria-hidden="true"></a>        <span class="cf">return</span> a - b;</span>
+<span id="cb117-9"><a href="#cb117-9" aria-hidden="true"></a>    <span class="cf">if</span> (op == DIV &amp;&amp; b != <span class="dv">0</span>)</span>
+<span id="cb117-10"><a href="#cb117-10" aria-hidden="true"></a>        <span class="cf">return</span> a / b;</span>
+<span id="cb117-11"><a href="#cb117-11" aria-hidden="true"></a>    <span class="cf">if</span> (op == MUL)</span>
+<span id="cb117-12"><a href="#cb117-12" aria-hidden="true"></a>        <span class="cf">return</span> a * b;</span>
+<span id="cb117-13"><a href="#cb117-13" aria-hidden="true"></a>    <span class="cf">return</span> op;</span>
+<span id="cb117-14"><a href="#cb117-14" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true"></a>printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, perform(MUL, <span class="dv">2</span>, <span class="dv">4</span>));</span></code></pre></div>
 </section>
 <section id="typy-wyliczeniowe-jako-indeks-tablicy" class="level2">
 <h2>Typy wyliczeniowe jako indeks tablicy</h2>
-<div class="sourceCode" id="cb118"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true"></a><span class="kw">enum</span> operation { ADD, SUB, DIV, MUL, OPERATION_COUNT };</span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true"></a></span>
-<span id="cb118-3"><a href="#cb118-3" aria-hidden="true"></a><span class="dt">const</span> <span class="dt">char</span> *names[OPERATION_COUNT] = {</span>
-<span id="cb118-4"><a href="#cb118-4" aria-hidden="true"></a>    [ADD] = <span class="st">&quot;+&quot;</span>,</span>
-<span id="cb118-5"><a href="#cb118-5" aria-hidden="true"></a>    [SUB] = <span class="st">&quot;-&quot;</span>,</span>
-<span id="cb118-6"><a href="#cb118-6" aria-hidden="true"></a>    [DIV] = <span class="st">&quot;/&quot;</span>,</span>
-<span id="cb118-7"><a href="#cb118-7" aria-hidden="true"></a>    [MUL] = <span class="st">&quot;*&quot;</span>,</span>
-<span id="cb118-8"><a href="#cb118-8" aria-hidden="true"></a>};</span>
-<span id="cb118-9"><a href="#cb118-9" aria-hidden="true"></a></span>
-<span id="cb118-10"><a href="#cb118-10" aria-hidden="true"></a><span class="dt">void</span> print_operation(<span class="kw">enum</span> operation op, <span class="dt">int</span> a, <span class="dt">int</span> b)</span>
-<span id="cb118-11"><a href="#cb118-11" aria-hidden="true"></a>{</span>
-<span id="cb118-12"><a href="#cb118-12" aria-hidden="true"></a>    printf(<span class="st">&quot;%d %s %d = %d</span><span class="sc">\n</span><span class="st">&quot;</span>, names[op], perform(op, a, b));</span>
-<span id="cb118-13"><a href="#cb118-13" aria-hidden="true"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb119"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true"></a>print_operation(ADD, <span class="dv">1</span>, <span class="dv">1</span>); <span class="co">// 1 + 1 = 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true"></a><span class="kw">enum</span> operation { ADD, SUB, DIV, MUL, OPERATION_COUNT };</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true"></a></span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true"></a><span class="dt">const</span> <span class="dt">char</span> *names[OPERATION_COUNT] = {</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true"></a>    [ADD] = <span class="st">&quot;+&quot;</span>,</span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true"></a>    [SUB] = <span class="st">&quot;-&quot;</span>,</span>
+<span id="cb119-6"><a href="#cb119-6" aria-hidden="true"></a>    [DIV] = <span class="st">&quot;/&quot;</span>,</span>
+<span id="cb119-7"><a href="#cb119-7" aria-hidden="true"></a>    [MUL] = <span class="st">&quot;*&quot;</span>,</span>
+<span id="cb119-8"><a href="#cb119-8" aria-hidden="true"></a>};</span>
+<span id="cb119-9"><a href="#cb119-9" aria-hidden="true"></a></span>
+<span id="cb119-10"><a href="#cb119-10" aria-hidden="true"></a><span class="dt">void</span> print_operation(<span class="kw">enum</span> operation op, <span class="dt">int</span> a, <span class="dt">int</span> b)</span>
+<span id="cb119-11"><a href="#cb119-11" aria-hidden="true"></a>{</span>
+<span id="cb119-12"><a href="#cb119-12" aria-hidden="true"></a>    printf(<span class="st">&quot;%d %s %d = %d</span><span class="sc">\n</span><span class="st">&quot;</span>, names[op], perform(op, a, b));</span>
+<span id="cb119-13"><a href="#cb119-13" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true"></a>print_operation(ADD, <span class="dv">1</span>, <span class="dv">1</span>); <span class="co">// 1 + 1 = 2</span></span></code></pre></div>
 </section>
 </section>
 <section id="preprocesor" class="level1">
@@ -1419,77 +1424,77 @@ c) Uruchom &quot;kostka&quot;</code></pre>
 <section id="używanie-makr" class="level2">
 <h2>Używanie makr</h2>
 <p>Makra preprocesora pozwalają na zautomatyzowane zmienianie i generowanie kodu w trakcie kompilacji.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true"></a></span>
-<span id="cb120-3"><a href="#cb120-3" aria-hidden="true"></a><span class="pp">#define BUFFER_SIZE 16</span></span>
-<span id="cb120-4"><a href="#cb120-4" aria-hidden="true"></a></span>
-<span id="cb120-5"><a href="#cb120-5" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
-<span id="cb120-6"><a href="#cb120-6" aria-hidden="true"></a>{</span>
-<span id="cb120-7"><a href="#cb120-7" aria-hidden="true"></a>    <span class="dt">char</span> buf[BUFFER_SIZE];</span>
-<span id="cb120-8"><a href="#cb120-8" aria-hidden="true"></a></span>
-<span id="cb120-9"><a href="#cb120-9" aria-hidden="true"></a>    <span class="cf">while</span> (fgets(buf, BUFFER_SIZE, stdin))</span>
-<span id="cb120-10"><a href="#cb120-10" aria-hidden="true"></a>        printf(<span class="st">&quot;%s&quot;</span>, buf);</span>
-<span id="cb120-11"><a href="#cb120-11" aria-hidden="true"></a></span>
-<span id="cb120-12"><a href="#cb120-12" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb120-13"><a href="#cb120-13" aria-hidden="true"></a>}</span></code></pre></div>
-</section>
-<section id="makra-z-argumentami" class="level2">
-<h2>Makra z argumentami</h2>
-<p>Makra, podobnie jak funkcje mogą przyjmować argumenty.</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true"></a></span>
-<span id="cb121-3"><a href="#cb121-3" aria-hidden="true"></a><span class="pp">#define ARRAY_SIZE(x) (sizeof(x) / ssizeof(*(x)))</span></span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true"></a><span class="pp">#define BUFFER_SIZE 16</span></span>
 <span id="cb121-4"><a href="#cb121-4" aria-hidden="true"></a></span>
 <span id="cb121-5"><a href="#cb121-5" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
 <span id="cb121-6"><a href="#cb121-6" aria-hidden="true"></a>{</span>
-<span id="cb121-7"><a href="#cb121-7" aria-hidden="true"></a>    <span class="dt">int</span> numbers[] = {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>};</span>
+<span id="cb121-7"><a href="#cb121-7" aria-hidden="true"></a>    <span class="dt">char</span> buf[BUFFER_SIZE];</span>
 <span id="cb121-8"><a href="#cb121-8" aria-hidden="true"></a></span>
-<span id="cb121-9"><a href="#cb121-9" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; ARRAY_SIZE(numbers); ++i)</span>
-<span id="cb121-10"><a href="#cb121-10" aria-hidden="true"></a>        printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, i);</span>
+<span id="cb121-9"><a href="#cb121-9" aria-hidden="true"></a>    <span class="cf">while</span> (fgets(buf, BUFFER_SIZE, stdin))</span>
+<span id="cb121-10"><a href="#cb121-10" aria-hidden="true"></a>        printf(<span class="st">&quot;%s&quot;</span>, buf);</span>
 <span id="cb121-11"><a href="#cb121-11" aria-hidden="true"></a></span>
 <span id="cb121-12"><a href="#cb121-12" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
 <span id="cb121-13"><a href="#cb121-13" aria-hidden="true"></a>}</span></code></pre></div>
 </section>
-<section id="makra-operują-na-tekście" class="level2">
-<h2>Makra operują na tekście</h2>
-<p>Makra preprocesora są wykonywane przed kompilacją programu i operują na tekscie programu - nie są elementem języka programowania</p>
+<section id="makra-z-argumentami" class="level2">
+<h2>Makra z argumentami</h2>
+<p>Makra, podobnie jak funkcje mogą przyjmować argumenty.</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb122-2"><a href="#cb122-2" aria-hidden="true"></a></span>
 <span id="cb122-3"><a href="#cb122-3" aria-hidden="true"></a><span class="pp">#define ARRAY_SIZE(x) (sizeof(x) / ssizeof(*(x)))</span></span>
-<span id="cb122-4"><a href="#cb122-4" aria-hidden="true"></a><span class="pp">#define for_each(var, array) for (var = array; var &lt; array + ARRAY_SIZE(array); ++array)</span></span>
-<span id="cb122-5"><a href="#cb122-5" aria-hidden="true"></a></span>
-<span id="cb122-6"><a href="#cb122-6" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
-<span id="cb122-7"><a href="#cb122-7" aria-hidden="true"></a>{</span>
-<span id="cb122-8"><a href="#cb122-8" aria-hidden="true"></a>    <span class="dt">int</span> numbers[] = {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>};</span>
-<span id="cb122-9"><a href="#cb122-9" aria-hidden="true"></a></span>
-<span id="cb122-10"><a href="#cb122-10" aria-hidden="true"></a>    <span class="dt">int</span> *number;</span>
-<span id="cb122-11"><a href="#cb122-11" aria-hidden="true"></a>    for_each(number, numbers)</span>
-<span id="cb122-12"><a href="#cb122-12" aria-hidden="true"></a>        printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, *number);</span>
-<span id="cb122-13"><a href="#cb122-13" aria-hidden="true"></a></span>
-<span id="cb122-14"><a href="#cb122-14" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb122-15"><a href="#cb122-15" aria-hidden="true"></a>}</span></code></pre></div>
+<span id="cb122-4"><a href="#cb122-4" aria-hidden="true"></a></span>
+<span id="cb122-5"><a href="#cb122-5" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb122-6"><a href="#cb122-6" aria-hidden="true"></a>{</span>
+<span id="cb122-7"><a href="#cb122-7" aria-hidden="true"></a>    <span class="dt">int</span> numbers[] = {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>};</span>
+<span id="cb122-8"><a href="#cb122-8" aria-hidden="true"></a></span>
+<span id="cb122-9"><a href="#cb122-9" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; ARRAY_SIZE(numbers); ++i)</span>
+<span id="cb122-10"><a href="#cb122-10" aria-hidden="true"></a>        printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, i);</span>
+<span id="cb122-11"><a href="#cb122-11" aria-hidden="true"></a></span>
+<span id="cb122-12"><a href="#cb122-12" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb122-13"><a href="#cb122-13" aria-hidden="true"></a>}</span></code></pre></div>
+</section>
+<section id="makra-operują-na-tekście" class="level2">
+<h2>Makra operują na tekście</h2>
+<p>Makra preprocesora są wykonywane przed kompilacją programu i operują na tekscie programu - nie są elementem języka programowania</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true"></a></span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true"></a><span class="pp">#define ARRAY_SIZE(x) (sizeof(x) / ssizeof(*(x)))</span></span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true"></a><span class="pp">#define for_each(var, array) for (var = array; var &lt; array + ARRAY_SIZE(array); ++array)</span></span>
+<span id="cb123-5"><a href="#cb123-5" aria-hidden="true"></a></span>
+<span id="cb123-6"><a href="#cb123-6" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb123-7"><a href="#cb123-7" aria-hidden="true"></a>{</span>
+<span id="cb123-8"><a href="#cb123-8" aria-hidden="true"></a>    <span class="dt">int</span> numbers[] = {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>};</span>
+<span id="cb123-9"><a href="#cb123-9" aria-hidden="true"></a></span>
+<span id="cb123-10"><a href="#cb123-10" aria-hidden="true"></a>    <span class="dt">int</span> *number;</span>
+<span id="cb123-11"><a href="#cb123-11" aria-hidden="true"></a>    for_each(number, numbers)</span>
+<span id="cb123-12"><a href="#cb123-12" aria-hidden="true"></a>        printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, *number);</span>
+<span id="cb123-13"><a href="#cb123-13" aria-hidden="true"></a></span>
+<span id="cb123-14"><a href="#cb123-14" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb123-15"><a href="#cb123-15" aria-hidden="true"></a>}</span></code></pre></div>
 </section>
 <section id="preprocesor---kompilacja-warunkowa" class="level2">
 <h2>Preprocesor - kompilacja warunkowa</h2>
 <p>Za pomocą dyrektyw preprocesora <code>#ifdef</code> i <code>#endif</code>, można sprawdzić czy makro jest zdefiniowane.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb123-2"><a href="#cb123-2" aria-hidden="true"></a></span>
-<span id="cb123-3"><a href="#cb123-3" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
-<span id="cb123-4"><a href="#cb123-4" aria-hidden="true"></a>{</span>
-<span id="cb123-5"><a href="#cb123-5" aria-hidden="true"></a><span class="pp">#ifdef DEBUG_INFO</span></span>
-<span id="cb123-6"><a href="#cb123-6" aria-hidden="true"></a>    printf(<span class="st">&quot;program is started</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
-<span id="cb123-7"><a href="#cb123-7" aria-hidden="true"></a><span class="pp">#endif</span></span>
-<span id="cb123-8"><a href="#cb123-8" aria-hidden="true"></a></span>
-<span id="cb123-9"><a href="#cb123-9" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>; ++i)</span>
-<span id="cb123-10"><a href="#cb123-10" aria-hidden="true"></a>        printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, i)</span>
-<span id="cb123-11"><a href="#cb123-11" aria-hidden="true"></a></span>
-<span id="cb123-12"><a href="#cb123-12" aria-hidden="true"></a><span class="pp">#ifdef DEBUG_INFO</span></span>
-<span id="cb123-13"><a href="#cb123-13" aria-hidden="true"></a>    printf(<span class="st">&quot;program is finished</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
-<span id="cb123-14"><a href="#cb123-14" aria-hidden="true"></a><span class="pp">#endif</span></span>
-<span id="cb123-15"><a href="#cb123-15" aria-hidden="true"></a></span>
-<span id="cb123-16"><a href="#cb123-16" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb123-17"><a href="#cb123-17" aria-hidden="true"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb124"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true"></a>$ gcc main.c -DDEBUG_INFO -o program</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb124-2"><a href="#cb124-2" aria-hidden="true"></a></span>
+<span id="cb124-3"><a href="#cb124-3" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">void</span>)</span>
+<span id="cb124-4"><a href="#cb124-4" aria-hidden="true"></a>{</span>
+<span id="cb124-5"><a href="#cb124-5" aria-hidden="true"></a><span class="pp">#ifdef DEBUG_INFO</span></span>
+<span id="cb124-6"><a href="#cb124-6" aria-hidden="true"></a>    printf(<span class="st">&quot;program is started</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb124-7"><a href="#cb124-7" aria-hidden="true"></a><span class="pp">#endif</span></span>
+<span id="cb124-8"><a href="#cb124-8" aria-hidden="true"></a></span>
+<span id="cb124-9"><a href="#cb124-9" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>; ++i)</span>
+<span id="cb124-10"><a href="#cb124-10" aria-hidden="true"></a>        printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, i)</span>
+<span id="cb124-11"><a href="#cb124-11" aria-hidden="true"></a></span>
+<span id="cb124-12"><a href="#cb124-12" aria-hidden="true"></a><span class="pp">#ifdef DEBUG_INFO</span></span>
+<span id="cb124-13"><a href="#cb124-13" aria-hidden="true"></a>    printf(<span class="st">&quot;program is finished</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb124-14"><a href="#cb124-14" aria-hidden="true"></a><span class="pp">#endif</span></span>
+<span id="cb124-15"><a href="#cb124-15" aria-hidden="true"></a></span>
+<span id="cb124-16"><a href="#cb124-16" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb124-17"><a href="#cb124-17" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true"></a>$ gcc main.c -DDEBUG_INFO -o program</span></code></pre></div>
 </section>
 </section>
   <script>
