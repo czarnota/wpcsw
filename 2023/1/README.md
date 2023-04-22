@@ -1260,7 +1260,7 @@ add_executable(twojprogram main.c)
 
 +if (NOT PICO_PLATFORM STREQUAL "host")
 +	target_link_libraries(twojprogram pico_stdlib)
-+end()
++endif()
 
 +pico_enable_stdio_usb(twojprogram 1)
 +pico_enable_stdio_uart(twojprogram 0)
