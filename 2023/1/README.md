@@ -1264,7 +1264,6 @@ add_executable(twojprogram main.c)
 
 +pico_enable_stdio_usb(twojprogram 1)
 +pico_enable_stdio_uart(twojprogram 0)
-
 +pico_add_extra_outputs(twojprogram)
 ```
 
