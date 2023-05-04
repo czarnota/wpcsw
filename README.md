@@ -59,7 +59,7 @@ Oceniane będą 3 rzeczy
 | ----------------------------- | ---------- | ------- |
 | Zadanie 4 i 5                 | 01.04.2023 |  +1     |
 | Zadanie 11                    | 23.04.2023 |  +1     | 
-| Wgranie aplikacja na RPI Pico | 23.04.2023 |  +1     |
+| Wgranie aplikacji na RPI Pico | 23.04.2023 |  +1     |
 
 Liczba punktów i oceny jakie temu odpowiadają:
 
@@ -71,6 +71,10 @@ Liczba punktów i oceny jakie temu odpowiadają:
 
 Jeżeli, ktoś nie zdobędzie żadnego punktu, to na ostatnich zajęciach otrzyma
 zadanie ratunkowe, którego rozwiązanie do końca semestru skutkuje oceną 3.
+
+## Zadanie ratunkowe
+
+- Zadanie R1 ([html](https://czarnota.github.io/wpcsw/2023/1/task1), [md](https://github.com/czarnota/wpcsw/tree/main/2023/1/task1.md))
 
 ## Archiwum
 
