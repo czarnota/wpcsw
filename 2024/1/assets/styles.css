@@ -1,0 +1,52 @@
+h1 {
+    background-size: cover;
+    color: #fff;
+    text-shadow: 0px 0px 5px #000;
+}
+
+#wstęp-do-programowania-w-c-w-systemach-wbudowanych h1 {
+    background-image: url("pierwszy-program.jpg");
+}
+
+#instrukcje-warunkowe h1 {
+    background-image: url("instrukcje-warunkowe.jpg");
+}
+#wczytywanie-wejścia h1 {
+    background-image: url("wczytywanie-wejscia.jpg");
+}
+#pętle h1 {
+    background-image : url("petle.jpg");
+}
+#zmienne-i-typy-danych h1 {
+    background-image : url("zmienne-i-type-danych.jpg");
+}
+#funkcje h1 {
+    background-image : url("funkcje.jpg");
+}
+#ciągi-znaków h1 {
+    background-image: url("ciagi-znakow.jpg");
+}
+#podział-projektu-na-wiele-plików h1 {
+    background-image: url("podzial-projektu-na-wiele-plikow.jpg");
+}
+#preprocesor h1 {
+    background-image: url("preprocesor.jpg");
+}
+#struktury h1 {
+    background-image: url("struktury.jpg");
+}
+#tablice h1 {
+    background-image: url("tablice.jpg");
+}
+#typy-wyliczeniowe h1 {
+    background-image: url("typy-wyliczeniowe.jpg");
+}
+#wskaźniki h1 {
+    background-image: url("wskazniki.jpg");
+}
+#systemy-budowania h1 {
+    background-image: url("systemy-budowania.jpg");
+}
+#raspberry-pi-pico h1 {
+    background-image: url("raspberry-pi-pico.png");
+}
