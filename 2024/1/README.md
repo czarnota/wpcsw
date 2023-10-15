@@ -388,25 +388,25 @@ else if (animal == 2)
 
 ## Zadanie 4
 
-Napisz program symulujący rzut kostką sześcienną. Przykład działania:
+Napisz program symulujący grę w papier, kamień, nożyce.
 
-```bash
-$ ./cube
+```console
+$ ./rps
+player 1: rock
+player 2: paper
+result: player 2 wins the game
 
- *
+$ ./rps
+player 1: scissors
+player 2: scissors
+result: draw
 
-
-$ ./cube
-* *
-* *
-* *
-
-$ ./cube
-* *
- * 
-* *
-
+$ ./rps
+player 1: rock
+player 2: scissors
+result: player 1 wins the game
 ```
+
 
 # Wczytywanie wejścia
 
