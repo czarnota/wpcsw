@@ -365,19 +365,26 @@ zmiennych i miejsca, w których zostaną one wypisane.</p>
 </section>
 <section id="zmienne---sekcja-danych-bss-i-stos" class="level2">
 <h2>Zmienne - sekcja danych, bss i stos</h2>
-<p>Zmienne mogą być zadeklarowana w różnych obszarach pamięci:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> global_x <span class="op">=</span> <span class="dv">34</span><span class="op">;</span> <span class="co">// zmienna zinicjalizowana w sekcji danych</span></span>
+<p>Zmienne mogą być zlokalizowane w różnych obszarach pamięci:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> global_x <span class="op">=</span> <span class="dv">34</span><span class="op">;</span> <span class="co">// zmienna zainicjalizowana w sekcji .data</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> global_y<span class="op">;</span> <span class="co">// zmienna w sekcji BSS - zainicjalizowana 0</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> global_y<span class="op">;</span> <span class="co">// zmienna w sekcji .bss (block started by symbol) - zainicjalizowana 0</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x<span class="op">;</span> <span class="co">// zmienna na stosie - początkowa wartość niezdefiniowana</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span> <span class="dt">int</span> y<span class="op">;</span> <span class="co">// zmienna w sekcji BSS</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span> <span class="dt">int</span> z <span class="op">=</span> <span class="dv">32</span><span class="op">;</span> <span class="co">// zmienna w sekcji danych</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x<span class="op">;</span> <span class="co">// zmienna na stosie (stack) - początkowa wartość niezdefiniowana</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> xx <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="co">// zmienna na stosie (stack) - początkowa wartość zdefiniowana</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span> <span class="dt">int</span> y<span class="op">;</span> <span class="co">// zmienna w sekcji .bss</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span> <span class="dt">int</span> z <span class="op">=</span> <span class="dv">32</span><span class="op">;</span> <span class="co">// zmienna w sekcji .data</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> <span class="op">*</span>x<span class="op">;</span> <span class="co">// zmienna wskaźnikowa na stosie</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> malloc<span class="op">(</span><span class="dv">1</span><span class="op">);</span> <span class="co">// wskaźnik pokazujący do pamięci na stercie (heap)</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+<section id="pamięć-procesu" class="level2">
+<h2>Pamięć procesu</h2>
+<p><img src="assets/regions.svg" /></p>
 </section>
 <section id="typy-danych---liczby-całkowite" class="level2">
 <h2>Typy danych - liczby całkowite</h2>

@@ -1,0 +1,46 @@
+read -rd '' COLORDEFS <<EOF
+# Legend:
+r = { fill: #F44336; }
+g = { fill: #4CAF50; }
+b = { fill: #2196F3; }
+o = { fill: #FF9800; }
+y = { fill: #FFEB3B; }
+c = { fill: #00BCD4; }
+m = { fill: #9C27B0; }
+k = { fill: #000000; }
+EOF
+
+diagram regions.svg <<'EOF'
+                              
+      +-------------------+   
+   |  +- - - - - - - - - -+ 
+   |  |       .text       |   <--- "kod programu"            
+   |  +- - - - - - - - - -+
+   |  |       .data       |   <--- "zainicjalizowane zmienne globalne"
+   |  +- - - - - - - - - -+
+   |  |       .bss        |   <--- "niezainicjalizowane zmienne globalne"
+   |  +- - - - - - - - - -+
+   |  +- - - - - - - - - -+
+   |  |      sterta       |   <--- "malloc() size < MMAP_THRESHOLD"
+   |  +- - - - - - - - - -+
+   |  |         |         |
+   |  |         v         |
+   |  |                   |   
+   |  +- - - - - - - - - -+   
+   |  |    biblioteki     |   <--- "załadowane przez 'ld' oraz `dlopen()`"
+   |  +- - - - - - - - - -+   
+   |  |                   |   
+   |  |"(niezaalakowane)" |    
+   |  |                   |   <--- "malloc() size > MMAP_THRESHOLD, mmap()"
+   |  |         ^         |   
+   |  |         |         |   
+   |  +- - - - - - - - - -+   
+   |  |       stos        |   <--- "zmienne lokalne, adresy powrotu, alloca()"
+   |  +- - - - - - - - - -+   
+   |  |                   |   
+   |  |   "Pamięć jądra"  |   
+   |  | "(zmapowana do"   |   
+   |  | "pamięci procesu)"|   
+   v  |                   |   
+      +-------------------+                                                   .
+EOF

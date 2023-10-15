@@ -129,22 +129,29 @@ Napisz program, który dla prostokąta o bokach 57 i 13:
 
 ## Zmienne - sekcja danych, bss i stos
 
-Zmienne mogą być zadeklarowana w różnych obszarach pamięci:
+Zmienne mogą być zlokalizowane w różnych obszarach pamięci:
 
 ```c
-int global_x = 34; // zmienna zinicjalizowana w sekcji danych
+int global_x = 34; // zmienna zainicjalizowana w sekcji .data
 
-int global_y; // zmienna w sekcji BSS - zainicjalizowana 0
+int global_y; // zmienna w sekcji .bss (block started by symbol) - zainicjalizowana 0
 
 int main(void)
 {
-    int x; // zmienna na stosie - początkowa wartość niezdefiniowana
-    static int y; // zmienna w sekcji BSS
-    static int z = 32; // zmienna w sekcji danych
+    int x; // zmienna na stosie (stack) - początkowa wartość niezdefiniowana
+    int xx = 0; // zmienna na stosie (stack) - początkowa wartość zdefiniowana
+    static int y; // zmienna w sekcji .bss
+    static int z = 32; // zmienna w sekcji .data
+    char *x; // zmienna wskaźnikowa na stosie
+    x = malloc(1); // wskaźnik pokazujący do pamięci na stercie (heap)
 
     return 0
 }
 ```
+
+## Pamięć procesu
+
+![](assets/regions.svg)
 
 ## Typy danych - liczby całkowite
 
