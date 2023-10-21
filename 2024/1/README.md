@@ -546,6 +546,30 @@ for (int j = 10; j > 0; --j)
     printf("%d", j);
 ```
 
+## Pętla `for` vs `while`
+
+Następująca pętla `for`:
+
+```c
+for (int i = 0; i < 10; ++i) {
+    printf("%d\n", i);
+}
+```
+
+Jest równoważna następującej pętli `while`:
+
+```c
+{
+    int i = 0;
+    while (i < 10) {
+        printf("%d\n", i);
+        i++;
+    }
+}
+```
+
+Kompilują się do identycznego kodu (<https://godbolt.org/z/reKn78MTj>)
+
 ## Instrukcja `break`
 
 Instrukcja `break` przerywa wykonywania pętli.
@@ -576,14 +600,14 @@ for (int i = 0; i < 10; ++i) {
 ## Zadanie 6
 
 Napisz program który odczytuje dwie liczby - wysokość i szerokość.
-Program powinien narysować prostokąt o zadanej wysokości i szerokości.
+Program powinien narysować kontur prostokąta o zadanej wysokości i szerokości.
 
 ```bash
 $ ./rect
 3
 5
 *****
-*****
+*   *
 *****
 ```
 
@@ -645,7 +669,7 @@ int main(void)
 
 ## Zadanie 7
 
-Połącz trzy poprzednie programy (prostokąt, kalkulator, kostka) w jeden. Wykorzystaj
+Połącz trzy poprzednie programy (prostokąt, kalkulator, papier-kamien-nożyce) w jeden. Wykorzystaj
 funkcje.
 
 ```
@@ -654,9 +678,9 @@ Witaj użytkowniku. Co chcesz zrobić?
 
 a) Uruchom "prostokąt"
 b) Uruchom "kalkulator"
-c) Uruchom "kostka"
+c) Uruchom "papier-kamien-nozyce"
 twój wybór > c
-Wybrałeś "kostka"
+Wybrałeś "papier-kamien-nozyce"
 
 * *
 * *
@@ -666,7 +690,7 @@ Witaj użytkowniku. Co chcesz zrobić?
 
 a) Uruchom "prostokąt"
 b) Uruchom "kalkulator"
-c) Uruchom "kostka"
+c) Uruchom "papier kamień nożyce"
 ```
 
 # Podział projektu na wiele plików
@@ -754,11 +778,11 @@ int main(void)
 
 ## Zadanie 8
 
-Połącz trzy poprzednie programy (prostokąt, kalkulator, kostka) w jeden:
+Połącz trzy poprzednie programy (prostokąt, kalkulator, papier-kamien-nożyce) w jeden:
 
 - Program "kalkulator" umieść w `calculator.c`
 - Program "prostokat" umieść w `rect.c`
-- Program "kostka" umieść w `dice.c`
+- Program "papier-kamien-norzyce" umieść w `rps.c`
 - Dodaj odpowiednie pliki nagłówkowe
 - W pliku `main.c` umieść kod integrujący trzy poprzednie programy
 
@@ -767,8 +791,8 @@ Struktura projektu:
 .
 ├── calculator.c
 ├── calculator.h
-├── dice.c
-├── dice.h
+├── rps.c
+├── rps.h
 ├── main.c
 ├── rect.c
 └── rect.h
@@ -1178,11 +1202,11 @@ $ ./supertool
 Dostepne komendy:
 - prostokat
 - kalkulator
-- kostka
+- papier-kamien-nozyce
 - histogram 
 
-twój wybór > kostka
-Wybrałeś "kostka"
+twój wybór > papier-kamien-nozyce 
+Wybrałeś "papier-kamien-nozyce"
 * *
 * *
 * *
