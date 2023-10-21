@@ -363,8 +363,8 @@ zmiennych i miejsca, w których zostaną one wypisane.</p>
 <li>wyświetli długość jego przekątnej</li>
 </ul>
 </section>
-<section id="zmienne---sekcja-danych-bss-i-stos" class="level2">
-<h2>Zmienne - sekcja danych, bss i stos</h2>
+<section id="lokalizacja-zmiennych-w-pamięci" class="level2">
+<h2>Lokalizacja zmiennych w pamięci</h2>
 <p>Zmienne mogą być zlokalizowane w różnych obszarach pamięci:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> global_x <span class="op">=</span> <span class="dv">34</span><span class="op">;</span> <span class="co">// zmienna zainicjalizowana w sekcji .data</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -394,16 +394,17 @@ określa jej rozmiar w pamięci.</p>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> a <span class="op">=</span> <span class="ch">&#39;X&#39;</span><span class="op">;</span>              <span class="co">// dokładnie 1 bajt [-127; 127]</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">short</span> b <span class="op">=</span> <span class="op">-</span><span class="dv">30000</span><span class="op">;</span>          <span class="co">// minimum 2 bajty  [-32767; 32767]</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> c <span class="op">=</span> <span class="dv">30000</span><span class="op">;</span>             <span class="co">// minimum 2 bajty  [-32767; 32767]</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> d <span class="op">=</span> <span class="op">-</span><span class="dv">3000000</span><span class="op">;</span>         <span class="co">// minimum 4 bajty  [-2147483648; 2147483647]</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="dt">long</span> e <span class="op">=</span> <span class="dv">32147483648</span><span class="op">;</span> <span class="co">// minimum 8 bajtów [-9223372036854775807; 9223372036854775807]</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%c</span><span class="st"> </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%d</span><span class="st"> %l %ll&quot;</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">,</span> c<span class="op">,</span> d<span class="op">,</span> e<span class="op">);</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> a <span class="op">=</span> <span class="ch">&#39;X&#39;</span><span class="op">;</span>              <span class="co">// dokładnie 1 bajt [-127; 127] lub [0; 255]</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">signed</span> <span class="dt">char</span> a <span class="op">=</span> <span class="ch">&#39;X&#39;</span><span class="op">;</span>       <span class="co">// dokładnie 1 bajt [-127; 127]</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">short</span> b <span class="op">=</span> <span class="op">-</span><span class="dv">30000</span><span class="op">;</span>          <span class="co">// minimum 2 bajty  [-32767; 32767]</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> c <span class="op">=</span> <span class="dv">30000</span><span class="op">;</span>             <span class="co">// minimum 2 bajty  [-32767; 32767]</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> d <span class="op">=</span> <span class="op">-</span><span class="dv">3000000</span><span class="op">;</span>         <span class="co">// minimum 4 bajty  [-2147483647; 2147483647]</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="dt">long</span> e <span class="op">=</span> <span class="dv">32147483648</span><span class="op">;</span> <span class="co">// minimum 8 bajtów [-9223372036854775807; 9223372036854775807]</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%c</span><span class="st"> </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%d</span><span class="st"> %l %ll&quot;</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">,</span> c<span class="op">,</span> d<span class="op">,</span> e<span class="op">);</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 </section>
 <section id="typy-danych---liczby-całkowite-bez-znaku" class="level2">
 <h2>Typy danych - liczby całkowite bez znaku</h2>
@@ -414,8 +415,8 @@ powoduje, że będzie ona przechowywać tylko dodatnie wartości.</p>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">char</span> a <span class="op">=</span> <span class="dv">234</span><span class="op">;</span>             <span class="co">// dokładnie 1 bajt [0; 255]</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">short</span> b <span class="op">=</span> <span class="dv">60000</span><span class="op">;</span>          <span class="co">// minimum 2 bajty  [0; 65536]</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> c <span class="op">=</span> <span class="dv">60000</span><span class="op">;</span>            <span class="co">// minimum 2 bajty  [0; 65536]</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">short</span> b <span class="op">=</span> <span class="dv">60000</span><span class="op">;</span>          <span class="co">// minimum 2 bajty  [0; 65535]</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> c <span class="op">=</span> <span class="dv">60000</span><span class="op">;</span>            <span class="co">// minimum 2 bajty  [0; 65535]</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> d <span class="op">=</span> <span class="dv">70000</span><span class="op">;</span>           <span class="co">// minimum 4 bajty  [0; 4294967295]</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> <span class="dt">long</span> e <span class="op">=</span> <span class="dv">4294967295</span><span class="op">;</span> <span class="co">// minimum 8 bajtów [0; 18446744073709551615]</span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>

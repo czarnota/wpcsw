@@ -127,7 +127,7 @@ Napisz program, który dla prostokąta o bokach 57 i 13:
 - wyświetli jego obwód
 - wyświetli długość jego przekątnej
 
-## Zmienne - sekcja danych, bss i stos
+## Lokalizacja zmiennych w pamięci
 
 Zmienne mogą być zlokalizowane w różnych obszarach pamięci:
 
@@ -163,10 +163,11 @@ w pamięci.
 
 int main(void)
 {
-    char a = 'X';              // dokładnie 1 bajt [-127; 127]
+    char a = 'X';              // dokładnie 1 bajt [-127; 127] lub [0; 255]
+    signed char a = 'X';       // dokładnie 1 bajt [-127; 127]
     short b = -30000;          // minimum 2 bajty  [-32767; 32767]
     int c = 30000;             // minimum 2 bajty  [-32767; 32767]
-    long d = -3000000;         // minimum 4 bajty  [-2147483648; 2147483647]
+    long d = -3000000;         // minimum 4 bajty  [-2147483647; 2147483647]
     long long e = 32147483648; // minimum 8 bajtów [-9223372036854775807; 9223372036854775807]
 
     printf("%c %d %d %l %ll", a, b, c, d, e);
@@ -186,8 +187,8 @@ przechowywać tylko dodatnie wartości.
 int main(void)
 {
     unsigned char a = 234;             // dokładnie 1 bajt [0; 255]
-    unsigned short b = 60000;          // minimum 2 bajty  [0; 65536]
-    unsigned int c = 60000;            // minimum 2 bajty  [0; 65536]
+    unsigned short b = 60000;          // minimum 2 bajty  [0; 65535]
+    unsigned int c = 60000;            // minimum 2 bajty  [0; 65535]
     unsigned long d = 70000;           // minimum 4 bajty  [0; 4294967295]
     unsigned long long e = 4294967295; // minimum 8 bajtów [0; 18446744073709551615]
 
