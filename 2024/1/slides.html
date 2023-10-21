@@ -609,6 +609,28 @@ player 1: rock
 player 2: scissors
 result: player 1 wins the game</code></pre>
 </section>
+<section id="funkcja-rand---informacja" class="level2">
+<h2>Funkcja rand() - informacja</h2>
+<p>Funkcja <code>rand()</code> ma kilka problemów:</p>
+<ul class="incremental">
+<li>Nie jest bezpieczne wywoływanie jej z kilku wątków - zależy od
+globalnego stanu.</li>
+<li>Rozkład prawdopodobieństwa zwracanych liczb nie jest w żaden sposób
+zdefiniowany w standardzie języka C.</li>
+<li>Ograniczanie zakresu zwracanych liczb za pomocą operatora
+<code>%</code> wprowadza “Modulo Bias” <a
+href="https://research.kudelskisecurity.com/2020/07/28/the-definitive-guide-to-modulo-bias-and-how-to-avoid-it/"
+class="uri">https://research.kudelskisecurity.com/2020/07/28/the-definitive-guide-to-modulo-bias-and-how-to-avoid-it/</a></li>
+<li>Można przewidzieć jakie wartości będą zwracane znając ziarno lub
+dokonująć analizy za pomocą metod statystycznych.</li>
+</ul>
+<p>Dlatego, nie należy jej używać w zastosowaniach, gdzie potrzebne są
+nieprzewidywalne liczby losowe (np. kryptografia).</p>
+<p>Zamiast funkcji <code>rand()</code>, lepiej wykorzystać do takich
+zastosowań generator liczb <code>/dev/urandom</code> lub sprzętowy
+generator liczb losowych jeżeli platforma, na którą tworzone jest
+oprogramowanie go dostarcza.</p>
+</section>
 </section>
 <section id="wczytywanie-wejścia" class="level1">
 <h1>Wczytywanie wejścia</h1>

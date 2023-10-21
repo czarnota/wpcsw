@@ -408,6 +408,21 @@ player 2: scissors
 result: player 1 wins the game
 ```
 
+## Funkcja rand() - informacja
+
+Funkcja `rand()` ma kilka problemów:
+
+- Nie jest bezpieczne wywoływanie jej z kilku wątków - zależy od globalnego stanu.
+- Rozkład prawdopodobieństwa zwracanych liczb nie jest w żaden sposób zdefiniowany w standardzie języka C.
+- Ograniczanie zakresu zwracanych liczb za pomocą operatora `%` wprowadza "Modulo Bias"
+    <https://research.kudelskisecurity.com/2020/07/28/the-definitive-guide-to-modulo-bias-and-how-to-avoid-it/>
+- Można przewidzieć jakie wartości będą zwracane znając ziarno lub dokonująć analizy za pomocą metod statystycznych.
+
+Dlatego, nie należy jej używać w zastosowaniach, gdzie potrzebne są nieprzewidywalne liczby losowe (np. kryptografia).
+
+Zamiast funkcji `rand()`, lepiej wykorzystać do takich zastosowań generator liczb `/dev/urandom` lub
+sprzętowy generator liczb losowych jeżeli platforma, na którą tworzone jest oprogramowanie
+go dostarcza.
 
 # Wczytywanie wejścia
 
