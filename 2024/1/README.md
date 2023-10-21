@@ -682,9 +682,9 @@ c) Uruchom "papier-kamien-nozyce"
 twój wybór > c
 Wybrałeś "papier-kamien-nozyce"
 
-* *
-* *
-* *
+player 1: scissors
+player 2: scissors
+result: draw
 
 Witaj użytkowniku. Co chcesz zrobić?
 
@@ -1207,9 +1207,11 @@ Dostepne komendy:
 
 twój wybór > papier-kamien-nozyce 
 Wybrałeś "papier-kamien-nozyce"
-* *
-* *
-* *
+
+player 1: scissors
+player 2: scissors
+result: draw
+
 twój wybór > kalkulator
 1
 +
