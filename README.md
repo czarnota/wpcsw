@@ -4,16 +4,7 @@ Repozytorium zawiera materiały do przedmiotu "Wstęp to programowania w C z ele
 
 ## Laboratoria
 
-- Zadania ([slajdy](https://czarnota.github.io/wpcsw/2023/1/slides.html), [html](https://czarnota.github.io/wpcsw/2023/1/), [md](https://github.com/czarnota/wpcsw/tree/main/2023/1/))
-
-## Zadanie 11 - rozwiązanie
-
-Rozwiązane Zadanie 11, potrzebne do ostatnich laboratoriów: [link](https://github.com/czarnota/wpcsw-zad-11)
-
-Można je pobrać w następujący sposób
-```
-git clone https://github.com/czarnota/wpcsw-zad-11
-```
+- Zadania ([slajdy](https://czarnota.github.io/wpcsw/2024/1/slides.html), [html](https://czarnota.github.io/wpcsw/2024/1/), [md](https://github.com/czarnota/wpcsw/tree/main/2024/1/))
 
 ## Wysyłanie zadań
 
@@ -77,6 +68,12 @@ zadanie ratunkowe, którego rozwiązanie do końca semestru skutkuje oceną 3.
 - Zadanie R1 ([html](https://czarnota.github.io/wpcsw/2023/1/task1), [md](https://github.com/czarnota/wpcsw/tree/main/2023/1/task1.md))
 
 ## Archiwum
+
+### 2023 Lato
+
+#### Laboratoria
+
+- Zadania ([slides](https://czarnota.github.io/wpcsw/2023/1/slides.html), [html](https://czarnota.github.io/wpcsw/2023/1/), [md](https://github.com/czarnota/wpcsw/tree/main/2023/1/))
 
 ### 2022
 
