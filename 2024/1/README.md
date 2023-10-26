@@ -1,3 +1,7 @@
+---
+title: Wstęp do programowania w C w systemach wbudowanych
+---
+
 # Wstęp do programowania w C w systemach wbudowanych
 
 ## Szkielet programu

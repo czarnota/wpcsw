@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>presentation</title>
+    <title>Wstęp do programowania w C w systemach wbudowanych</title>
     <style>
     html { -moz-text-size-adjust: none; -webkit-text-size-adjust: none; text-size-adjust: none; }
     * { box-sizing: border-box; }
@@ -165,8 +165,6 @@
     /* Literal.Number.Hex */
     .sourceCode .dv { color: #de935f; }
 
-    .sourceCode .er { color: #de935f; }
-
     /* Literal.Number.Integer */
     .sourceCode .mo { color: #de935f; }
 
@@ -244,13 +242,11 @@
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
   <body>
-<section id="wstęp-do-programowania-w-c-w-systemach-wbudowanych"
-class="level1">
+<section id="wstęp-do-programowania-w-c-w-systemach-wbudowanych" class="level1">
 <h1>Wstęp do programowania w C w systemach wbudowanych</h1>
 <section id="zadanie-1" class="level2">
 <h2>Zadanie 1</h2>
-<p>Napisz program który po uruchomieniu wyświeli twoje imię i nazwisko.
-Skompiluj go za pomocą <code>gcc</code> i uruchom z terminala.</p>
+<p>Napisz program który po uruchomieniu wyświeli twoje imię i nazwisko. Skompiluj go za pomocą <code>gcc</code> i uruchom z terminala.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$ <span class="op">./</span>a<span class="op">.</span>out</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Jan Kowalski</span></code></pre></div>
 </section>
@@ -271,15 +267,12 @@ Jak Kowalski</code></pre>
 </section>
 <section id="zadanie-2" class="level2">
 <h2>Zadanie 2</h2>
-<p>Napisz program który przyjmuje 2 argumenty: imie i nazwisko, a
-następnie je wyświetla.</p>
+<p>Napisz program który przyjmuje 2 argumenty: imie i nazwisko, a następnie je wyświetla.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>$ <span class="op">./</span>a<span class="op">.</span>out Przemyslaw Czarnota</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Przemyslaw Czarnota</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>$ echo $<span class="op">?</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span></code></pre></div>
-<p>Podanie niepoprawnej liczby argumentów, powinno skutkować
-wyświetleniem błędu na standardowy strumień błędów oraz zwróceniem kodu
-błędu różnego od 0.</p>
+<p>Podanie niepoprawnej liczby argumentów, powinno skutkować wyświetleniem błędu na standardowy strumień błędów oraz zwróceniem kodu błędu różnego od 0.</p>
 <pre><code>$ ./a.out Za duzo argumentow &gt;/dev/null
 error: wrong number of arguments
 $ echo $?
@@ -299,18 +292,13 @@ $ echo $?
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%s</span><span class="st"> </span><span class="sc">%s\n</span><span class="st">&quot;</span><span class="op">,</span> argv<span class="op">[</span><span class="dv">1</span><span class="op">],</span> argv<span class="op">[</span><span class="dv">2</span><span class="op">]);</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>Gdy uruchamiamy <code>./program Jan Kowalski</code>, system
-operacyjny jako drugi argument funkcji <code>main()</code> przekazuje
-następującą tablicę ciągów znaków:</p>
+<p>Gdy uruchamiamy <code>./program Jan Kowalski</code>, system operacyjny jako drugi argument funkcji <code>main()</code> przekazuje następującą tablicę ciągów znaków:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>argv<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span> <span class="st">&quot;./program&quot;</span><span class="op">,</span> <span class="st">&quot;Jan&quot;</span><span class="op">,</span> <span class="st">&quot;Kowalski&quot;</span> <span class="op">};</span></span></code></pre></div>
-<p>Warto zauważyć że wywołanie systemowe <code>execvp</code> przyjmuje
-podobny argument :)</p>
+<p>Warto zauważyć że wywołanie systemowe <code>execvp</code> przyjmuje podobny argument :)</p>
 </section>
 <section id="zadanie-3" class="level2">
 <h2>Zadanie 3</h2>
-<p>Napisz program, który będzie odczytywał ze standardowego wejścia
-liczby do momentu wystąpienia wejścia, które nie jest liczbą lub końca
-strumienia i na końcu wyświetli ich średnią arytmetyczną.</p>
+<p>Napisz program, który będzie odczytywał ze standardowego wejścia liczby do momentu wystąpienia wejścia, które nie jest liczbą lub końca strumienia i na końcu wyświetli ich średnią arytmetyczną.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>$ <span class="op">./</span>a<span class="op">.</span>out</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span>
@@ -318,11 +306,9 @@ strumienia i na końcu wyświetli ich średnią arytmetyczną.</p>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fl">2.000000</span></span></code></pre></div>
 <p>Przydatne funkcje:</p>
 <ul class="incremental">
-<li><code>scanf()</code> - odczytuje zmienne ze standardowego
-wejścia</li>
+<li><code>scanf()</code> - odczytuje zmienne ze standardowego wejścia</li>
 </ul>
-<p>Skrót klawiaturowy <code>Ctrl-d</code>, powoduje wysłanie znaku końca
-pliku.</p>
+<p>Skrót klawiaturowy <code>Ctrl-d</code>, powoduje wysłanie znaku końca pliku.</p>
 </section>
 <section id="rozwiązanie-3" class="level2">
 <h2>Rozwiązanie 3</h2>
@@ -366,16 +352,13 @@ pliku.</p>
 </section>
 <section id="zadanie-4" class="level2">
 <h2>Zadanie 4</h2>
-<p>Napisz program, który będzie odczytywał liczby ze standardowego
-wejścia i wypisze je w odwrotnej kolejności.</p>
+<p>Napisz program, który będzie odczytywał liczby ze standardowego wejścia i wypisze je w odwrotnej kolejności.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>$ seq <span class="dv">1</span> <span class="dv">3</span> <span class="op">|</span> <span class="op">./</span>a<span class="op">.</span>out</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span></code></pre></div>
-<p>Program powinien działać maksymalnie dla 4096 liczb całkowitych.
-Dalsze liczby są odrzucane.</p>
-<p>Do rozwiązania będzie potrzebne wykorzystanie tablicy. Na
-przykład</p>
+<p>Program powinien działać maksymalnie dla 4096 liczb całkowitych. Dalsze liczby są odrzucane.</p>
+<p>Do rozwiązania będzie potrzebne wykorzystanie tablicy. Na przykład</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> tablica<span class="op">[</span><span class="dv">4096</span><span class="op">];</span></span></code></pre></div>
 </section>
 <section id="rozwiązanie-4" class="level2">
@@ -403,8 +386,7 @@ przykład</p>
 </section>
 <section id="zadanie-5" class="level2">
 <h2>Zadanie 5</h2>
-<p>Napisz program który wyświetli wszystkie argumenty przekazane do
-programu</p>
+<p>Napisz program który wyświetli wszystkie argumenty przekazane do programu</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>$ <span class="op">./</span>a<span class="op">.</span>out a b d e foo bar</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>a</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>b</span>
@@ -427,10 +409,7 @@ programu</p>
 </section>
 <section id="zadanie-6" class="level2">
 <h2>Zadanie 6</h2>
-<p>Napisz program, który będzie odczytywał ze standardowego wejścia
-liczby do momentu wystąpienia wejścia, które nie jest liczbą lub końca
-strumienia i na końcu wyświetli najmniejszą liczbę. Program powinien też
-działać dla liczb ujemnych.</p>
+<p>Napisz program, który będzie odczytywał ze standardowego wejścia liczby do momentu wystąpienia wejścia, które nie jest liczbą lub końca strumienia i na końcu wyświetli najmniejszą liczbę. Program powinien też działać dla liczb ujemnych.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>$ <span class="op">./</span>a<span class="op">.</span>out</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">2</span></span>
@@ -439,8 +418,7 @@ działać dla liczb ujemnych.</p>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">2</span>            <span class="op">&lt;---</span> tu wcisnąłem Ctrl<span class="op">-</span>d co powoduje wyświetlenie wyniku</span></code></pre></div>
 <p>Przydatne funkcje:</p>
 <ul class="incremental">
-<li><code>scanf()</code> - odczytuje zmienne ze standardowego
-wejścia</li>
+<li><code>scanf()</code> - odczytuje zmienne ze standardowego wejścia</li>
 </ul>
 </section>
 <section id="rozwiązanie-6" class="level2">
@@ -465,8 +443,7 @@ wejścia</li>
 </section>
 <section id="zadanie-7" class="level2">
 <h2>Zadanie 7</h2>
-<p>Rozwiń program z Zadania 4, tak aby działał dla dowolnej ilości
-liczb, która jest podana jako pierwszy argument.</p>
+<p>Rozwiń program z Zadania 4, tak aby działał dla dowolnej ilości liczb, która jest podana jako pierwszy argument.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">./</span>a<span class="op">.</span>out <span class="dv">5</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span>
@@ -507,9 +484,7 @@ liczb, która jest podana jako pierwszy argument.</p>
 </section>
 <section id="zadanie-8" class="level2">
 <h2>Zadanie 8</h2>
-<p>Rozwiń program z Zadania 4, tak aby działał dla dowolnej ilości
-liczb, ale bez podawania maksymalnej ilości liczb jako pierwszy
-argument. Wewnętrzna tablica powinna się dynamicznie rozszerzać.</p>
+<p>Rozwiń program z Zadania 4, tak aby działał dla dowolnej ilości liczb, ale bez podawania maksymalnej ilości liczb jako pierwszy argument. Wewnętrzna tablica powinna się dynamicznie rozszerzać.</p>
 <p>Przydatne funkcje:</p>
 <ul class="incremental">
 <li><code>malloc()</code> - alokuje pamięć</li>
@@ -573,8 +548,7 @@ $ ./program</code></pre>
 </section>
 <section id="zadanie-9" class="level2">
 <h2>Zadanie 9</h2>
-<p>Napisz funkcję która będzie sortować tablicę liczb typu
-<code>int</code> algorytmem sortowania bąbelkowego. Pseudokod:</p>
+<p>Napisz funkcję która będzie sortować tablicę liczb typu <code>int</code> algorytmem sortowania bąbelkowego. Pseudokod:</p>
 <pre><code>sort(items, len) {
     for (i = 0; i &lt; len - 1; i++) {
         for (j = 0; j &lt; len - 1 - i; j++) {
@@ -604,9 +578,7 @@ $ ./program</code></pre>
 </section>
 <section id="zadanie-10" class="level2">
 <h2>Zadanie 10</h2>
-<p>Napisz funkcję która będzie sortować tablicę liczby typu
-<code>float</code> algorytmem sortowania bąbelkowego. Dodaj do niej
-parametr określający porządek sortowania.</p>
+<p>Napisz funkcję która będzie sortować tablicę liczby typu <code>float</code> algorytmem sortowania bąbelkowego. Dodaj do niej parametr określający porządek sortowania.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort_float<span class="op">(</span><span class="dt">float</span> <span class="op">*</span>items<span class="op">,</span> <span class="dt">unsigned</span> <span class="dt">int</span> len<span class="op">,</span> <span class="dt">bool</span> reversed<span class="op">);</span></span></code></pre></div>
 <p>Wykorzystanie:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> n<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span><span class="fl">8.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">3.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">4.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">5.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">6.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">7.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">8.0</span><span class="bu">f</span><span class="op">};</span></span>
@@ -636,9 +608,7 @@ parametr określający porządek sortowania.</p>
 </section>
 <section id="zadanie-11" class="level2">
 <h2>Zadanie 11</h2>
-<p>Zdefiniuj makro <code>ARRAY_SIZE()</code>, które pozwoli obliczać
-liczbę elementów w tablicy w trakcie kompilacji (jeżeli rozmiar jest
-znany w trakcie kompilacji)</p>
+<p>Zdefiniuj makro <code>ARRAY_SIZE()</code>, które pozwoli obliczać liczbę elementów w tablicy w trakcie kompilacji (jeżeli rozmiar jest znany w trakcie kompilacji)</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">8</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">};</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>sort<span class="op">(</span>n<span class="op">,</span> ARRAY_SIZE<span class="op">(</span>n<span class="op">));</span></span></code></pre></div>
 <div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> n<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span><span class="fl">8.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">3.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">4.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">5.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">6.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">7.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">8.0</span><span class="bu">f</span><span class="op">};</span></span>
@@ -654,8 +624,7 @@ znany w trakcie kompilacji)</p>
 </section>
 <section id="zadanie-12" class="level2">
 <h2>Zadanie 12</h2>
-<p>Napisz generyczną funkcję <code>sort()</code>, która może posortować
-tablicę dowolnego typu:</p>
+<p>Napisz generyczną funkcję <code>sort()</code>, która może posortować tablicę dowolnego typu:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sort<span class="op">(</span><span class="dt">void</span> <span class="op">*</span>ptr<span class="op">,</span> <span class="dt">unsigned</span> <span class="dt">int</span> count<span class="op">,</span> <span class="dt">unsigned</span> <span class="dt">int</span> element_size<span class="op">,</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>          <span class="dt">int</span> <span class="op">(*</span>comparator<span class="op">)(</span><span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>a<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>b<span class="op">));</span></span></code></pre></div>
 <div class="sourceCode" id="cb35"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> compare_double<span class="op">(</span><span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>__a<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>__b<span class="op">)</span></span>
@@ -693,23 +662,16 @@ tablicę dowolnego typu:</p>
 </section>
 <section id="zadanie-13" class="level2">
 <h2>Zadanie 13</h2>
-<p>Napisz program który jako pierwszy argument przyjmie ciąg znaków.
-Następnie wypisze ciąg znaków, zamieniając wszystkie duże litery na
-małe.</p>
+<p>Napisz program który jako pierwszy argument przyjmie ciąg znaków. Następnie wypisze ciąg znaków, zamieniając wszystkie duże litery na małe.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>$ <span class="op">./</span>program <span class="st">&quot;This Should Be Small 1234&quot;</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>this should be small <span class="dv">1234</span></span></code></pre></div>
-<p>Zamiana znaków powinna się dokonać z wykorzystaniem autorskiej
-funkcji</p>
+<p>Zamiana znaków powinna się dokonać z wykorzystaniem autorskiej funkcji</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> autorskafunkcjadozamianyznakow<span class="op">(</span><span class="dt">char</span> <span class="op">*</span>str<span class="op">);</span></span></code></pre></div>
 <p>Przydatne informacje:</p>
 <ul class="incremental">
-<li>Kopiowanie ciągów znaków można osiągnąc za pomocą
-<code>memcpy()</code>, <code>strncpy()</code>, <code>strcpy()</code>,
-<code>snprintf()</code>.</li>
-<li>Aby zamienic dużą literę na małą wystarczy dodać do niej
-<code>'a' - 'A'</code>.</li>
-<li>Należy sprawdzić czy
-<code>'A' &lt;= litera &amp;&amp; litera &lt;= 'Z'</code>.</li>
+<li>Kopiowanie ciągów znaków można osiągnąc za pomocą <code>memcpy()</code>, <code>strncpy()</code>, <code>strcpy()</code>, <code>snprintf()</code>.</li>
+<li>Aby zamienic dużą literę na małą wystarczy dodać do niej <code>'a' - 'A'</code>.</li>
+<li>Należy sprawdzić czy <code>'A' &lt;= litera &amp;&amp; litera &lt;= 'Z'</code>.</li>
 </ul>
 </section>
 <section id="rozwiązanie-13---funkcja-to_lower" class="level2">
@@ -750,10 +712,7 @@ funkcji</p>
 </section>
 <section id="zadanie-14" class="level2">
 <h2>Zadanie 14</h2>
-<p>Terminalem, na który wypisujemy można sterować specjalnymi kodami
-ANSI (<a
-href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>).
-Możemy w ten sposób na przykład:</p>
+<p>Terminalem, na który wypisujemy można sterować specjalnymi kodami ANSI (<a href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>). Możemy w ten sposób na przykład:</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>fprintf<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;</span><span class="sc">%c</span><span class="st">[2J&quot;</span><span class="op">,</span> <span class="bn">0x1b</span><span class="op">);</span> <span class="co">/* Wyczyścić ekran */</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>fprintf<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;</span><span class="sc">%c</span><span class="st">[</span><span class="sc">%d</span><span class="st">;</span><span class="sc">%d</span><span class="st">H&quot;</span><span class="op">,</span> <span class="bn">0x1b</span><span class="op">,</span> y<span class="op">,</span> x<span class="op">);</span> <span class="co">/* Umieścić kursor w wierszu y i kolumnie x */</span></span></code></pre></div>
 <p>Napisz 2 funkcje:</p>
@@ -761,9 +720,7 @@ Możemy w ten sposób na przykład:</p>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> clrscr<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* Umieszcza kursor w wierszu y i kolumnie x */</span></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> gotoxy<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y<span class="op">);</span></span></code></pre></div>
-<p>Narysuj za ich pomocą animację przypominającą “kod z matrixa”. Do
-generowania liczb losowych możesz użyć <code>rand()</code>. Do kontroli
-szybkości animacji <code>usleep()</code>.</p>
+<p>Narysuj za ich pomocą animację przypominającą “kod z matrixa”. Do generowania liczb losowych możesz użyć <code>rand()</code>. Do kontroli szybkości animacji <code>usleep()</code>.</p>
 </section>
 <section id="zadanie-14---efekt" class="level2">
 <h2>Zadanie 14 - Efekt</h2>
