@@ -13,10 +13,6 @@ Program typu "Witaj świecie" można napisać w języku C w następujący sposó
    który zawiera deklarację funkcji printf(). */
 #include <stdio.h>
 
-/* Wklejenie zawartości pliku naglówkowego stdlib.h,
-   który zawiera deklarację stałych EXIT_SUCCESS, EXIT_FAILURE. */
-#include <stdlib.h>
-
 /* Definicja funkcji main() - funkcji wywoływanej jako pierwszej po uruchomieniu programu */
 int main(void)
 {
@@ -25,7 +21,7 @@ int main(void)
     printf("Hello world\n");
 
     /* Zwrócenie statusu wykonania programu do systemu operacyjnego. */
-    return EXIT_SUCCESS;
+    return 0;
 }
 ```
 
@@ -43,6 +39,29 @@ W ten sposób kod źródłowy zostanie przekształcony w plik wykonywalny o nazw
 ```bash
 $ ./nazwa
 Hello world
+```
+
+## Zwracanie kodu błędu
+
+Zwrócenie `0` lub `EXIT_SUCCESS` oznacza,
+że program zakończył się sukcesem. Zwrócenie `EXIT_FAILURE` oznacza, że program
+zakończył się błędem.
+
+```c
+#include <stdlib.h>
+
+int main(void)
+{
+    return EXIT_FAILURE;
+}
+```
+```c
+#include <stdlib.h>
+
+int main(void)
+{
+    return EXIT_SUCCESS; // lub return 0;
+}
 ```
 
 ## Zadanie 1
@@ -63,7 +82,6 @@ Zmienne reprezentują komórki pamięci w których przechowywane są dane.
 
 ```c
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void)
 {
@@ -73,7 +91,7 @@ int main(void)
 
     oranges = 10; /* Wpisanie do komórki pamięci wartości 10 */
 
-    return EXIT_SUCCESS;
+    return 0;
 }
 ```
 
@@ -82,7 +100,6 @@ Zmienne wykorzystujemy do tego aby zapisywać wyniki obliczeń.
 
 ```c
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void)
 {
@@ -96,7 +113,7 @@ int main(void)
     float speed = distance / time;
     printf("szybkosc to %f\n", speed);
 
-    return EXIT_SUCCESS;
+    return 0;
 }
 ```
 
@@ -108,7 +125,6 @@ one wypisane.
 
 ```c
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void)
 {
@@ -119,7 +135,7 @@ int main(void)
     printf("temperatura %d bilans %u oprocentowanie %f\n",
            temperature, interest_rate, money);
 
-    return EXIT_SUCCESS;
+    return 0;
 }
 ```
 
@@ -255,6 +271,35 @@ zwraca wartość typu `size_t`, do której wypisania należy użyć specyfikator
 ```c
 printf("%zu\n", sizeof(char));
 ```
+
+## Kompilacja programu w wszystkimi ostrzeżeniami
+
+```bash
+$ gcc -Wall -Wextra -Wconversion -Wfloat-conversion -Wsign-compare -Wpedantic \
+      -Wsign-conversion -Werror plik.c -o nazwa
+```
+
+```c
+float amount = -10;
+int number = amount;          /* -Wfloat-conversion */
+unsigned int x = 1;           /* -Wunused-variable, (-Wall) */
+printf("-10 = %f\n", number); /* -Wformat, (-Wall) */
+
+unsigned int one = 1;
+if (number > one)             /* -Wsign-compare */
+    printf("-10 > 1\n");
+
+one = number;                 /* -Wsign-conversion */
+unsigned short s = one;       /* -Wconversion */
+(void)s;
+int uninitialized;
+printf("%d", uninitialized);  /* -Wuninitialized (-Wextra) */
+
+void *p = &one;
+printf("%p", p + 2);          /* -Wpedantic */
+```
+
+<https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html>
 
 # Instrukcje warunkowe
 
