@@ -4,7 +4,7 @@ Repozytorium zawiera materiały do przedmiotu "Wstęp to programowania w C z ele
 
 ## Laboratoria
 
-- Zadania ([slajdy](https://czarnota.github.io/wpcsw/2024/1/slides.html), [html](https://czarnota.github.io/wpcsw/2024/1/), [md](https://github.com/czarnota/wpcsw/tree/main/2024/1/))
+- Zadania ([slajdy](https://czarnota.github.io/wpcsw/2024/1/slides.html), [html](https://czarnota.github.io/wpcsw/2024/1/README), [md](https://github.com/czarnota/wpcsw/tree/main/2024/1/))
 
 ## Wysyłanie zadań
 
