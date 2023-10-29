@@ -48,9 +48,9 @@ Oceniane będą 3 rzeczy
 
 | Zadanie                       | Termin     | Punkty  |
 | ----------------------------- | ---------- | ------- |
-| Zadanie 4 i 5                 | 01.04.2023 |  +1     |
-| Zadanie 11                    | 23.04.2023 |  +1     | 
-| Wgranie aplikacji na RPI Pico | 23.04.2023 |  +1     |
+| Zadanie 6                     | 04.11.2023 |  +1     |
+|                               |            |  +1     |
+|                               |            |  +1     |
 
 Liczba punktów i oceny jakie temu odpowiadają:
 
