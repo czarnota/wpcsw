@@ -696,7 +696,7 @@ Tablice można zainicjalicować w następujący sposób
 
 ```c
 // Wszystkie wartości zainicjalizowane 0
-int a[10];
+int g[10];
 int main(void)
 {
     // Wszystkie wartości niezainicjalizowane
