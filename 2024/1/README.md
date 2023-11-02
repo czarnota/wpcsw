@@ -831,7 +831,7 @@ fgets(name, sizeof(name), stdin);
 ## Ciągi znaków - kopiowanie
 
 Ciągi znaków są tablicami, więc żeby je skopiować musimy podobnie jak w przypadku
-tablic przkopiować każdy element. Do kopiowania ciągów znaków można wykorzystać
+tablic przekopiować każdy element. Do kopiowania ciągów znaków można wykorzystać
 funkcję `snprintf`.
 
 ```c
