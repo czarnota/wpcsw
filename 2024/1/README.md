@@ -660,6 +660,252 @@ $ ./rect
 *****
 ```
 
+# Tablice
+
+## Tablice
+
+Tablice pozwalają na tworzenie zmiennych odpowiadającym wielu komórkom pamięci.
+
+```c
+float velocity[2];
+
+velocity[0] = 5.0f;
+velocity[1] = 1.0f;
+```
+
+```c
+int days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+for (int i = 0; i < 12; ++i)
+    printf("%d\n", days[i]);
+```
+
+```c
+float grades[] = { 3.0f, 4.0f, 5.0f };
+float sum = 0.0f
+
+for (int i = 0; i < 3; ++i)
+    sum += grades[i];
+
+printf("result: %f\n", sum / 3.0f);
+```
+
+## Tablice - inicjalizacja
+
+Tablice można zainicjalicować w następujący sposób
+
+```c
+// Wszystkie wartości zainicjalizowane 0
+int a[10];
+int main(void)
+{
+    // Wszystkie wartości niezainicjalizowane
+    int a[10];
+    // Wszystkie wartości zainicjalizowane 0
+    int b[10] = {0};
+    // Pierwsza wartosć zainicjalizowana 1, reszta 0
+    int c[10] = {1};
+    // Pierwszych 5 wartosci zainicjalizowane liczbami, reszta 0
+    int d[10] = {1, 2, 3, 4, 5};
+    // Szósta wartość zanicjalizowana 1, ósma 2, reszta 0 (C99)
+    int e[10] = { [5] = 1, [7] = 2, };
+    // Wszystkie wartości zainicjalizowane 0 (C23)
+    int f[10] = {};
+}
+```
+
+## Tablice - rozmiar
+
+Tablica posiada statyczny rozmiar. Nie jest możliwa jego zmiana w trakcie działania programu.
+
+```c
+int a[5] = {1, 2, 3, 4, 5}
+for (int i = 0; i < 5; ++i)
+    printf("%d\n", a[i]);
+```
+
+Jednak kod może zostać zmieniony, dlatego zapisywanie rozmiaru na sztywno
+nie jest dobrą praktyką.
+```c
+int a[5] = {1, 2, 3, 4, 5}
+for (size_t i = 0; i < sizeof(a) / sizeof(a[0]); ++i)
+    printf("%d\n", a[i]);
+```
+
+Często definiuje się makro o nazwie `ARRAY_SIZE`, które zwraca rozmiar tablicy.
+```c
+#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
+
+for (size_t i = 0; i < ARRAY_SIZE(a); ++i)
+    printf("%d\n", a[i]);
+```
+
+## Tablice - kopiowanie
+
+Kopiowanie tablicy wymaga skopiowania jej każdego elementu.
+
+```c
+int a[] = {1, 2, 3, 4};
+int b[4];
+
+for (int i = 0; i < sizeof(a) / sizeof(a[0]); ++i)
+    a[i] = b[i];
+```
+
+Można do tego wykorzystać funkcję `memcpy()` pochodzącą z nagłówka `string.h`
+
+```c
+memcpy(a, b, sizeof(a));
+```
+
+## Tablice dwuwymiarowe
+
+Tablice mogą mieć wiele wymiarów.
+
+```c
+// Tablica o 3 wierszach i 6 kolumnach
+int array[3][6] = {
+    { 0, 1, 2, 1, 4, 1 },
+    { 0, 1, 2, 2, 4, 2 },
+    { 0, 1, 2, 3, 4, 3 },
+};
+
+printf("%d", array[1][4]);
+```
+
+## Zadanie 7
+
+Napisz program, który od użytkownika będzie wczytywał liczby całkowite do momentu
+aż liczba podana przez użytkownika nie będzie liczbą. Następnie wypisze średnią arytmetyczną
+z podanych liczb.
+
+```c
+$ ./program
+1
+2
+3
+q
+2.0
+```
+
+# Ciągi znaków
+
+## Ciągi znaków
+
+Język C nie ma dedykowanego typu służącego do przedstawiania ciągów znaków.
+Do operowania na ciągach znaków wykorzystuje się tablice znaków zakończone zerem.
+
+```c
+char text[] = { 'H', 'e', 'l', 'l', 'o', 0 };
+printf("%s", text);
+```
+
+```c
+char text[] = "Hello";         // zero automatycznie dodane na końcu
+printf("%s", text);
+```
+
+```c
+char text[6] = "Hello";         // zero automatycznie dodane na końcu
+printf("%s", text);
+```
+
+## Ciągi znaków - odczytywanie ze standardowego wejścia
+
+```c
+char name[32] = {0};
+scanf("%31s", &name[0]);
+```
+
+```c
+char name[32] = {0};
+scanf("%31s", name);
+```
+
+```c
+char name[32] = {0};
+fgets(name, sizeof(name), stdin);
+```
+
+
+## Ciągi znaków - kopiowanie
+
+Ciągi znaków są tablicami, więc żeby je skopiować musimy podobnie jak w przypadku
+tablic przkopiować każdy element. Do kopiowania ciągów znaków można wykorzystać
+funkcję `snprintf`.
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    char src[] = "Hello";
+    char dst[64];
+
+    int written = snprintf(dst, sizeof(dst), "%s", src);
+    if (written < 0 || written >= (int)sizeof(dst))
+        return -1;
+
+    return 0;
+}
+```
+
+## Ciągi znaków - porównywanie
+
+Do porównywania ciągów znaków służy funkcja `strcmp()`, która zwraca `0` gdy
+ciągi znaków są równe.
+
+```c
+#include <string.h>
+#include <stdio.h>
+
+int main(void)
+{
+    char str[] = "hello";
+
+    if (strcmp("hello", str) == 0)
+        printf("ok\n");
+
+    return 0;
+}
+```
+
+## Ciągi znaków - tablica ciągów znaków
+
+Ciąg znaków to zwykła tablica znaków. Oznacza to, że może być również wielowymiarowa.
+
+```c
+char todo_list[][255] = {
+    "Buy milk",
+    "Buy coffee",
+    "Buy sugar",
+};
+
+for (int i = 0; i < 3; ++i)
+    printf("%s\n", todo_list[i]);
+```
+
+## Zadanie 8
+
+Napisz program realizujący grę polegającą na odgadywaniu nazw miast.
+
+```c
+$ ./guess
+________
+> w
+______w_
+> a
+_a___awa
+> z
+_a__zawa
+> Warszawa
+Congratulations
+```
+
+Jeżeli użytkownik poda jeden znak, wtedy należy spróbować go uzupełnić. Jak poda
+więcej niż jeden znak, to znaczy, że próbuje odgadnąć całe hasło. Jeżeli je odgadnie
+do gra się kończy. Jeżeli nie to gra toczy się dalej.
+
 # Funkcje
 
 ## Funkcje
@@ -679,14 +925,14 @@ int factorial(int n)
 int main(void)
 {
     int n = factorial(4);
-    printf("%d\n", n);
+    printf("4! = %d\n", n);
     return 0;
 }
 ```
 
 ```bash
 $ ./prog
-24
+4! = 24
 ```
 
 ## Funkcje - definicja i deklaracja
@@ -716,31 +962,29 @@ int main(void)
 }
 ```
 
-## Zadanie 7
+## Zadanie 9
 
-Połącz trzy poprzednie programy (prostokąt, kalkulator, papier-kamien-nożyce) w jeden. Wykorzystaj
-funkcje.
+Napisz funkcję rysującą wisielca. Poniżej przedstawiono kolejne fazy:
 
 ```
-$ ./supertool
-Witaj użytkowniku. Co chcesz zrobić?
-
-a) Uruchom "prostokąt"
-b) Uruchom "kalkulator"
-c) Uruchom "papier-kamien-nozyce"
-twój wybór > c
-Wybrałeś "papier-kamien-nozyce"
-
-player 1: scissors
-player 2: scissors
-result: draw
-
-Witaj użytkowniku. Co chcesz zrobić?
-
-a) Uruchom "prostokąt"
-b) Uruchom "kalkulator"
-c) Uruchom "papier kamień nożyce"
+   .----.   .----.   .----.   .----.   .----.   .----.   .----. 
+        |   O    |   O    |   O    |   O    |   O    |   O    |
+        |        |    \   |   |\   |  /|\   |  /|\   |  /|\   |
+        |        |        |        |        |  /     |  / \   |
+       / \      / \      / \      / \      / \      / \      / \
 ```
+
+```c
+void draw_hangman(int mistakes)
+{
+    /* ... */
+}
+```
+
+I wykorzystaj ją w grze. Gra powinna rysować wisielca przed wyświetleniem aktualnego
+stanu gry oraz dorysowywać kolejne kończyny w przypadku podania przez użytkownika znaku
+którego nie ma w haśle lub błędnego podania całego hasła. Gdy zostanie narysowany
+cały wisielec, gracz przegrywa i gra ulega zakończeniu.
 
 # Podział projektu na wiele plików
 
@@ -845,103 +1089,6 @@ Struktura projektu:
 ├── main.c
 ├── rect.c
 └── rect.h
-```
-
-# Tablice
-
-## Tablice
-
-Tablice pozwalają na tworzenie zmiennych odpowiadającym wielu komórkom pamięci.
-
-```c
-float velocity[2];
-
-velocity[0] = 5.0f;
-velocity[1] = 1.0f;
-```
-
-```c
-int days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
-for (int i = 0; i < 12; ++i)
-    printf("%d\n", days[i]);
-```
-
-```c
-float grades[] = { 3.0f, 4.0f, 5.0f };
-float sum = 0.0f
-
-for (int i = 0; i < 3; ++i)
-    sum += grades[i];
-
-printf("result: %f\n", sum / 3.0f);
-```
-
-## Tablice - inicjalizacja
-
-Tablice można zainicjalicować w następujący sposób
-
-```c
-int main(void)
-{
-    // Wszystkie wartości niezainicjalizowane
-    int a[10];
-    // Wszystkie wartości zainicjalizowane 0
-    int b[10] = {0};
-    // Pierwsza wartosć zainicjalizowana 1, reszta 0
-    int c[10] = {1};
-    // Pierwszych 5 wartosci zainicjalizowane liczbami, reszta 0
-    int d[10] = {1, 2, 3, 4, 5};
-    // Szósta wartość zanicjalizowana 1, ósma 2, reszra 0
-    int e[10] = { [5] = 1, [7] = 2, };
-}
-```
-
-## Tablice - kopiowanie
-
-Żeby skopiować tablicę należy skopiować jej każdy element.
-
-```c
-int a[] = {1, 2, 3, 4};
-int b[4];
-
-for (int i = 0; i < sizeof(a) / sizeof(a[0]); ++i)
-    a[i] = b[i];
-```
-
-Można do tego wykorzystać funkcję `memcpy()` pochodzącą z nagłówka `string.h`
-
-```c
-memcpy(a, b, sizeof(a));
-```
-
-## Zadanie 9
-
-Dodaj funkcjonalność "histogram" polegającą na odczytywaniu liczb i zliczaniu
-ile podano liczb od 0 do 9. Zakończ wczytywanie i wypisz
-histogram, gdy podana wartość jest z poza przedziału.
-
-```bash
-$ ./program
-...
-d) Uruchom "histogram"
-twój wybór > d
-Wybrałeś "histogram"
-0
-0
-4
--1
-histogram:
-0: **
-1:  
-2:  
-3:
-4: *
-5:  
-6:
-7:
-8:
-9:
 ```
 
 # Wskaźniki
@@ -1109,6 +1256,28 @@ int array[3] = { 1, 2, 3 };
 print_numbers(&array);
 ```
 
+## Ciągi znaków - argumenty przekazywane do programu
+
+Funkcja `main()` może mieć alternatywną sygnaturę, która umożliwia odczytywanie
+argumentów przekazywanych do programu.
+
+```c
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+    for (int i = 1; i < argc; ++i)
+        printf("%s\n", argv[i]);
+    return 0;
+}
+```
+
+```bash
+$ ./program hello world
+hello
+world
+```
+
 ## Zadanie 10
 
 Zmień podprogram `histogram`, tak aby wykorzystywał dwie funkcje:
@@ -1134,111 +1303,6 @@ int histogram_add(int *histogram, int histogram_len, int number);
  * @histogram_len: liczba elementów tablicy
  */
 void histogram_show(int *histogram, int histogram_len);
-```
-
-# Ciągi znaków
-
-## Ciągi znaków
-
-Język C nie ma dedykowanego typu służącego do przedstawiania ciągów znaków.
-Do operowania na ciągach znaków wykorzystuje się tablice znaków zakończone zerem.
-
-```c
-char text[] = { 'H', 'e', 'l', 'l', 'o', 0 };
-printf("%s", text);
-```
-
-```c
-char text[] = "Hello";         // zero automatycznie dodane na końcu
-printf("%s", text);
-```
-
-```c
-char text[] = "Hello";         // zero automatycznie dodane na końcu
-const char *p_text = text;
-printf("%s", p_text);
-```
-
-```c
-// inicjalizacja wskaźnika, by pokazywał na niemodyfikowalny ciąg znaków
-const char *p_text = "Hello";  
-printf("%s", p_text);
-```
-
-## Ciągi znaków - odczytywanie ze standardowego wejścia
-
-```c
-char name[32] = {0};
-scanf("%31s", name);
-```
-
-```c
-char name[32] = {0};
-fgets(name, sizeof(name), stdin);
-```
-
-## Ciągi znaków - kopiowanie
-
-Ciągi znaków są tablicami, więc żeby je skopiować musimy podobnie jak w przypadku
-tablic przkopiować każdy element. Do kopiowania ciągów znaków można wykorzystać
-funkcję `snprintf`.
-
-```c
-#include <stdio.h>
-
-int main(void)
-{
-    const char *src = "Hello";
-    char dst[64];
-
-    int written = snprintf(dst, sizeof(dst), "%s", src);
-    if (written < 0 || written >= (int)sizeof(dst))
-        return -1;
-
-    return 0;
-}
-```
-
-## Ciągi znaków - porównywanie
-
-Do porównywania ciągów znaków służy funkcja `strcmp()`, która zwraca `0` gdy
-ciągi znaków są równe.
-
-```c
-#include <string.h>
-#include <stdio.h>
-
-int main(void)
-{
-    const char *str = "hello";
-
-    if (strcmp("hello", str) == 0)
-        printf("ok\n");
-
-    return 0;
-}
-```
-
-## Ciągi znaków - argumenty przekazywane do programu
-
-Funkcja `main()` może mieć alternatywną sygnaturę, która umożliwia odczytywanie
-argumentów przekazywanych do programu.
-
-```c
-#include <stdio.h>
-
-int main(int argc, char **argv)
-{
-    for (int i = 1; i < argc; ++i)
-        printf("%s\n", argv[i]);
-    return 0;
-}
-```
-
-```bash
-$ ./program hello world
-hello
-world
 ```
 
 ## Zadanie 11
