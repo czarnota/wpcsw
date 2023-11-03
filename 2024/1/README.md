@@ -827,8 +827,14 @@ printf("%s", text);
 ```
 
 ```c
-char text[6] = "Hello";         // zero automatycznie dodane na końcu
-printf("%s", text);
+char text[6] = "Hello";
+const char *ptext = text;
+printf("%s", ptext);
+```
+
+```c
+const char *ptext = "Hello";
+printf("%s", ptext);
 ```
 
 ## Ciągi znaków - odczytywanie ze standardowego wejścia
