@@ -773,6 +773,27 @@ int array[3][6] = {
 printf("%d", array[1][4]);
 ```
 
+Wewnętrzny wymiar można pominąć
+
+```c
+int array[][6] = {
+    { 0, 1, 2, 1, 4, 1 },
+    { 0, 1, 2, 2, 4, 2 },
+};
+```
+
+## Nazwa tablicy
+
+Nazwa tablicy zwraca adres jej pierwszego elementu
+
+```c
+int digits[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+int *digit_pointer = NULL;
+
+digit_pointer = digits;
+digit_pointer = &digits[0];
+```
+
 ## Zadanie 7
 
 Napisz program, który od użytkownika będzie wczytywał liczby całkowite do momentu
