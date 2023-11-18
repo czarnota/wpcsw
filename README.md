@@ -6,6 +6,9 @@ Repozytorium zawiera materiały do przedmiotu "Wstęp to programowania w C z ele
 
 - Zadania ([slajdy](https://czarnota.github.io/wpcsw/2024/1/slides.html), [html](https://czarnota.github.io/wpcsw/2024/1/README), [md](https://github.com/czarnota/wpcsw/tree/main/2024/1/))
 
+- Zadanie 4: <https://czarnota.github.io/wpcsw/2024/1/rps.c>
+- Zadanie 9: <https://czarnota.github.io/wpcsw/2024/1/hangman.c>
+
 ## Wysyłanie zadań
 
 Zadania należy wysyłać na adres email: `przemyslaw.czarnota@hotmail.com`.
@@ -49,7 +52,7 @@ Oceniane będą 3 rzeczy
 | Zadanie                       | Termin     | Punkty  |
 | ----------------------------- | ---------- | ------- |
 | Zadanie 6                     | 04.11.2023 |  +1     |
-|                               |            |  +1     |
+| Zadanie 9                     | 18.11.2023 |  +1     |
 |                               |            |  +1     |
 
 Liczba punktów i oceny jakie temu odpowiadają:
