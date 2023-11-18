@@ -1013,111 +1013,6 @@ stanu gry oraz dorysowywać kolejne kończyny w przypadku podania przez użytkow
 którego nie ma w haśle lub błędnego podania całego hasła. Gdy zostanie narysowany
 cały wisielec, gracz przegrywa i gra ulega zakończeniu.
 
-# Podział projektu na wiele plików
-
-## Kilka plików `.c`
-
-Definicje funkcji i zmiennych możemy umieszczać w osobnych plikach.
-
-```c
-// calculator.c
-int add(int a, int b)
-{
-    return a + b;
-}
-```
-
-```c
-// main.c
-int add(int a, int b);
-int main(void)
-{
-    printf("%d\n", add(1, 2));
-    return 0;
-}
-```
-
-```c
-gcc main.c calculator.c -o program
-```
-
-## Pliki nagłówkowe
-
-Najczęściej deklaracje funkcji umieszczane są w osobnych plikach nagłówkowych, które
-następnie dołączane są w plikach, w których chcemy z tych deklaracji skorzystać.
-
-```c
-// calculator.c
-int add(int a, int b)
-{
-    return a + b;
-}
-```
-```c
-// calculator.h
-int add(int a, int b)
-```
-```c
-// main.c
-#include "calculator.h"
-int main(void)
-{
-    printf("%d\n", add(1, 2));
-    return 0;
-}
-```
-
-## Zapobieganie ponownemu dołączeniu
-
-```c
-// calculator.h
-#ifndef __calculator_h__
-#define __calculator_h__
-int add(int a, int b);
-#endif
-```
-
-```c
-// other.h
-#ifndef __other_h__
-#define __other_h__
-#include "calculator.h"
-#endif
-```
-
-```c
-// main.c
-#include "other.h"
-#include "calculator.h"
-int main(void)
-{
-    printf("%d\n", add(1, 2));
-    return 0;
-}
-```
-
-## Zadanie 8
-
-Połącz trzy poprzednie programy (prostokąt, kalkulator, papier-kamien-nożyce) w jeden:
-
-- Program "kalkulator" umieść w `calculator.c`
-- Program "prostokat" umieść w `rect.c`
-- Program "papier-kamien-norzyce" umieść w `rps.c`
-- Dodaj odpowiednie pliki nagłówkowe
-- W pliku `main.c` umieść kod integrujący trzy poprzednie programy
-
-Struktura projektu:
-```
-.
-├── calculator.c
-├── calculator.h
-├── rps.c
-├── rps.h
-├── main.c
-├── rect.c
-└── rect.h
-```
-
 # Wskaźniki
 
 ## Wskaźniki do zmiennych
@@ -1305,59 +1200,290 @@ hello
 world
 ```
 
-## Zadanie 10
 
-Zmień podprogram `histogram`, tak aby wykorzystywał dwie funkcje:
+# Struktury
+
+## Struktury
+Struktury pozwalają na definiowanie typów złożonych.
 
 ```c
-/**
- * histogram_add() - dodaj liczbę do histogramu
- *
- * @histogram: tablica zawiarająca histogram
- * @histogram_len: liczba elementów tablicy
- * @number: liczba do dodania
- * 
- * Return:
- * Zwraca 0 gdy liczbę dodano poprawnie, -1 gdy liczba jest mniejsza od 0 lub
- * większa lub równa niż histogram_len
- */
-int histogram_add(int *histogram, int histogram_len, int number);
+struct vec3 {
+    float x;
+    float y;
+    float z;
+};
+```
 
-/**
- * histogram_show() - wyświetl histogram
- *
- * @histogram: tablica zawiarająca histogram
- * @histogram_len: liczba elementów tablicy
- */
-void histogram_show(int *histogram, int histogram_len);
+```c
+struct vec3 position;
+position.x = 5.0f;
+position.y = 10.0f;
+position.z = 5.0f;
+```
+
+## Struktury - inicjalizacja
+
+```c
+struct color {
+    unsigned char red;
+    unsigned char green;
+    unsigned char blue;
+};
+```
+
+```c
+struct color white = { 255, 255, 255 };
+struct color black = { 0 };
+struct color yellow = {
+    .red = 255,
+    .green = 255,
+};
+```
+
+```c
+struct color yellow = (struct color) {
+    .red = 255,
+    .green = 255,
+};
+```
+
+## Struktury - kopiowanie
+
+Kopiowanie struktur odbywa się poprzez operator `=`.
+
+```c
+struct color green = { 0, 255, 0 };
+struct color tmp;
+tmp = green;
+```
+
+Można to wykonać również za pomocą funkcji `memcpy()`.
+
+```c
+memcpy(&tmp, &green, sizeof(tmp));
+```
+
+## Struktury - wskaźniki do struktur
+
+```c
+struct led_light {
+    struct color color;
+    bool on;
+};
+
+void led_light_init(struct led_light *light)
+{
+    light->color.red = 255;
+    light->on = false;
+}
+
+void led_light_switch(struct led_light *light)
+{
+    light->on = !light->on;
+}
+
+int main(void)
+{
+    struct led_light light;
+    led_light_init(&light);
+    led_light_switch(&light);
+    return 0;
+}
+
+```
+
+
+## Zadanie 10
+
+Zamiplementuj strukturę gracza i funkcję:
+
+```c
+struct character {
+    char c;
+    int x;
+    int y;
+};
+
+/* Jeżeli dir to 'w', 's', 'a' lub 'd' to rusz graczem o jedną jednostkę w odpowiednim kierunku.
+ * Pamiętaj że gracz nie może wyjść poza granice planszy */
+void character_move(struct character *ch, char dir);
 ```
 
 ## Zadanie 11
 
-Zmień program z poprzedniego zadania, w taki sposób aby uruchamianie "podprogramów"
-odbywało się za pomocą wpisania ich nazwy, zamiast za pomocą wpisania liczby.
+Zaimplementuj strukturę bufora ramki ekranu.
 
-```bash
-$ ./supertool
-Dostepne komendy:
-- prostokat
-- kalkulator
-- papier-kamien-nozyce
-- histogram 
+```c
+struct frame {
+    char cells[5][5];
+};
+/* wyczyść bufor znakami '.' */
+void frame_clear(struct frame *frame);
+/* umieść gracza buforze */
+void frame_add(struct frame *frame, struct character *ch);
+/* wypisz bufor */
+void frame_draw(struct frame *frame);
+```
 
-twój wybór > papier-kamien-nozyce 
-Wybrałeś "papier-kamien-nozyce"
+## Zadanie 12
 
-player 1: scissors
-player 2: scissors
-result: draw
+Napisz funkcję `main()`, w której będzie pętla główna, która:
 
-twój wybór > kalkulator
-1
-+
-1
-2
-twój wybór > 
+1) Wyczyści bufor ramki, za pomocą `frame_clear()`
+2) Doda gracza do bufora ramki, za pomocą `frame_add()`
+3) Wyświetli bufor ramki, za pomocą `frame_draw()`
+4) Odczyta znak od użytkownika i jeżeli będzie to `w`, `s`, `a` lub `d` to
+   poruszy graczem za pomocą `character_move()`
+
+## Zadanie 13
+
+Dodaj do gry `3` przeciwników - czyli kolejne instancje struktury `struct character`.
+```c
+struct character player = {
+    '&', 0, 0,
+};
+struct character enemies[3] = {
+    {'X', 4, 0},
+    {'Y', 0, 4},
+    {'Z', 4, 4},
+};
+```
+
+Dodaj umieszczanie ich co klatke w buforze ramki.
+
+## Zadanie 14
+
+Dodaj AI przeciwników.
+
+```c
+void character_random_move(struct character *c)
+{
+    /* wylosuj liczbe */
+    /* wykonaj character_move() z 'w', 's', 'a', 'd' w zaleznosci od wyniku losowania */
+}
+```
+
+Po każdym ruchu gracza powinni oni się losowo poruszyć.
+
+## Zadanie 15
+
+Jeżeli gracz zderzy się z przeciwnikiem, to przeciwnik powinien zginąć. W tym
+celu dodaj pole do struktury informujące o tym czy przeciwnik dalej żyje.
+
+```c
+struct character {
+    ...
+    bool dead;
+    ...
+};
+```
+
+Jeżeli wszyscy przeciwnicy zginą, gra powinna się zakończyć.
+
+
+# Podział projektu na wiele plików
+
+## Kilka plików `.c`
+
+Definicje funkcji i zmiennych możemy umieszczać w osobnych plikach.
+
+```c
+// calculator.c
+int add(int a, int b)
+{
+    return a + b;
+}
+```
+
+```c
+// main.c
+int add(int a, int b);
+int main(void)
+{
+    printf("%d\n", add(1, 2));
+    return 0;
+}
+```
+
+```c
+gcc main.c calculator.c -o program
+```
+
+## Pliki nagłówkowe
+
+Najczęściej deklaracje funkcji umieszczane są w osobnych plikach nagłówkowych, które
+następnie dołączane są w plikach, w których chcemy z tych deklaracji skorzystać.
+
+```c
+// calculator.c
+int add(int a, int b)
+{
+    return a + b;
+}
+```
+```c
+// calculator.h
+int add(int a, int b)
+```
+```c
+// main.c
+#include "calculator.h"
+int main(void)
+{
+    printf("%d\n", add(1, 2));
+    return 0;
+}
+```
+
+## Zapobieganie ponownemu dołączeniu
+
+```c
+// calculator.h
+#ifndef __calculator_h__
+#define __calculator_h__
+int add(int a, int b);
+#endif
+```
+
+```c
+// other.h
+#ifndef __other_h__
+#define __other_h__
+#include "calculator.h"
+#endif
+```
+
+```c
+// main.c
+#include "other.h"
+#include "calculator.h"
+int main(void)
+{
+    printf("%d\n", add(1, 2));
+    return 0;
+}
+```
+
+## Zadanie 16
+
+Połącz trzy poprzednie programy (prostokąt, kalkulator, papier-kamien-nożyce) w jeden:
+
+- Program "movement" umieść w `movement.c`
+- Program "papier-kamien-nozyce" umieść w `rps.c`
+- Program "wisielec" umieść w `hangman.c`
+- Dodaj odpowiednie pliki nagłówkowe
+- W pliku `main.c` umieść kod integrujący trzy poprzednie programy
+
+Struktura projektu:
+```
+.
+├── movement.c
+├── movement.h
+├── rps.c
+├── rps.h
+├── main.c
+├── hangman.c
+└── hangman.h
 ```
 
 # Systemy budowania
@@ -1387,6 +1513,16 @@ Umożliwia to zbudowanie kodu jednym poleceniem
 $ make
 ```
 
+Rozszerz projekt z poprzedniego zadania w następujący sposób:
+
+- Dodaj plik `Makefile` opisujący kroki budowania
+- Zbuduj projekt za pomocą `make`
+
+```bash
+$ make
+```
+
+
 ## CMake
 
 Innym często stosowanym systemem budowania jest CMake. Do opisu procesu budowania
@@ -1409,7 +1545,7 @@ $ cmake ..
 $ cmake --build .
 ```
 
-## Zadanie 12
+## Zadanie 17
 
 Rozszerz projekt z poprzedniego zadania w następujący sposób:
 
@@ -1611,97 +1747,6 @@ $ sudo ./catcom.sh /dev/ttyACM0
 Zbuduj projekt z poprzedniego zadania na Raspberry Pi Pico. Zaprogramuj
 płytke. Połącz się z nią za pomocą portu szeregowego i zweryfikuj czy aplikacja
 działa poprawnie.
-
-# Struktury
-
-## Struktury
-Struktury pozwalają na definiowanie typów złożonych.
-
-```c
-struct vec3 {
-    float x;
-    float y;
-    float z;
-};
-```
-
-```c
-struct vec3 position;
-position.x = 5.0f;
-position.y = 10.0f;
-position.z = 5.0f;
-```
-
-## Struktury - inicjalizacja
-
-```c
-struct color {
-    unsigned char red;
-    unsigned char green;
-    unsigned char blue;
-};
-```
-
-```c
-struct color white = { 255, 255, 255 };
-struct color black = { 0 };
-struct color yellow = {
-    .red = 255,
-    .green = 255,
-};
-```
-
-```c
-struct color yellow = (struct color) {
-    .red = 255,
-    .green = 255,
-};
-```
-
-## Struktury - kopiowanie
-
-Kopiowanie struktur odbywa się poprzez operator `=`.
-
-```c
-struct color green = { 0, 255, 0 };
-struct color tmp;
-tmp = green;
-```
-
-Można to wykonać również za pomocą funkcji `memcpy()`.
-
-```c
-memcpy(&tmp, &green, sizeof(tmp));
-```
-
-## Struktury - wskaźniki do struktur
-
-```c
-struct led_light {
-    struct color color;
-    bool on;
-};
-
-void led_light_init(struct led_light *light)
-{
-    light->color.red = 255;
-    light->on = false;
-}
-
-void led_light_switch(struct led_light *light)
-{
-    light->on = !light->on;
-}
-
-int main(void)
-{
-    struct led_light light;
-    led_light_init(&light);
-    led_light_switch(&light);
-    return 0;
-}
-
-```
 
 ## Zadanie 14
 
