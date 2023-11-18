@@ -1215,7 +1215,7 @@ result: player 1 wins the game</code></pre>
 <span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
 <span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb101-7"><a href="#cb101-7" aria-hidden="true" tabindex="-1"></a><span class="co">/* Jeżeli dir to &#39;w&#39;, &#39;s&#39;, &#39;a&#39; lub &#39;d&#39; to rusz graczem o jedną jednostkę w odpowiednim kierunku.</span></span>
-<span id="cb101-8"><a href="#cb101-8" aria-hidden="true" tabindex="-1"></a><span class="co"> * Pamiętaj że gracz nie może wyjść poza granice planszy */</span></span>
+<span id="cb101-8"><a href="#cb101-8" aria-hidden="true" tabindex="-1"></a><span class="co"> * Pamiętaj że gracz nie może wyjść poza granice planszy (5x5) */</span></span>
 <span id="cb101-9"><a href="#cb101-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> character_move<span class="op">(</span><span class="kw">struct</span> character <span class="op">*</span>ch<span class="op">,</span> <span class="dt">char</span> dir<span class="op">);</span></span></code></pre></div>
 </section>
 <section id="zadanie-11" class="level2">
@@ -1235,10 +1235,10 @@ result: player 1 wins the game</code></pre>
 <h2>Zadanie 12</h2>
 <p>Napisz funkcję <code>main()</code>, w której będzie pętla główna, która:</p>
 <ol class="incremental" type="1">
-<li>Wyczyści bufor ramki, za pomocą <code>frame_clear()</code></li>
-<li>Doda gracza do bufora ramki, za pomocą <code>frame_add()</code></li>
-<li>Wyświetli bufor ramki, za pomocą <code>frame_draw()</code></li>
-<li>Odczyta znak od użytkownika i jeżeli będzie to <code>w</code>, <code>s</code>, <code>a</code> lub <code>d</code> to poruszy graczem za pomocą <code>character_move()</code></li>
+<li>Wyczyści bufor ramki za pomocą <code>frame_clear()</code>.</li>
+<li>Doda gracza do bufora ramki za pomocą <code>frame_add()</code>.</li>
+<li>Wyświetli bufor ramki za pomocą <code>frame_draw()</code>.</li>
+<li>Odczyta znak od użytkownika i jeżeli będzie to <code>w</code>, <code>s</code>, <code>a</code> lub <code>d</code> to poruszy graczem za pomocą <code>character_move()</code>.</li>
 </ol>
 </section>
 <section id="zadanie-13" class="level2">
@@ -1247,7 +1247,7 @@ result: player 1 wins the game</code></pre>
 <div class="sourceCode" id="cb103"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> character player <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>    <span class="ch">&#39;&amp;&#39;</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span></span>
 <span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> character enemies<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> character enemies<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span><span class="ch">&#39;X&#39;</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">0</span><span class="op">},</span></span>
 <span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span><span class="ch">&#39;Y&#39;</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">4</span><span class="op">},</span></span>
 <span id="cb103-7"><a href="#cb103-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span><span class="ch">&#39;Z&#39;</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">4</span><span class="op">},</span></span>
@@ -1256,22 +1256,25 @@ result: player 1 wins the game</code></pre>
 </section>
 <section id="zadanie-14" class="level2">
 <h2>Zadanie 14</h2>
-<p>Dodaj AI przeciwników.</p>
+<p>Dodaj “AI” przeciwników.</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> character_random_move<span class="op">(</span><span class="kw">struct</span> character <span class="op">*</span>c<span class="op">)</span></span>
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* wylosuj liczbe */</span></span>
-<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* wykonaj character_move() z &#39;w&#39;, &#39;s&#39;, &#39;a&#39;, &#39;d&#39; w zaleznosci od wyniku losowania */</span></span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* wylosuj liczbę */</span></span>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* wykonaj character_move() z &#39;w&#39;, &#39;s&#39;, &#39;a&#39;, &#39;d&#39; w zależności od wyniku losowania */</span></span>
 <span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Po każdym ruchu gracza powinni oni się losowo poruszyć.</p>
 </section>
 <section id="zadanie-15" class="level2">
 <h2>Zadanie 15</h2>
 <p>Jeżeli gracz zderzy się z przeciwnikiem, to przeciwnik powinien zginąć. W tym celu dodaj pole do struktury informujące o tym czy przeciwnik dalej żyje.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> character <span class="op">{</span></span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> dead<span class="op">;</span></span>
-<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdbool.h&gt;</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> character <span class="op">{</span></span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> dead<span class="op">;</span></span>
+<span id="cb105-7"><a href="#cb105-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb105-8"><a href="#cb105-8" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
 <p>Jeżeli wszyscy przeciwnicy zginą, gra powinna się zakończyć.</p>
 </section>
 </section>
@@ -1335,13 +1338,13 @@ result: player 1 wins the game</code></pre>
 </section>
 <section id="zadanie-16" class="level2">
 <h2>Zadanie 16</h2>
-<p>Połącz trzy poprzednie programy (prostokąt, kalkulator, papier-kamien-nożyce) w jeden:</p>
+<p>Połącz trzy poprzednie programy (movement, wisielec, papier-kamien-nożyce) w jeden:</p>
 <ul class="incremental">
-<li>Program “movement” umieść w <code>movement.c</code></li>
-<li>Program “papier-kamien-nozyce” umieść w <code>rps.c</code></li>
-<li>Program “wisielec” umieść w <code>hangman.c</code></li>
-<li>Dodaj odpowiednie pliki nagłówkowe</li>
-<li>W pliku <code>main.c</code> umieść kod integrujący trzy poprzednie programy</li>
+<li>program “movement” umieść w <code>movement.c</code>;</li>
+<li>program “papier-kamien-nozyce” umieść w <code>rps.c</code>;</li>
+<li>program “wisielec” umieść w <code>hangman.c</code>;</li>
+<li>podaj odpowiednie pliki nagłówkowe;</li>
+<li>w pliku <code>main.c</code> umieść kod integrujący trzy poprzednie programy, który będzie wyświetlał menu umożliwiające wybór programu.</li>
 </ul>
 <p>Struktura projektu:</p>
 <pre><code>.
@@ -1374,8 +1377,8 @@ result: player 1 wins the game</code></pre>
 <pre><code>$ make</code></pre>
 <p>Rozszerz projekt z poprzedniego zadania w następujący sposób:</p>
 <ul class="incremental">
-<li>Dodaj plik <code>Makefile</code> opisujący kroki budowania</li>
-<li>Zbuduj projekt za pomocą <code>make</code></li>
+<li>dodaj plik <code>Makefile</code> opisujący kroki budowania;</li>
+<li>zbuduj projekt za pomocą <code>make</code>.</li>
 </ul>
 <div class="sourceCode" id="cb118"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> make</span></code></pre></div>
 </section>
@@ -1396,8 +1399,8 @@ result: player 1 wins the game</code></pre>
 <h2>Zadanie 17</h2>
 <p>Rozszerz projekt z poprzedniego zadania w następujący sposób:</p>
 <ul class="incremental">
-<li>Dodaj plik <code>CMakeLists.txt</code>.</li>
-<li>Zbuduj projekt za pomocą <code>cmake</code></li>
+<li>dodaj plik <code>CMakeLists.txt</code>;</li>
+<li>zbuduj projekt za pomocą <code>cmake</code>.</li>
 </ul>
 <div class="sourceCode" id="cb121"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir build</span>
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd build</span>

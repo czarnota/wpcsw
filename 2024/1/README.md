@@ -1305,7 +1305,7 @@ struct character {
 };
 
 /* Jeżeli dir to 'w', 's', 'a' lub 'd' to rusz graczem o jedną jednostkę w odpowiednim kierunku.
- * Pamiętaj że gracz nie może wyjść poza granice planszy */
+ * Pamiętaj że gracz nie może wyjść poza granice planszy (5x5) */
 void character_move(struct character *ch, char dir);
 ```
 
@@ -1329,11 +1329,11 @@ void frame_draw(struct frame *frame);
 
 Napisz funkcję `main()`, w której będzie pętla główna, która:
 
-1) Wyczyści bufor ramki, za pomocą `frame_clear()`
-2) Doda gracza do bufora ramki, za pomocą `frame_add()`
-3) Wyświetli bufor ramki, za pomocą `frame_draw()`
-4) Odczyta znak od użytkownika i jeżeli będzie to `w`, `s`, `a` lub `d` to
-   poruszy graczem za pomocą `character_move()`
+1. Wyczyści bufor ramki za pomocą `frame_clear()`.
+2. Doda gracza do bufora ramki za pomocą `frame_add()`.
+3. Wyświetli bufor ramki za pomocą `frame_draw()`.
+4. Odczyta znak od użytkownika i jeżeli będzie to `w`, `s`, `a` lub `d` to
+   poruszy graczem za pomocą `character_move()`.
 
 ## Zadanie 13
 
@@ -1342,7 +1342,7 @@ Dodaj do gry `3` przeciwników - czyli kolejne instancje struktury `struct chara
 struct character player = {
     '&', 0, 0,
 };
-struct character enemies[3] = {
+struct character enemies[] = {
     {'X', 4, 0},
     {'Y', 0, 4},
     {'Z', 4, 4},
@@ -1353,13 +1353,13 @@ Dodaj umieszczanie ich co klatke w buforze ramki.
 
 ## Zadanie 14
 
-Dodaj AI przeciwników.
+Dodaj "AI" przeciwników.
 
 ```c
 void character_random_move(struct character *c)
 {
-    /* wylosuj liczbe */
-    /* wykonaj character_move() z 'w', 's', 'a', 'd' w zaleznosci od wyniku losowania */
+    /* wylosuj liczbę */
+    /* wykonaj character_move() z 'w', 's', 'a', 'd' w zależności od wyniku losowania */
 }
 ```
 
@@ -1371,6 +1371,9 @@ Jeżeli gracz zderzy się z przeciwnikiem, to przeciwnik powinien zginąć. W ty
 celu dodaj pole do struktury informujące o tym czy przeciwnik dalej żyje.
 
 ```c
+#include <stdbool.h>
+...
+
 struct character {
     ...
     bool dead;
@@ -1466,13 +1469,14 @@ int main(void)
 
 ## Zadanie 16
 
-Połącz trzy poprzednie programy (prostokąt, kalkulator, papier-kamien-nożyce) w jeden:
+Połącz trzy poprzednie programy (movement, wisielec, papier-kamien-nożyce) w jeden:
 
-- Program "movement" umieść w `movement.c`
-- Program "papier-kamien-nozyce" umieść w `rps.c`
-- Program "wisielec" umieść w `hangman.c`
-- Dodaj odpowiednie pliki nagłówkowe
-- W pliku `main.c` umieść kod integrujący trzy poprzednie programy
+- program "movement" umieść w `movement.c`;
+- program "papier-kamien-nozyce" umieść w `rps.c`;
+- program "wisielec" umieść w `hangman.c`;
+- podaj odpowiednie pliki nagłówkowe;
+- w pliku `main.c` umieść kod integrujący trzy poprzednie programy, który będzie
+  wyświetlał menu umożliwiające wybór programu.
 
 Struktura projektu:
 ```
@@ -1515,8 +1519,8 @@ $ make
 
 Rozszerz projekt z poprzedniego zadania w następujący sposób:
 
-- Dodaj plik `Makefile` opisujący kroki budowania
-- Zbuduj projekt za pomocą `make`
+- dodaj plik `Makefile` opisujący kroki budowania;
+- zbuduj projekt za pomocą `make`.
 
 ```bash
 $ make
@@ -1549,8 +1553,8 @@ $ cmake --build .
 
 Rozszerz projekt z poprzedniego zadania w następujący sposób:
 
-- Dodaj plik `CMakeLists.txt`.
-- Zbuduj projekt za pomocą `cmake`
+- dodaj plik `CMakeLists.txt`;
+- zbuduj projekt za pomocą `cmake`.
 
 ```bash
 $ mkdir build
