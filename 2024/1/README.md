@@ -1137,7 +1137,7 @@ print_numbers(array, 3);
 
 ## Tablice - zamiana tablicy na wskaźnik 
 
-Nie ma praktycznej róznicy pomiędzy poniższymi definicjami funkcji
+Nie ma praktycznej róznicy pomiędzy poniższymi definicjami funkcji.
 
 ```c
 void foo(int *bar)
@@ -1162,7 +1162,7 @@ void foo(int bar[])
 
 ## Tablice - wskaźnik do tablicy 
 
-Jeżeli chcemy aby było można przekazać do funkcji tylko tablice o określonym
+Jeżeli chcemy, aby było można przekazać do funkcji tylko tablice o określonym
 rozmiarze, musimy użyć *wskaźnika do tablicy*.
 
 ```c
@@ -1258,6 +1258,12 @@ tmp = green;
 ```
 
 Można to wykonać również za pomocą funkcji `memcpy()`.
+
+```c
+#include <string.h>
+
+void *memcpy(void *restrict dst, const void *restrict src, size_t n);
+```
 
 ```c
 memcpy(&tmp, &green, sizeof(tmp));
@@ -1478,7 +1484,6 @@ Połącz trzy poprzednie programy (movement, wisielec, papier-kamien-nożyce) w 
 - w pliku `main.c` umieść kod integrujący trzy poprzednie programy, który będzie
   wyświetlał menu umożliwiające wybór programu.
 
-Struktura projektu:
 ```
 .
 ├── movement.c
@@ -1517,6 +1522,8 @@ Umożliwia to zbudowanie kodu jednym poleceniem
 $ make
 ```
 
+## Zadanie 17
+
 Rozszerz projekt z poprzedniego zadania w następujący sposób:
 
 - dodaj plik `Makefile` opisujący kroki budowania;
@@ -1549,7 +1556,7 @@ $ cmake ..
 $ cmake --build .
 ```
 
-## Zadanie 17
+## Zadanie 18
 
 Rozszerz projekt z poprzedniego zadania w następujący sposób:
 
@@ -1746,13 +1753,11 @@ $ chmod u+x ./catcom.sh
 $ sudo ./catcom.sh /dev/ttyACM0
 ```
 
-## Zadanie 13
+## Zadanie 19
 
 Zbuduj projekt z poprzedniego zadania na Raspberry Pi Pico. Zaprogramuj
 płytke. Połącz się z nią za pomocą portu szeregowego i zweryfikuj czy aplikacja
 działa poprawnie.
-
-## Zadanie 14
 
 # Typy wyliczeniowe
 
