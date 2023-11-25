@@ -8,6 +8,7 @@ Repozytorium zawiera materiały do przedmiotu "Wstęp to programowania w C z ele
 
 - Zadanie 4: <https://czarnota.github.io/wpcsw/2024/1/rps.c>
 - Zadanie 9: <https://czarnota.github.io/wpcsw/2024/1/hangman.c>
+- Zadanie 15: <https://czarnota.github.io/wpcsw/2024/1/movement.c>
 
 ## Wysyłanie zadań
 
