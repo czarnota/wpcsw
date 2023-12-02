@@ -9,6 +9,7 @@ Repozytorium zawiera materiały do przedmiotu "Wstęp to programowania w C z ele
 - Zadanie 4: <https://czarnota.github.io/wpcsw/2024/1/rps.c>
 - Zadanie 9: <https://czarnota.github.io/wpcsw/2024/1/hangman.c>
 - Zadanie 15: <https://czarnota.github.io/wpcsw/2024/1/movement.c>
+- Połączony program: <https://github.com/czarnota/wpcsw-combined>
 
 ## Wysyłanie zadań
 
@@ -54,7 +55,9 @@ Oceniane będą 3 rzeczy
 | ----------------------------- | ---------- | ------- |
 | Zadanie 6                     | 04.11.2023 |  +1     |
 | Zadanie 9                     | 18.11.2023 |  +1     |
-|                               |            |  +1     |
+| Zadanie 15                    | 25.11.2023 |  +1     |
+| Zadanie 18                    | 02.12.2023 |  +1     |
+| RPI Pico                      | 02.12.2023 |  +1     |
 
 Liczba punktów i oceny jakie temu odpowiadają:
 
@@ -62,7 +65,9 @@ Liczba punktów i oceny jakie temu odpowiadają:
 | ------------- | ----- |
 | 1             | 3     |
 | 2             | 4     |
-| 3             | 5     |
+| 3             | 4.5   |
+| 4             | 5     |
+| 5             | 5     |
 
 Jeżeli, ktoś nie zdobędzie żadnego punktu, to na ostatnich zajęciach otrzyma
 zadanie ratunkowe, którego rozwiązanie do końca semestru skutkuje oceną 3.
